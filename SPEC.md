@@ -19,7 +19,7 @@ Specs:
 [ ] - Include form display of validation errors (form URL e.g. /recipes/new)
     --> [ ] - Your fields should be enclosed within a fields_with_errors class
     --> [ ] - Error messages describing the validation failures must be present within the view
-
+    
 Confirm:
 [ ] - The application is pretty DRY
 [ ] - Limited logic in controllers
