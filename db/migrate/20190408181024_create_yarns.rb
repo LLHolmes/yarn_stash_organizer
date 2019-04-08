@@ -9,7 +9,5 @@ class CreateYarns < ActiveRecord::Migration[5.2]
 
       t.timestamps
     end
-    add_index :yarns, :project_id
-    add_index :yarns, :brand_id
   end
 end

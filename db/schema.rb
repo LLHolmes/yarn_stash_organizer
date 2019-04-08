@@ -10,10 +10,48 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_04_08_174743) do
+ActiveRecord::Schema.define(version: 2019_04_08_182243) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "brands", force: :cascade do |t|
+    t.string "name"
+    t.string "material"
+    t.string "weight"
+    t.string "hook"
+    t.string "needle"
+    t.integer "skein_weight"
+    t.integer "skein_length"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "notes", force: :cascade do |t|
+    t.string "note"
+    t.bigint "project_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["project_id"], name: "index_notes_on_project_id"
+  end
+
+  create_table "projects", force: :cascade do |t|
+    t.string "name"
+    t.string "status"
+    t.string "pattern_info"
+    t.bigint "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_projects_on_user_id"
+  end
+
+  create_table "tools", force: :cascade do |t|
+    t.string "name"
+    t.bigint "project_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["project_id"], name: "index_tools_on_project_id"
+  end
 
   create_table "users", force: :cascade do |t|
     t.string "name"
@@ -30,6 +68,18 @@ ActiveRecord::Schema.define(version: 2019_04_08_174743) do
     t.datetime "updated_at", null: false
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
+  end
+
+  create_table "yarns", force: :cascade do |t|
+    t.string "color"
+    t.integer "count"
+    t.string "scrap"
+    t.bigint "project_id"
+    t.bigint "brand_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["brand_id"], name: "index_yarns_on_brand_id"
+    t.index ["project_id"], name: "index_yarns_on_project_id"
   end
 
 end

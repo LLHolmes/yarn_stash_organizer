@@ -6,6 +6,5 @@ class CreateTools < ActiveRecord::Migration[5.2]
 
       t.timestamps
     end
-    add_index :tools, :project_id
   end
 end
