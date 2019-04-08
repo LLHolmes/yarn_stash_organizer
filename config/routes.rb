@@ -4,4 +4,6 @@ Rails.application.routes.draw do
   get 'auth/failure', to: redirect(‘/’)
   # Routes for Pinterest authentication
   # '/auth/pinterest'
+
+  root 'application#welcome'
 end
