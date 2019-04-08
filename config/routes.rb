@@ -10,5 +10,5 @@ Rails.application.routes.draw do
   # Routes for Pinterest authentication
   # '/auth/pinterest'
 
-  root 'application#welcome'
+  root 'application#home'
 end
