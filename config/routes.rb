@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
-  resources :brands
+  resources :brands, except: [:index] do
+    resources :yarns, only: [:show, :index, :new]
+  end
   resources :tools
   resources :yarns
   resources :projects

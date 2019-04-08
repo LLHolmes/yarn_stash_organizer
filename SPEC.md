@@ -41,5 +41,6 @@ Stretch Goals:
 [ ] - link to patterns / images etc.
 [ ] - write a pattern???[ ] - add color_family to yarns?
 [ ] - public vs. private???
+    --> [ ] - nest project routes/resources
     --> [ ] - add this project to my project list
     --> [ ] - create index of all projects for inspiration?
