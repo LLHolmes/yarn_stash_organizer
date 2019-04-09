@@ -2,7 +2,7 @@ class ToolsController < ApplicationController
   before_action :find_tool, only: [:edit, :update, :destroy]
 
   def index
-    @tool =  Tool.all
+    @tools =  Tool.all
   end
 
   def new
