@@ -11,6 +11,9 @@ class BrandsController < ApplicationController
   def create
     @brand = Brand.new(brand_params)
     if @brand.save
+      redirect_to brand_path(@brand)
+    else
+      render :new
     end
   end
 
@@ -18,7 +21,10 @@ class BrandsController < ApplicationController
   end
 
   def update
-    if @brand.update
+    if @brand.update(brand_params)
+      redirect_to brand_path(@brand)
+    else
+      render :edit
     end
   end
 
