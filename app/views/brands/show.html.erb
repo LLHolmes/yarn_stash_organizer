@@ -7,29 +7,8 @@
 <h2>Colors of this yarn in your stash:</h2>
 <ul>
   <% @brand.yarns_by_color.each do |yarn| %>
-    <li><%= link_to yarn.color, edit_yarn_path(yarn) %> <%= YarnHelper.amount(yarn) %></li>
-
-
-    <% if yarn.count && yarn.scrap %>
-      <% if yarn.scrap.to_f == 0.0 && yarn.count == 1 %>
-        <li><%= link_to yarn.color, edit_yarn_path(yarn) %> (<%= yarn.count %> skein)</li>
-      <% elsif yarn.scrap.to_f == 0.0 && yarn.count > 1 %>
-        <li><%= link_to yarn.color, edit_yarn_path(yarn) %> (<%= yarn.count %> skeins)</li>
-      <% elsif yarn.count == 1 %>
-        <li><%= link_to yarn.color, edit_yarn_path(yarn) %> (<%= yarn.count %> skein, <%= yarn.scrap.to_f %> oz. scrap)</li>
-      <% elsif yarn.count > 1 %>
-        <li><%= link_to yarn.color, edit_yarn_path(yarn) %> (<%= yarn.count %> skeins, <%= yarn.scrap.to_f %> oz. scrap)</li>
-      <% end %>
-    <% elsif yarn.count && yarn.count == 1 %>
-      <li><%= link_to yarn.color, edit_yarn_path(yarn) %> (<%= yarn.count %> skein)</li>
-    <% elsif yarn.count && yarn.count > 1 %>
-      <li><%= link_to yarn.color, edit_yarn_path(yarn) %> (<%= yarn.count %> skeins)</li>
-    <% elsif yarn.scrap && yarn.scrap.to_f > 0.0 %>
-      <li><%= link_to yarn.color, edit_yarn_path(yarn) %> (<%= yarn.scrap.to_f %> oz. scrap)</li>
-    <% end %>
+    <li><%= link_to yarn.color, edit_yarn_path(yarn) %> <%= yarn_amount yarn %></li>
   <% end %>
-
-  Click here for News
 </ul>
 
 <%# if current_user.brands.include?(@brand) %>
