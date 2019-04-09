@@ -1,8 +1,7 @@
 class BrandsController < ApplicationController
   before_action :find_brand, only: [:show, :edit, :update, :destroy]
 
-  def show  
-    @brand_yarns = current_user.brand_yarns(@brand)
+  def show
   end
 
   def new
@@ -31,6 +30,7 @@ class BrandsController < ApplicationController
 
   def destroy
     @brand.destroy
+    redirect_to root_path
   end
 
   private

@@ -4,20 +4,35 @@
 <p>Skein size: <%= @brand.skein_weight %>oz., <%= @brand.skein_length %>yd.</p>
 <p>Recommended Hook / Needle: <%= @brand.hook %>, <%= @brand.needle %></p>
 
-<h4>Colors of this yarn in your stash:</h4>
+<h2>Colors of this yarn in your stash:</h2>
 <ul>
-  <% @brand_yarns.each do |yarn| %>
-    <li><%= link_to yarn.color, edit_yarn(yarn) %> - <%=  %></li>
+  <% @brand.yarns_by_color.each do |yarn| %>
+    <li><%= link_to yarn.color, edit_yarn_path(yarn) %> <%= YarnHelper.amount(yarn) %></li>
+
+
+    <% if yarn.count && yarn.scrap %>
+      <% if yarn.scrap.to_f == 0.0 && yarn.count == 1 %>
+        <li><%= link_to yarn.color, edit_yarn_path(yarn) %> (<%= yarn.count %> skein)</li>
+      <% elsif yarn.scrap.to_f == 0.0 && yarn.count > 1 %>
+        <li><%= link_to yarn.color, edit_yarn_path(yarn) %> (<%= yarn.count %> skeins)</li>
+      <% elsif yarn.count == 1 %>
+        <li><%= link_to yarn.color, edit_yarn_path(yarn) %> (<%= yarn.count %> skein, <%= yarn.scrap.to_f %> oz. scrap)</li>
+      <% elsif yarn.count > 1 %>
+        <li><%= link_to yarn.color, edit_yarn_path(yarn) %> (<%= yarn.count %> skeins, <%= yarn.scrap.to_f %> oz. scrap)</li>
+      <% end %>
+    <% elsif yarn.count && yarn.count == 1 %>
+      <li><%= link_to yarn.color, edit_yarn_path(yarn) %> (<%= yarn.count %> skein)</li>
+    <% elsif yarn.count && yarn.count > 1 %>
+      <li><%= link_to yarn.color, edit_yarn_path(yarn) %> (<%= yarn.count %> skeins)</li>
+    <% elsif yarn.scrap && yarn.scrap.to_f > 0.0 %>
+      <li><%= link_to yarn.color, edit_yarn_path(yarn) %> (<%= yarn.scrap.to_f %> oz. scrap)</li>
+    <% end %>
   <% end %>
+
+  Click here for News
 </ul>
 
-<% if current_user.brands.include?(@brand) %>
-  <form action="/brands/<%= @brand.id %>/edit" method="get">
-    <input type="submit" value="Update Brand">
-  </form>
-
-  <form action="/brands/<%= @brand.id %>/delete" method="post">
-    <input id="hidden" type="hidden" name="_method" value="delete">
-    <input type="submit" value="Delete Brand">
-  </form>
-<% end %>
+<%# if current_user.brands.include?(@brand) %>
+  <%= button_to "Edit Brand", edit_brand_path(@brand), method: :get %>
+  <%= button_to "Delete Brand", { action: "destroy", id: @brand.id }, method: :delete, data: { confirm: "This will delete all associated yarn. Are you sure?" } %>
+<%# end %>
