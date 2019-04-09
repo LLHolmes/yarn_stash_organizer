@@ -1,1 +1,23 @@
 <h1><%= @brand.name %></h1>
+<p>Material: <%= @brand.material %></p>
+<p>Gauge: <%= @brand.weight %></p>
+<p>Skein size: <%= @brand.skein_weight %>oz., <%= @brand.skein_length %>yd.</p>
+<p>Recommended Hook / Needle: <%= @brand.hook %>, <%= @brand.needle %></p>
+
+<h4>Colors of this yarn in your stash:</h4>
+<ul>
+  <% @brand_yarns.each do |yarn| %>
+    <li><%= link_to yarn.color, edit_yarn(yarn) %> - <%=  %></li>
+  <% end %>
+</ul>
+
+<% if current_user.brands.include?(@brand) %>
+  <form action="/brands/<%= @brand.id %>/edit" method="get">
+    <input type="submit" value="Update Brand">
+  </form>
+
+  <form action="/brands/<%= @brand.id %>/delete" method="post">
+    <input id="hidden" type="hidden" name="_method" value="delete">
+    <input type="submit" value="Delete Brand">
+  </form>
+<% end %>

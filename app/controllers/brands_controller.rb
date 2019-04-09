@@ -1,7 +1,8 @@
 class BrandsController < ApplicationController
   before_action :find_brand, only: [:show, :edit, :update, :destroy]
 
-  def show
+  def show  
+    @brand_yarns = current_user.brand_yarns(@brand)
   end
 
   def new
