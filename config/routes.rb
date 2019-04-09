@@ -2,7 +2,7 @@ Rails.application.routes.draw do
   resources :brands, except: [:index] do
     resources :yarns, only: [:show, :index, :new]
   end
-  resources :tools
+  resources :tools, except: [:show]
   resources :yarns
   resources :projects
   devise_for :users
