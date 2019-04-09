@@ -1,0 +1,15 @@
+<%= form_for @brand do |f| %>
+  <%= f.label "Name:" %>
+  <%= f.text_field :name %><br>
+  <%= f.select :material, [ 'Acrylic', 'Cotton', 'Wool', 'Alpaca', 'Other' ], :prompt => 'Select Material' %><br>
+  <%= f.select :weight, [ '0 - Lace', '1 - Super Fine', '2 - Fine', '3 - Light', '4 - Medium', '5 - Bulky', '6 - Super Bulky', '7 - Jumbo', 'Novelty' ], :prompt => 'Select Gauge' %><br>
+  <%= f.label "Skein weigth:" %>
+  <%= f.text_field :skein_weight %><br>
+  <%= f.label "Skein length:" %>
+  <%= f.number_field :skein_length %><br>
+  <%= f.label "Recommended crochet hook:" %>
+  <%= f.number_field :hook %><br>
+  <%= f.label "Recommended knitting needle:" %>
+  <%= f.text_field :needle %><br>
+  <%= f.submit %>
+<% end %>
