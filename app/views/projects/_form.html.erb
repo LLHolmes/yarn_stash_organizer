@@ -1,0 +1,10 @@
+<%= form_for @project do |f| %>
+  <%= f.label "Name:" %>
+  <%= f.text_field :name %><br>
+  <%= f.select :status, status_choices, :prompt => 'Select Status' %><br>
+  <%= f.label "Pattern:" %>
+  <%= f.number_field :pattern %><br>
+
+
+  <%= f.submit %>
+<% end %>

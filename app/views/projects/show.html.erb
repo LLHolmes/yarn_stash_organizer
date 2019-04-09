@@ -1,0 +1,36 @@
+<h1><%= @project.name %></h1>
+<p>Status: <%= @project.status %></p>
+<p>Pattern: <%= @project.pattern_info %></p>
+
+<div>
+  <h2>Notes:</h2>
+  <ul>
+    <% @project.notes.each do |note| %>
+      <p><%= post.created_at.strftime("%m/%d/%Y, %l:%M %p") %></p>
+      <p><%= note.note %></p>
+    <% end %>
+  </ul>
+</div>
+
+<div>
+  <h2>Yarn being used:</h2>
+  <ul>
+    <% @project.yarns_by_color.each do |yarn| %>
+      <li><%= link_to yarn.brand.name, brand_path(yarn.brand) %> - <%= link_to yarn.color, edit_yarn_path(yarn) %> <%= yarn_amount yarn %></li>
+    <% end %>
+  </ul>
+</div>
+
+<div>
+  <h2>Tools being used:</h2>
+  <ul>
+    <% @project.tools.each do |tool| %>
+      <li><%= link_to tool.name, edit_tool_path(tool) %></li>
+    <% end %>
+  </ul>
+</div>
+
+<%# if current_user.brands.include?(@brand) %>
+  <%= button_to "Edit Project", edit_project_path(@project), method: :get %>
+  <%= button_to "Delete Project", { action: "destroy", id: @project.id }, method: :delete, data: { confirm: "This will move all associated yarn and tools to your Stash. Are you sure you'd like to frog this project?" } %>
+<%# end %>
