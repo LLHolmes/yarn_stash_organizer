@@ -1,9 +1,9 @@
 Rails.application.routes.draw do
   resources :brands, except: [:index] do
-    resources :yarns, only: [:show, :index, :new]
+    resources :yarns, only: [:index, :new]
   end
   resources :tools, except: [:show]
-  resources :yarns
+  resources :yarns, except: [:show]
   resources :projects
   devise_for :users
   # Routes for Google authentication
