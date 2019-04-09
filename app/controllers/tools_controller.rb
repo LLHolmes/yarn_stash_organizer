@@ -5,9 +5,6 @@ class ToolsController < ApplicationController
     @tool =  Tool.all
   end
 
-  def show
-  end
-
   def new
     @tool = Tool.new
   end
