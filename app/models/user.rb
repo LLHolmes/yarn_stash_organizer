@@ -5,6 +5,7 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
 
  devise :omniauthable, :omniauth_providers => [:facebook, :google_oauth2, :pinterest]
+ # devise :omniauthable, omniauth_providers: %i[facebook]
 
   has_many :projects
   has_many :notes, -> { distinct }, through: :projects
@@ -21,8 +22,6 @@ class User < ApplicationRecord
       user.name = auth.info.name   # assuming the user model has a name
       # user.image = auth.info.image # assuming the user model has an image
     end
-    session[:user_id] = @user.id
-    redirect_to root_path
   end
 
   def projects_finished
