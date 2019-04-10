@@ -9,11 +9,11 @@ class ProjectsController < ApplicationController
   end
 
   def show
-    @project.notes.build
   end
 
   def new
     @project = Project.new
+    @project.notes.build
   end
 
   def create
@@ -26,6 +26,7 @@ class ProjectsController < ApplicationController
   end
 
   def edit
+    @project.notes.build
   end
 
   def update

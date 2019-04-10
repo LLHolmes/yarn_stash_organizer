@@ -1,34 +1,52 @@
 <h1><%= @project.name %></h1>
-<p>Status: <%= @project.status %></p>
-<p>Pattern: <%= @project.pattern_info %></p>
+<% if @project.name != "Stash" %>
+  <p>Status: <%= @project.status %></p>
+  <p>Pattern: <%= @project.pattern_info %></p>
+<% end %>
 
 <div>
-  <h2>Notes:</h2>
-  <ul>
-    <% @project.notes.each do |note| %>
-      <p><%= post.created_at.strftime("%m/%d/%Y, %l:%M %p") %></p>
-      <p><%= note.note %></p>
-    <% end %>
-  </ul>
+  <% if !@project.notes.empty? %>
+    <h2>Notes:</h2>
+    <ul>
+      <% @project.notes.each do |note| %>
+        <li>
+          <p><%= note.created_at.strftime("%m/%d/%Y, %l:%M %p") %></p>
+          <p><%= note.note %></p>
+        </li>
+      <% end %>
+    </ul>
+  <% end %>
 </div>
 
+<% if !@project.yarns.empty? %>
 <div>
-  <h2>Yarn being used:</h2>
+  <% if @project.name != "Stash" %>
+    <h2>Project Yarn:</h2>
+  <% else %>
+    <h2>Stashed Yarn:</h2>
+  <% end %>
   <ul>
-    <% @project.yarns_by_color.each do |yarn| %>
+    <% @project.yarns_by_brand.each do |yarn| %>
       <li><%= link_to yarn.brand.name, brand_path(yarn.brand) %> - <%= link_to yarn.color, edit_yarn_path(yarn) %> <%= yarn_amount yarn %></li>
     <% end %>
   </ul>
 </div>
+<% end %>
 
+<% if !@project.tools.empty? %>
 <div>
-  <h2>Tools being used:</h2>
+  <% if @project.name != "Stash" %>
+    <h2>Project Tools:</h2>
+  <% else %>
+    <h2>Stashed Tools:</h2>
+  <% end %>
   <ul>
     <% @project.tools.each do |tool| %>
       <li><%= link_to tool.name, edit_tool_path(tool) %></li>
     <% end %>
   </ul>
 </div>
+<% end %>
 
 <%# if current_user.brands.include?(@brand) %>
   <%= button_to "Edit Project", edit_project_path(@project), method: :get %>
