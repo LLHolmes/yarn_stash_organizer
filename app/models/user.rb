@@ -25,21 +25,21 @@ class User < ApplicationRecord
     redirect_to root_path
   end
 
-  # def projects_finished
-  #   self.projects.select { |project| project.status == "Finished" }
-  # end
-  #
-  # def projects_wip
-  #   self.projects.select { |project| project.status == "In Progress" }
-  # end
-  #
-  # def projects_upcoming
-  #   self.projects.select { |project| project.status == "Upcoming" }
-  # end
-  #
-  # def stash
-  #   self.projects.detect { |project| project.name == "Stash" }
-  # end
+  def projects_finished
+    self.projects.select { |project| project.status == "Finished" }
+  end
+
+  def projects_wip
+    self.projects.select { |project| project.status == "In Progress" }
+  end
+
+  def projects_upcoming
+    self.projects.select { |project| project.status == "Upcoming" }
+  end
+
+  def stash
+    self.projects.detect { |project| project.name == "Stash" }
+  end
   #
   # def yarns_by_brand
   #   self.yarns.sort_by { |yarn| yarn.color }.sort_by { |yarn| yarn.brand.name }

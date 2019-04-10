@@ -2,11 +2,13 @@ class ProjectsController < ApplicationController
   before_action :find_project, only: [:show, :edit, :update, :destroy]
 
   def index
-    @projects =  Project.all
-    @person.notes.build
+    @wip = current_user.projects_wip
+    @upcoming = current_user.projects_upcoming
+    @finished = current_user.projects_finished
   end
 
   def show
+    @project.notes.build
   end
 
   def new
