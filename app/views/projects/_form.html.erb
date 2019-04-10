@@ -13,10 +13,10 @@
   <% end %>
 
   <%= f.label "Select Yarn:" %><br>
-  <%= f.collection_check_boxes(:project, :yarn_ids, current_user.yarns_sorted_by_brand, :id, :yarn_with_brand) %>
+  <%= f.collection_check_boxes(:yarns, current_user.yarns_sorted_by_brand, :id, :yarn_with_brand) %><br>
 
   <%= f.label "Select Tools:" %><br>
-  <%= f.collection_check_boxes(:project, :tools_ids, current_user.tools, :id, :tool.name) %>
+  <%= f.collection_check_boxes(:tools, current_user.tools, :id, :name) %>
 
   <%= f.submit %>
 <% end %>

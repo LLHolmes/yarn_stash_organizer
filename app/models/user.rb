@@ -54,7 +54,7 @@ class User < ApplicationRecord
   end
 
   def yarns_sorted_by_brand
-    brands_sorted.collect { |brand| brand.yarns_by_color }
+    brands_sorted.collect { |brand| brand.yarns_by_color }.flatten
   end
   #
   # def brand_by_weight(wt)

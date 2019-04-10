@@ -17,6 +17,7 @@ class ProjectsController < ApplicationController
   end
 
   def create
+    # binding.pry
     @project = Project.new(project_params)
     if @project.save
       redirect_to project_path(@project)
@@ -47,7 +48,7 @@ class ProjectsController < ApplicationController
     end
 
     def project_params
-      params.require(:project).permit(:name, :status, :pattern_info, :notes_attributes)
+      params.require(:project).permit(:name, :status, :pattern_info, :notes_attributes, :yarns, :tools)
     end
 
 end
