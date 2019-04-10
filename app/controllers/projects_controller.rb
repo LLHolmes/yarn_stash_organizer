@@ -2,6 +2,7 @@ class ProjectsController < ApplicationController
   before_action :find_project, only: [:show, :edit, :update, :destroy]
 
   def index
+    @stash = current_user.stash
     @wip = current_user.projects_wip
     @upcoming = current_user.projects_upcoming
     @finished = current_user.projects_finished

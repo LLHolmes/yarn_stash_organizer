@@ -1,0 +1,32 @@
+<h1>Projects</h1>
+
+<% if !@wip.empty? %>
+  <h2>In Progress:</h2>
+    <% @wip.each do |project| %>
+    <div>
+      <%= link_to project.name, project_path(project) %>
+    </div>
+    <% end %>
+<% end %>
+
+<% if !@upcoming.empty? %>
+  <h2>Upcoming:</h2>
+    <% @upcoming.each do |project| %>
+    <div>
+      <%= link_to project.name, project_path(project) %>
+    </div>
+    <% end %>
+<% end %>
+
+<% if !@finished.empty? %>
+  <h2>Finished:</h2>
+    <% @finished.each do |project| %>
+    <div>
+      <%= link_to project.name, project_path(project) %>
+    </div>
+    <% end %>
+<% end %>
+
+<br>
+
+<h2><%= link_to @stash.name, project_path(@stash) %></h2>
