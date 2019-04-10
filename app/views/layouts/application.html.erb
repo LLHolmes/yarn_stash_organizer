@@ -10,6 +10,35 @@
   </head>
 
   <body>
-    <%= yield %>
+    <nav>
+      <%# if logged_in? %>
+        <%# if current_user.name.end_with?("s") %>
+          <p><%= current_user.name %>' Stash Organizer</p>
+        <%# else %>
+          <p><%= current_user.name %>'s Stash Organizer</p>
+        <%# end %>
+        <%= link_to "Home", root_path %>
+        <%= link_to "Projects", projects_path %> - <%= link_to "New Project", new_project_path %>
+        <%= link_to "Yarn", yarns_path %> - <%= link_to "New Yarn", new_yarn_path %>
+        <%= link_to "Tools", tools_path %> - <%= link_to "New Tool", new_tool_path %>
+        <%= link_to "Account Details", edit_user_registration_path %>
+        <%= link_to "Sign Out", destroy_user_session_path %>
+
+      <%# else %>
+        <%= link_to "Sign In", new_user_session_path %>
+        <%= link_to "Join", new_user_registration_path %>
+      <%# end %>
+    </nav>
+
+    <div class="container">
+    <% flash.keys.each do |type| %>
+      <div data-alert class="flash <%= type %> alert-box radius">
+        <%= flash[type] %>
+      </div>
+    <% end %>
+
+      <%= yield %>
+
+    </div>
   </body>
 </html>
