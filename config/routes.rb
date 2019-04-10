@@ -5,7 +5,8 @@ Rails.application.routes.draw do
   resources :tools, except: [:show]
   resources :yarns, except: [:show]
   resources :projects
-  devise_for :users, :controllers => { :omniauth_callbacks => "users/omniauth_callbacks" }
+  # devise_for :users, :controllers => { :omniauth_callbacks => "users/omniauth_callbacks" }
+  devise_for :users, :controllers => { registrations: 'registrations' }
   # Routes for Google authentication
   get 'auth/:provider/callback', to: 'sessions#googleAuth'
   # get 'auth/:provider/callback', to: 'users/omniauth_callbacks#google_oauth2'
