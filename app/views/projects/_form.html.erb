@@ -21,9 +21,18 @@
   <%= f.label "Pattern:" %>
   <%= f.text_field :pattern_info %><br>
 
-  <%= f.fields_for :notes do |n| %>
-    <%= n.label "Add note:" %><br>
-    <%= n.text_area :note %><br>
+  <% @project.notes.each do |comment| %>
+    <div>
+    <% if comment.note %>
+      <p><%= comment.created_at.strftime("%m/%d/%Y, %l:%M %p") %>: <%= comment.note %></p>
+        <%= button_to "Delete Note", { action: "destroy", id: comment.id }, method: :delete, data: { confirm: "Are you sure?" } %>
+    <% else %>
+      <%= f.fields_for :notes do |n| %>
+        <%= n.label "Add note:" %><br>
+        <%= n.text_area :note %><br>
+      <% end %>
+    <% end %>
+    </div>
   <% end %>
 
   <%= f.label "Select Yarn:" %><br>

@@ -18,6 +18,7 @@ class ProjectsController < ApplicationController
 
   def create
     @project = current_user.projects.build(project_params)
+    # binding.pry
     if @project.save
       redirect_to project_path(@project)
     else
@@ -32,7 +33,7 @@ class ProjectsController < ApplicationController
   end
 
   def update
-    if @project.update
+    if @project.update(project_params)
       redirect_to project_path(@project)
     else
       render :edit
