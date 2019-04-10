@@ -8,9 +8,20 @@
   <%= f.number_field :pattern %><br>
 
   <%= f.fields_for :notes do |n| %>
-    <%= n.label "Note:" %>
+    <%= n.label "Add note:" %><br>
     <%= n.text_area :note %><br>
   <% end %>
+
+  <%= f.fields_for @project.notes do |n| %>
+    <%= n.label "Add note:" %>
+    <%= n.text_area :note %><br>
+  <% end %>
+
+  <%= f.label "Select Yarn:" %><br>
+  <%= f.collection_check_boxes(:project, :yarn_ids, current_user.yarns_sorted_by_brand, :id, :yarn_with_brand) %>
+
+  <%= f.label "Select Tools:" %><br>
+  <%= f.collection_check_boxes(:project, :tools_ids, current_user.tools, :id, :tool.name) %>
 
   <%= f.submit %>
 <% end %>
