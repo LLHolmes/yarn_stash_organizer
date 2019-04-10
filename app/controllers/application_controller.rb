@@ -6,8 +6,13 @@ class ApplicationController < ActionController::Base
     render '/home.html.erb'
   end
 
-  def after_sign_in_path_for(resource)
-    request.env['omniauth.origin'] || root_path
-  end
+  private
+    def after_sign_in_path_for(resource)
+      request.env['omniauth.origin'] || root_path
+    end
+
+    def after_sign_up_path_for(resource)
+      request.env['omniauth.origin'] || root_path
+    end
 
 end
