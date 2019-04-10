@@ -9,7 +9,7 @@ class Project < ApplicationRecord
   # accepts_nested_attributes_for :yarns, reject_if: :all_blank
   # accepts_nested_attributes_for :tools, reject_if: :all_blank
 
-  validates_presence_of :name
+  validates_presence_of :name, :status
   validates_uniqueness_of :name, scope: :user_id
 
   def yarns_by_brand
