@@ -5,15 +5,10 @@
   <%= f.select :status, status_choices, :prompt => 'Select Status' %><br>
 
   <%= f.label "Pattern:" %>
-  <%= f.number_field :pattern %><br>
+  <%= f.text_field :pattern_info %><br>
 
   <%= f.fields_for :notes do |n| %>
     <%= n.label "Add note:" %><br>
-    <%= n.text_area :note %><br>
-  <% end %>
-
-  <%= f.fields_for @project.notes do |n| %>
-    <%= n.label "Add note:" %>
     <%= n.text_area :note %><br>
   <% end %>
 
