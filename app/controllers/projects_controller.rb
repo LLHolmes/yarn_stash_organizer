@@ -17,11 +17,12 @@ class ProjectsController < ApplicationController
   end
 
   def create
-    # binding.pry
-    @project = Project.new(project_params)
+    @project = current_user.projects.build(project_params)
     if @project.save
       redirect_to project_path(@project)
     else
+      # @project.notes.build(note: params[:project][:notes_attributes]["0"][:note])
+      # binding.pry
       render :new
     end
   end
@@ -48,7 +49,7 @@ class ProjectsController < ApplicationController
     end
 
     def project_params
-      params.require(:project).permit(:name, :status, :pattern_info, :notes_attributes, :yarns, :tools)
+      params.require(:project).permit(:name, :status, :pattern_info, notes_attributes: [:note], yarn_ids:[], tool_ids:[])
     end
 
 end
