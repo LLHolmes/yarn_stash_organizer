@@ -3,6 +3,7 @@ class ProjectsController < ApplicationController
 
   def index
     @projects =  Project.all
+    @person.notes.build
   end
 
   def show
@@ -15,6 +16,9 @@ class ProjectsController < ApplicationController
   def create
     @project = Project.new(project_params)
     if @project.save
+      redirect_to project_path(@project)
+    else
+      render :new
     end
   end
 
@@ -23,6 +27,9 @@ class ProjectsController < ApplicationController
 
   def update
     if @project.update
+      redirect_to project_path(@project)
+    else
+      render :edit
     end
   end
 
@@ -36,7 +43,7 @@ class ProjectsController < ApplicationController
     end
 
     def project_params
-      params.require(:project).permit(:name, :status, :pattern_info)
+      params.require(:project).permit(:name, :status, :pattern_info, :notes_attributes)
     end
 
 end
