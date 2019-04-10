@@ -8,7 +8,7 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
       set_flash_message(:notice, :success, :kind => "Facebook") if is_navigational_format?
     else
       session["devise.facebook_data"] = request.env["omniauth.auth"]
-      redirect_to new_user_registration_url
+      redirect_to new_user_registration_path
     end
   end
 
@@ -19,7 +19,7 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
       set_flash_message(:notice, :success, :kind => "Google") if is_navigational_format?
     else
       session["devise.google_oauth2_data"] = request.env["omniauth.auth"]
-      redirect_to new_user_registration_url
+      redirect_to new_user_registration_path
     end
   end
 
@@ -30,7 +30,7 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
       set_flash_message(:notice, :success, :kind => "Pinterest") if is_navigational_format?
     else
       session["devise.pinterest_data"] = request.env["omniauth.auth"]
-      redirect_to new_user_registration_url
+      redirect_to new_user_registration_path
     end
   end
 
