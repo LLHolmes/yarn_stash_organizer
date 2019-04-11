@@ -1,0 +1,84 @@
+<% if @yarn.errors.any? %>
+  <div id="error_explanation">
+    <h2>
+      <%= pluralize(@yarn.errors.count, "error") %>
+      prohibited this project from being saved:
+    </h2>
+    <ul>
+    <% @yarn.errors.full_messages.each do |msg| %>
+      <li><%= msg %></li>
+    <% end %>
+    </ul>
+  </div>
+<% end %>
+
+<%= form_for @yarn do |f| %>
+
+<fieldset>
+  <legend>Yarn:</legend>
+  <%= f.label "Color:" %>
+  <%= f.text_field :color %><br>
+
+  <%= f.label "Full skeins:" %>
+  <%= f.number_field :count %><br>
+
+  <%= f.label "Scrap (oz):" %>
+  <%= f.text_field :scrap %><br>
+
+  <%= f.label "Select a Brand:" %>
+  <%= f.collection_select :brand_id, current_user.brands, :id, :name, {:selected => "New Brand"} %><br>
+
+  <%= f.label "Select another Project:" %>
+  <%= f.collection_select :project_id, current_user.projects, :id, :name, {:selected => "New Brand"} %><br>
+</fieldset>
+
+<% if @brand %>
+<fieldset>
+  <legend>Create a Brand::</legend>
+    <%= f.fields_for :brand do |p| %>
+
+      <%= p.label "Name:" %>
+      <%= p.text_field :name %><br>
+
+      <%= p.select :material, material_choices, :prompt => 'Select Material' %><br>
+
+      <%= p.select :weight, weight_choices, :prompt => 'Select Gauge' %><br>
+
+      <%= p.label "Skein weight (oz):" %>
+      <%= p.number_field :skein_weight %><br>
+
+      <%= p.label "Skein length (yd):" %>
+      <%= p.number_field :skein_length %><br>
+
+      <%= p.label "Recommended crochet hook:" %>
+      <%= p.text_field :hook %><br>
+
+      <%= p.label "Recommended knitting needle:" %>
+      <%= p.text_field :needle %><br>
+
+    <% end %>
+</fieldset>
+<% end %>
+
+<% if @project %>
+<fieldset>
+  <legend>Create a Project::</legend>
+    <%= f.fields_for :project do |p| %>
+      <%= p.hidden_field :user_id, value: current_user.id %>
+
+      <%= p.label "Name:" %>
+      <%= p.text_field :name %><br>
+
+      <%= p.label "Status:"%>
+      <%= p.select :status, status_choices %><br>
+
+      <%= p.label "Pattern:" %>
+      <%= p.text_field :pattern_info %><br>
+
+    <% end %>
+  <% end %>
+</fieldset>
+<% end %>
+
+  <%= f.submit %>
+<% end %>

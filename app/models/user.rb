@@ -13,6 +13,11 @@ class User < ApplicationRecord
 
   validates_uniqueness_of :email
 
+  def initialize(attributes)
+    super(attributes)
+    self.projects.build(name: "Stash", status: "CONSTANT")
+  end
+
   def self.from_omniauth(auth)
     @user = where(provider: auth.provider, uid: auth.uid).first_or_create do |user|
       user.email = auth.info.email
@@ -50,8 +55,8 @@ class User < ApplicationRecord
     self.brands.sort_by { |brand| brand.name }.sort_by { |brand| brand.material }
   end
 
-  def brand_by_weight(wt)
-    self.brands_sorted.select { |brand| brand.weight == wt }
+  def brand_by_weight(gauge)
+    self.brands_sorted.select { |brand| brand.weight == gauge }
   end
 
   def yarns_sorted_by_brand
