@@ -7,14 +7,14 @@
 <div>
   <% if !@project.notes.empty? %>
     <h2>Notes:</h2>
-    <ul>
+    <div>
       <% @project.notes.each do |note| %>
-        <li>
-          <p><%= note.created_at.strftime("%m/%d/%Y, %l:%M %p") %></p>
+        <div>
+          <p><em><%= note.created_at.localtime.strftime("%m/%d/%Y, %l:%M %p") %></em></p>
           <p><%= note.note %></p>
-        </li>
+        </div>
       <% end %>
-    </ul>
+    </div>
   <% end %>
 </div>
 

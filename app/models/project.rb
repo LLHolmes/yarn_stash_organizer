@@ -1,6 +1,6 @@
 class Project < ApplicationRecord
   belongs_to :user
-  has_many :notes
+  has_many :notes, dependent: :destroy
   has_many :tools
   has_many :yarns
   has_many :brands, -> { distinct }, through: :yarns

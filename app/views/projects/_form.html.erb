@@ -22,8 +22,13 @@
   <%= f.text_field :pattern_info %><br>
 
   <%= f.fields_for :notes do |n| %>
-    <%= n.label :note %><br>
-    <%= n.text_area :note %><br>
+    <% if @project.notes.first.note && n.object.note %>
+        <p><em><%= n.object.created_at.localtime.strftime("%m/%d/%Y, %l:%M %p") %></em></p>
+        <p><%= n.object.note %></p>
+    <% else  %>
+      <%= n.label "Note:" %><br>
+      <%= n.text_area :note %><br>
+    <% end %>
   <% end %>
 
   <%= f.label "Select Yarn:" %><br>
