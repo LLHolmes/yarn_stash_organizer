@@ -41,7 +41,11 @@ class YarnsController < ApplicationController
     end
 
     def yarn_params
-      params.require(:yarn).permit(:color, :count, :scrap, :project_id, :brand_id, project_attributes: [:user_id, :name, :pattern_info, :status], brand_attributes: [:name, :material, :weight, :hook, :needle, :skein_weight, :skein_length])
+      params.require(:yarn).permit(
+        :color, :count, :scrap, :project_id, :brand_id,
+        project_attributes: [:user_id, :name, :pattern_info, :status],
+        brand_attributes: [:name, :material, :weight, :hook, :needle, :skein_weight, :skein_length]
+      )
     end
 
 end
