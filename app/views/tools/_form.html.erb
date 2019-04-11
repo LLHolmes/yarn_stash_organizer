@@ -24,20 +24,22 @@
   <%= f.label "Select a Project:" %>
   <%= f.collection_select :project_id, current_user.projects, :id, :name %><br>
 
-  <br>
-  <p>Or Create a Project:</p>
-  <%= f.fields_for :project do |p| %>
-    <%= p.hidden_field :user_id, value: current_user.id %>
+  <% if @project %>
+    <br>
+    <p>Or Create a Project:</p>
+    <%= f.fields_for :project do |p| %>
+      <%= p.hidden_field :user_id, value: current_user.id %>
 
-    <%= p.label "Name:" %>
-    <%= p.text_field :name %><br>
+      <%= p.label "Name:" %>
+      <%= p.text_field :name %><br>
 
-    <%= p.label "Status:"%>
-    <%= p.select :status, status_choices %><br>
+      <%= p.label "Status:"%>
+      <%= p.select :status, status_choices %><br>
 
-    <%= p.label "Pattern:" %>
-    <%= p.text_field :pattern_info %><br>
+      <%= p.label "Pattern:" %>
+      <%= p.text_field :pattern_info %><br>
 
+    <% end %>
   <% end %>
 </fieldset>
 

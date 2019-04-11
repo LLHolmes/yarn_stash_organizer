@@ -6,7 +6,7 @@ class ToolsController < ApplicationController
 
   def new
     @tool = Tool.new
-    @tool.build_project
+    @project = @tool.build_project
   end
 
   def create
