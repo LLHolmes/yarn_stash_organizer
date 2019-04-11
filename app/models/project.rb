@@ -17,6 +17,11 @@ class Project < ApplicationRecord
   #   self.note.update(comment)
   # end
 
+  def note_attributes=(attributes)
+     note = Note.find_or_create_by(note: attributes[:note], project_id: self.id)
+     note.update(attributes)
+  end
+
   def yarns_by_brand
     self.yarns.sort_by { |yarn| yarn.color }.sort_by { |yarn| yarn.brand.name }
   end
