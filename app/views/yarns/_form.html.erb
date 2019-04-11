@@ -1,22 +1,61 @@
-<% if @tool.errors.any? %>
+<% if @yarn.errors.any? %>
   <div id="error_explanation">
     <h2>
-      <%= pluralize(@tool.errors.count, "error") %>
+      <%= pluralize(@yarn.errors.count, "error") %>
       prohibited this project from being saved:
     </h2>
     <ul>
-    <% @tool.errors.full_messages.each do |msg| %>
+    <% @yarn.errors.full_messages.each do |msg| %>
       <li><%= msg %></li>
     <% end %>
     </ul>
   </div>
 <% end %>
 
-<%= form_for @tool do |f| %>
+<%= form_for @yarn do |f| %>
 <fieldset>
-  <legend>Tool:</legend>
+  <legend>Brand:</legend>
+  <%= f.label "Select a Brand:" %>
+  <%= f.collection_select :brand_id, current_user.brands, :id, :name %><br>
+
+  <% if @brand %>
+    <br>
+    <p>Or Create a Brand:</p>
+    <%= f.fields_for :brand do |p| %>
+
+      <%= p.label "Name:" %>
+      <%= p.text_field :name %><br>
+
+      <%= f.select :material, material_choices, :prompt => 'Select Material' %><br>
+
+      <%= f.select :weight, weight_choices, :prompt => 'Select Gauge' %><br>
+
+      <%= f.label "Skein weight (oz):" %>
+      <%= f.number_field :skein_weight %><br>
+
+      <%= f.label "Skein length (yd):" %>
+      <%= f.number_field :skein_length %><br>
+
+      <%= f.label "Recommended crochet hook:" %>
+      <%= f.text_field :hook %><br>
+
+      <%= f.label "Recommended knitting needle:" %>
+      <%= f.text_field :needle %><br>
+
+    <% end %>
+  <% end %>
+</fieldset>
+
+<fieldset>
+  <legend>Yarn:</legend>
   <%= f.label "Name:" %>
   <%= f.text_field :name %><br>
+
+  <%= f.label "Full skeins:" %>
+  <%= f.number_field :count %><br>
+
+  <%= f.label "Scrap (oz):" %>
+  <%= f.text_field :scrap %><br>
 </fieldset>
 
 <fieldset>
