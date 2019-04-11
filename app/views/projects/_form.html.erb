@@ -11,31 +11,37 @@
     </ul>
   </div>
 <% end %>
+<fieldset>
+  <legend>Project:</legend>
+  <%= form_for @project do |f| %>
+    <%= f.label "Name:" %>
+    <%= f.text_field :name %><br>
 
-<%= form_for @project do |f| %>
-  <%= f.label "Name:" %>
-  <%= f.text_field :name %><br>
+    <%= f.select :status, status_choices, :prompt => 'Select Status' %><br>
 
-  <%= f.select :status, status_choices, :prompt => 'Select Status' %><br>
+    <%= f.label "Pattern:" %>
+    <%= f.text_field :pattern_info %><br>
 
-  <%= f.label "Pattern:" %>
-  <%= f.text_field :pattern_info %><br>
-
-  <%= f.fields_for :notes do |n| %>
-    <% if @project.notes.first.note && n.object.note %>
-        <p><em><%= n.object.created_at.localtime.strftime("%m/%d/%Y, %l:%M %p") %></em></p>
-        <p><%= n.object.note %></p>
-    <% else  %>
-      <%= n.label "Note:" %><br>
-      <%= n.text_area :note %><br>
+    <%= f.fields_for :notes do |n| %>
+      <% if @project.notes.first.note && n.object.note %>
+          <p><em><%= n.object.created_at.localtime.strftime("%m/%d/%Y, %l:%M %p") %></em></p>
+          <p><%= n.object.note %></p>
+      <% else  %>
+        <%= n.label "Note:" %><br>
+        <%= n.text_area :note %><br>
+      <% end %>
     <% end %>
-  <% end %>
+  </fieldset>
 
-  <%= f.label "Select Yarn:" %><br>
-  <%= f.collection_check_boxes(:yarn_ids, current_user.yarns_sorted_by_brand, :id, :yarn_with_brand) %><br>
+  <fieldset>
+    <legend>Select Yarn:</legend>
+    <%= f.collection_check_boxes(:yarn_ids, current_user.yarns_sorted_by_brand, :id, :yarn_with_brand) %><br>
+  </fieldset>
 
-  <%= f.label "Select Tools:" %><br>
-  <%= f.collection_check_boxes(:tool_ids, current_user.tools, :id, :name) %>
+  <fieldset>
+    <legend>Select Tools:</legend>
+    <%= f.collection_check_boxes(:tool_ids, current_user.tools, :id, :name) %>
+  </fieldset>
 
   <%= f.submit %>
 <% end %>
