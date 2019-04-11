@@ -14,21 +14,36 @@
 
 <%= form_for @yarn do |f| %>
 <fieldset>
-  <legend>Brand:</legend>
-  <%= f.label "Select a Brand:" %>
-  <%= f.collection_select :brand_id, current_user.brands, :id, :name %><br>
+  <legend>Yarn:</legend>
+  <%= f.label "Color:" %>
+  <%= f.text_field :color %><br>
 
-  <% if @brand %>
-    <br>
-    <p>Or Create a Brand:</p>
+  <%= f.label "Full skeins:" %>
+  <%= f.number_field :count %><br>
+
+  <%= f.label "Scrap (oz):" %>
+  <%= f.text_field :scrap %><br>
+
+  <%= f.label "Select Brand:" %>
+  <%= f.collection_select :brand_id, current_user.brands, :id, :name, {:prompt => "New Brand"} %><br>
+
+  <%= f.label "Select Project:" %>
+  <%= f.collection_select :project_id, current_user.projects, :id, :name, {:prompt => "New Project"} %><br>
+</fieldset>
+
+<% if @brand %>
+<fieldset>
+  <legend>Create a Brand::</legend>
     <%= f.fields_for :brand do |p| %>
 
       <%= p.label "Name:" %>
       <%= p.text_field :name %><br>
 
-      <%= p.select :material, material_choices, :prompt => 'Select Material' %><br>
+      <%= f.label "Select Material:" %>
+      <%= p.select :material, material_choices %><br>
 
-      <%= p.select :weight, weight_choices, :prompt => 'Select Gauge' %><br>
+      <%= f.label "Select Gauge:" %>
+      <%= p.select :weight, weight_choices, :selected => '4 - Medium' %><br>
 
       <%= p.label "Skein weight (oz):" %>
       <%= p.number_field :skein_weight %><br>
@@ -43,29 +58,12 @@
       <%= p.text_field :needle %><br>
 
     <% end %>
-  <% end %>
 </fieldset>
+<% end %>
 
+<% if @project %>
 <fieldset>
-  <legend>Yarn:</legend>
-  <%= f.label "Color:" %>
-  <%= f.text_field :color %><br>
-
-  <%= f.label "Full skeins:" %>
-  <%= f.number_field :count %><br>
-
-  <%= f.label "Scrap (oz):" %>
-  <%= f.text_field :scrap %><br>
-</fieldset>
-
-<fieldset>
-  <legend>Project:</legend>
-  <%= f.label "Select a Project:" %>
-  <%= f.collection_select :project_id, current_user.projects, :id, :name %><br>
-
-  <% if @project %>
-    <br>
-    <p>Or Create a Project:</p>
+  <legend>Create a Project::</legend>
     <%= f.fields_for :project do |p| %>
       <%= p.hidden_field :user_id, value: current_user.id %>
 

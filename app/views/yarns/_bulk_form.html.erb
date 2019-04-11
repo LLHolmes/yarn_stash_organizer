@@ -13,7 +13,6 @@
 <% end %>
 
 <%= form_for @yarn do |f| %>
-
 <fieldset>
   <legend>Yarn:</legend>
   <%= f.label "Color:" %>
@@ -25,11 +24,11 @@
   <%= f.label "Scrap (oz):" %>
   <%= f.text_field :scrap %><br>
 
-  <%= f.label "Select a Brand:" %>
-  <%= f.collection_select :brand_id, current_user.brands, :id, :name, {:selected => "New Brand"} %><br>
+  <%= f.label "Select Brand:" %>
+  <%= f.collection_select :brand_id, current_user.brands, :id, :name, {:prompt => "New Brand"} %><br>
 
-  <%= f.label "Select another Project:" %>
-  <%= f.collection_select :project_id, current_user.projects, :id, :name, {:selected => "New Brand"} %><br>
+  <%= f.label "Select Project:" %>
+  <%= f.collection_select :project_id, current_user.projects, :id, :name, {:prompt => "New Project"} %><br>
 </fieldset>
 
 <% if @brand %>
@@ -40,9 +39,11 @@
       <%= p.label "Name:" %>
       <%= p.text_field :name %><br>
 
-      <%= p.select :material, material_choices, :prompt => 'Select Material' %><br>
+      <%= f.label "Select Material:" %>
+      <%= p.select :material, material_choices %><br>
 
-      <%= p.select :weight, weight_choices, :prompt => 'Select Gauge' %><br>
+      <%= f.label "Select Gauge:" %>
+      <%= p.select :weight, weight_choices, :selected => '4 - Medium' %><br>
 
       <%= p.label "Skein weight (oz):" %>
       <%= p.number_field :skein_weight %><br>
@@ -78,7 +79,6 @@
     <% end %>
   <% end %>
 </fieldset>
-<% end %>
 
   <%= f.submit %>
 <% end %>
