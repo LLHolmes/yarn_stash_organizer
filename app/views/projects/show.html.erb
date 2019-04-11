@@ -27,7 +27,7 @@
   <% end %>
   <ul>
     <% @project.yarns_by_brand.each do |yarn| %>
-      <li><%= link_to yarn.brand.name, brand_path(yarn.brand) %> - <%= link_to yarn.color, edit_yarn_path(yarn) %> <%= yarn_amount yarn %></li>
+      <li><%= brand_yarn_links yarn %> <%= yarn_amount yarn %></li>
     <% end %>
   </ul>
 </div>
