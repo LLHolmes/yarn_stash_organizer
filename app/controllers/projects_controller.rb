@@ -2,10 +2,6 @@ class ProjectsController < ApplicationController
   before_action :find_project, only: [:show, :edit, :update, :destroy]
 
   def index
-    @stash = current_user.stash
-    @wip = current_user.projects_wip
-    @upcoming = current_user.projects_upcoming
-    @finished = current_user.projects_finished
   end
 
   def show
@@ -18,12 +14,9 @@ class ProjectsController < ApplicationController
 
   def create
     @project = current_user.projects.build(project_params)
-    # binding.pry
     if @project.save
       redirect_to project_path(@project)
     else
-      # @project.notes.build(note: params[:project][:notes_attributes]["0"][:note])
-      # binding.pry
       render :new
     end
   end
