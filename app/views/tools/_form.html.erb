@@ -1,41 +1,45 @@
-<% if @project.errors.any? %>
+<% if @tool.errors.any? %>
   <div id="error_explanation">
     <h2>
-      <%= pluralize(@project.errors.count, "error") %>
+      <%= pluralize(@tool.errors.count, "error") %>
       prohibited this project from being saved:
     </h2>
     <ul>
-    <% @project.errors.full_messages.each do |msg| %>
+    <% @tool.errors.full_messages.each do |msg| %>
       <li><%= msg %></li>
     <% end %>
     </ul>
   </div>
 <% end %>
 
-<%= form_for @project do |f| %>
+<%= form_for @tool do |f| %>
+<fieldset>
+  <legend>Tool:</legend>
   <%= f.label "Name:" %>
   <%= f.text_field :name %><br>
+</fieldset>
 
-  <%= f.select :status, status_choices, :prompt => 'Select Status' %><br>
+<fieldset>
+  <legend>Project:</legend>
+  <%= f.label "Select a Project:" %>
+  <%= f.collection_select :project_id, current_user.projects, :id, :name %><br>
 
-  <%= f.label "Pattern:" %>
-  <%= f.text_field :pattern_info %><br>
+  <br>
+  <p>Or Create a Project:</p>
+  <%= f.fields_for :project do |p| %>
+    <%= p.hidden_field :user_id, value: current_user.id %>
 
-  <%= f.fields_for :notes do |n| %>
-    <% if @project.notes.first.note && n.object.note %>
-        <p><em><%= n.object.created_at.localtime.strftime("%m/%d/%Y, %l:%M %p") %></em></p>
-        <p><%= n.object.note %></p>
-    <% else  %>
-      <%= n.label "Note:" %><br>
-      <%= n.text_area :note %><br>
-    <% end %>
+    <%= p.label "Name:" %>
+    <%= p.text_field :name %><br>
+
+    <%= p.label "Status:"%>
+    <%= p.select :status, status_choices %><br>
+
+    <%= p.label "Pattern:" %>
+    <%= p.text_field :pattern_info %><br>
+
   <% end %>
-
-  <%= f.label "Select Yarn:" %><br>
-  <%= f.collection_check_boxes(:yarn_ids, current_user.yarns_sorted_by_brand, :id, :yarn_with_brand) %><br>
-
-  <%= f.label "Select Tools:" %><br>
-  <%= f.collection_check_boxes(:tool_ids, current_user.tools, :id, :name) %>
+</fieldset>
 
   <%= f.submit %>
 <% end %>

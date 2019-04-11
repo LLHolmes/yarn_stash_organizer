@@ -6,12 +6,13 @@ class ToolsController < ApplicationController
 
   def new
     @tool = Tool.new
+    @tool.build_project
   end
 
   def create
     @tool = Tool.new(tool_params)
     if @tool.save
-      redirect_to tool_path(@tool)
+      redirect_to tools_path
     else
       render :new
     end
@@ -22,7 +23,7 @@ class ToolsController < ApplicationController
 
   def update
     if @tool.update(tool_params)
-      redirect_to tool_path(@tool)
+      redirect_to tools_path
     else
       render :edit
     end
@@ -38,7 +39,7 @@ class ToolsController < ApplicationController
     end
 
     def tool_params
-      params.require(:tool).permit(:name, :project_id)
+      params.require(:tool).permit(:name, :project_id, project_attributes: [:user_id, :name, :pattern_info, :status])
     end
 
 end
