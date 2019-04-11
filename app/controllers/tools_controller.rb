@@ -2,7 +2,6 @@ class ToolsController < ApplicationController
   before_action :find_tool, only: [:edit, :update, :destroy]
 
   def index
-    @tools =  Tool.all
   end
 
   def new
@@ -12,6 +11,9 @@ class ToolsController < ApplicationController
   def create
     @tool = Tool.new(tool_params)
     if @tool.save
+      redirect_to tool_path(@tool)
+    else
+      render :new
     end
   end
 
@@ -19,7 +21,10 @@ class ToolsController < ApplicationController
   end
 
   def update
-    if @tool.update
+    if @tool.update(tool_params)
+      redirect_to tool_path(@tool)
+    else
+      render :edit
     end
   end
 
