@@ -1,0 +1,10 @@
+<h1>Yarn</h1>
+
+<% current_user.yarns.each do |yarn| %>
+  <div>
+    <%= link_to yarn.brand.name, brand_path(yarn.brand) %> - <%= link_to yarn.color, edit_yarn_path(yarn) %>
+    <% if yarn.project.name != "Stash" %>
+      ~  Current Project: <%= link_to yarn.project.name, project_path(yarn.project) %>
+    <% end %>
+  </div>
+<% end %>

@@ -18,4 +18,8 @@ module YarnsHelper
     end
   end
 
+  # def brand_yarn_name(yarn)
+  #   <%= link_to yarn.brand.name, brand_path(yarn.brand) %> - <%= link_to yarn.color, edit_yarn_path(yarn) %>
+  # end
+
 end

@@ -1,0 +1,47 @@
+<% if @tool.errors.any? %>
+  <div id="error_explanation">
+    <h2>
+      <%= pluralize(@tool.errors.count, "error") %>
+      prohibited this project from being saved:
+    </h2>
+    <ul>
+    <% @tool.errors.full_messages.each do |msg| %>
+      <li><%= msg %></li>
+    <% end %>
+    </ul>
+  </div>
+<% end %>
+
+<%= form_for @tool do |f| %>
+<fieldset>
+  <legend>Tool:</legend>
+  <%= f.label "Name:" %>
+  <%= f.text_field :name %><br>
+</fieldset>
+
+<fieldset>
+  <legend>Project:</legend>
+  <%= f.label "Select a Project:" %>
+  <%= f.collection_select :project_id, current_user.projects, :id, :name %><br>
+
+  <% if @project %>
+    <br>
+    <p>Or Create a Project:</p>
+    <%= f.fields_for :project do |p| %>
+      <%= p.hidden_field :user_id, value: current_user.id %>
+
+      <%= p.label "Name:" %>
+      <%= p.text_field :name %><br>
+
+      <%= p.label "Status:"%>
+      <%= p.select :status, status_choices %><br>
+
+      <%= p.label "Pattern:" %>
+      <%= p.text_field :pattern_info %><br>
+
+    <% end %>
+  <% end %>
+</fieldset>
+
+  <%= f.submit %>
+<% end %>
