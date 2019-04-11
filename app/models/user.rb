@@ -50,14 +50,14 @@ class User < ApplicationRecord
     self.brands.sort_by { |brand| brand.name }.sort_by { |brand| brand.material }
   end
 
+  def brand_by_weight(wt)
+    self.brands_sorted.select { |brand| brand.weight == wt }
+  end
+
   def yarns_sorted_by_brand
     brands_sorted.collect { |brand| brand.yarns_by_color }.flatten
   end
-  #
-  # def brand_by_weight(wt)
-  #   self.brands_sorted.select { |brand| brand.weight == wt }
-  # end
-  #
+
   # def brand_yarns(given_brand)
   #   self.yarns.select { |yarn| yarn.brand == given_brand }
   # end
