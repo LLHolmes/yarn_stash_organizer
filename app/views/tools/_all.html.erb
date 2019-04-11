@@ -1,0 +1,10 @@
+<h1>Tools</h1>
+
+<% current_user.tools.each do |tool| %>
+  <div>
+    <%= link_to tool.name, edit_tool_path(tool) %>
+    <% if tool.project.name != "Stash" %>
+      ~  Current Project: <%= link_to tool.project.name, project_path(tool.project) %>
+    <% end %>
+  </div>
+<% end %>
