@@ -1,15 +1,39 @@
+<% if @brand.errors.any? %>
+  <div id="error_explanation">
+    <h2>
+      <%= pluralize(@brand.errors.count, "error") %>
+      prohibited this project from being saved:
+    </h2>
+    <ul>
+    <% @brand.errors.full_messages.each do |msg| %>
+      <li><%= msg %></li>
+    <% end %>
+    </ul>
+  </div>
+<% end %>
+
 <%= form_for @brand do |f| %>
-  <%= f.label "Name:" %>
-  <%= f.text_field :name %><br>
-  <%= f.select :material, material_choices, :prompt => 'Select Material' %><br>
-  <%= f.select :weight, weight_choices, :prompt => 'Select Gauge' %><br>
-  <%= f.label "Skein weight (oz):" %>
-  <%= f.number_field :skein_weight %><br>
-  <%= f.label "Skein length (yd):" %>
-  <%= f.number_field :skein_length %><br>
-  <%= f.label "Recommended crochet hook:" %>
-  <%= f.text_field :hook %><br>
-  <%= f.label "Recommended knitting needle:" %>
-  <%= f.text_field :needle %><br>
+<fieldset>
+  <legend>Brand:</legend>
+    <%= f.label "Name:" %>
+    <%= f.text_field :name %><br>
+
+    <%= f.select :material, material_choices, :prompt => 'Select Material' %><br>
+
+    <%= f.select :weight, weight_choices, :prompt => 'Select Gauge' %><br>
+
+    <%= f.label "Skein weight (oz):" %>
+    <%= f.number_field :skein_weight %><br>
+
+    <%= f.label "Skein length (yd):" %>
+    <%= f.number_field :skein_length %><br>
+
+    <%= f.label "Recommended crochet hook:" %>
+    <%= f.text_field :hook %><br>
+
+    <%= f.label "Recommended knitting needle:" %>
+    <%= f.text_field :needle %><br>
+</fieldset>
+
   <%= f.submit %>
 <% end %>
