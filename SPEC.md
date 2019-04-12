@@ -15,24 +15,26 @@ Specs:
     (Yarn connect projects and brands and need a color and amount.)
 [X] - Include reasonable validations for simple model objects
     (Brand & Tool require a name, Project requires a name & status, Yarn requires a color, User requires a unique email)
-[ ] - Include at least one class level ActiveRecord scope method. a. Your scope method must be chainable, meaning that you must use ActiveRecord Query methods within it (such as .where and .order) rather than native ruby methods (such as #find_all or #sort).
-[ ] - Include a class level ActiveRecord scope method (model object & class method name and URL to see the working feature e.g. User.most_recipes URL: /users/most_recipes)
+[X] - Include at least one class level ActiveRecord scope method. a. Your scope method must be chainable, meaning that you must use ActiveRecord Query methods within it (such as .where and .order) rather than native ruby methods (such as #find_all or #sort).
+    (Project status scope methods & User#stash.)
+[-] - Include a class level ActiveRecord scope method (model object & class method name and URL to see the working feature e.g. User.most_recipes URL: /users/most_recipes)
+    (Morgan said I was ok with my scope methods so I'm ignoring this one for now.)
 [X] - Include signup with standard user authentication
-    (Used Devise)
+    (Used Devise.)
 [X] - Include login with standard user authentication
-    (Used Devise)
+    (Used Devise.)
 [X] - Include logout with standard user authentication
-    (Used Devise)
+    (Used Devise.)
 [X] - Include third party signup/login
-    (Used Devise/OmniAuth to signup through FaceBook or Google)
+    (Used Devise/OmniAuth to signup through FaceBook or Google.)
 [ ] - Include nested resource show or index (URL e.g. users/2/recipes) (brands/2/yarns - projects/2/yarns -- users/2/projects [if public???])
 [ ] - Include nested resource "new" form (URL e.g. recipes/1/ingredients/new) (brands/1/yarns/new - projects/1/yarns/new?)
 [X] - Include form display of validation errors
-    (Errors displayed on new/edit actions)
+    (Errors displayed on new/edit actions.)
     --> [X] - Your fields should be enclosed within a fields_with_errors class
-            (New/edit Project, Yarn, Brand, & Tool have them)
+            (New/edit Project, Yarn, Brand, & Tool have them.)
     --> [X] - Error messages describing the validation failures must be present within the view
-            (New/edit Project, Yarn, Brand, & Tool have them)
+            (New/edit Project, Yarn, Brand, & Tool have them.)
 
 Confirm:
 [ ] - The application is pretty DRY
