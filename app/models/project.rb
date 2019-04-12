@@ -22,10 +22,12 @@ class Project < ApplicationRecord
   def prep_for_delete
     self.tools.each do |tool|
       tool.project = self.user.stash
+      tool.save
     end
 
     self.yarns.each do |yarn|
       yarn.project = self.user.stash
+      yarn.save
     end
   end
 

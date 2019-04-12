@@ -36,6 +36,7 @@ class ProjectsController < ApplicationController
   def destroy
     @project.prep_for_delete
     @project.destroy
+    redirect_to projects_path
   end
 
   private
