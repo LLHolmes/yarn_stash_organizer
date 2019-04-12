@@ -2,12 +2,12 @@ class FinishProjectsController < ApplicationController
   before_action :find_project, only: [:edit, :update]
 
   def edit
-    @project.notes.build
   end
 
   def update
     if @project.update(project_params)
-      redirect_to project_path(@project)
+      @project.clear_to_stash
+      redirect_to project_path(current_user.stash)
     else
       render :edit
     end
@@ -19,6 +19,6 @@ class FinishProjectsController < ApplicationController
     end
 
     def project_params
-      params.require(:project).permit(yarns_attributes: [:count, :scrap, :project_id])
+      params.require(:project).permit(yarns_attributes: [:id, :count, :scrap, :project_id])
     end
 end

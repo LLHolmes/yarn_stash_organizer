@@ -15,33 +15,41 @@ class Project < ApplicationRecord
      note.update(attributes)
   end
 
-  def yarns_attributes=(attributes)
-     yarn = Yarn.find(id: attributes[:id])
-     yarn.update(attributes)
-     yarn.project = self.user.stash
-     yarn.save
+  def yarns_attributes=(yarns_attributes)
+    yarns_attributes.values.each do |attributes|
+      yarn = Yarn.find(attributes[:id])
+      yarn.update(attributes)
+    end
   end
-
-  # def tools_attributes=(attributes)
-  #    tool = Tool.find(id: attributes[:id])
-  #    tool.update(attributes)
-  #    tool.project = self.user.stash
-  #    tool.save
-  # end
 
   def yarns_by_brand
     self.yarns.sort_by { |yarn| yarn.color }.sort_by { |yarn| yarn.brand.name }
   end
 
-  def prep_for_delete
+  def finish_project
+    self.yarns.each do |yarn|
+      if yarn.count == 0 && yarn.scrap.to_f == 0.0
+        yarn.destroy
+      end
+    end
+    self.clear_to_stash
+  end
+
+  def clear_to_stash
     self.tools.each do |tool|
       tool.project = self.user.stash
       tool.save
     end
 
     self.yarns.each do |yarn|
-      yarn.project = self.user.stash
-      yarn.save
+      if !yarn.count || yarn.count <= 0
+        if yarn.scrap.empty? || yarn.scrap.to_f == 0.0
+          yarn.destroy
+        end
+      else
+        yarn.project = self.user.stash
+        yarn.save
+      end
     end
   end
 
