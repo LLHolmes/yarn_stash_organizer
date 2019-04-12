@@ -29,8 +29,10 @@ Specs:
 [ ] - Include nested resource "new" form (URL e.g. recipes/1/ingredients/new) (brands/1/yarns/new - projects/1/yarns/new?)
 [X] - Include form display of validation errors
     (Errors displayed on new/edit actions)
-    --> [ ] - Your fields should be enclosed within a fields_with_errors class
+    --> [X] - Your fields should be enclosed within a fields_with_errors class
+            (New/edit Project, Yarn, Brand, & Tool have them)
     --> [X] - Error messages describing the validation failures must be present within the view
+            (New/edit Project, Yarn, Brand, & Tool have them)
 
 Confirm:
 [ ] - The application is pretty DRY

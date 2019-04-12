@@ -10,6 +10,10 @@ class Project < ApplicationRecord
   validates_presence_of :name, :status
   validates_uniqueness_of :name, scope: :user_id
 
+  scope :wip, -> { where(status: "In Progress") }
+  scope :upcoming, -> { where(status: "Upcoming") }
+  scope :finished, -> { where(status: "Finished") }
+
   def note_attributes=(attributes)
      note = Note.find_or_create_by(note: attributes[:note], project_id: self.id)
      note.update(attributes)

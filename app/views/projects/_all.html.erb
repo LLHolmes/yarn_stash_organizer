@@ -4,27 +4,27 @@
   <h2><%= link_to current_user.stash.name, project_path(current_user.stash) %></h2>
 </div>
 
-<% if !current_user.projects_wip.empty? %>
+<% if !current_user.projects.wip.empty? %>
   <h2>In Progress:</h2>
-    <% current_user.projects_wip.each do |project| %>
+    <% current_user.projects.wip.each do |project| %>
     <div>
       <%= link_to project.name, project_path(project) %>
     </div>
     <% end %>
 <% end %>
 
-<% if !current_user.projects_upcoming.empty? %>
+<% if !current_user.projects.upcoming.empty? %>
   <h2>Upcoming:</h2>
-    <% current_user.projects_upcoming.each do |project| %>
+    <% current_user.projects.upcoming.each do |project| %>
     <div>
       <%= link_to project.name, project_path(project) %>
     </div>
     <% end %>
 <% end %>
 
-<% if !current_user.projects_finished.empty? %>
+<% if !current_user.projects.finished.empty? %>
   <h2>Finished:</h2>
-    <% current_user.projects_finished.each do |project| %>
+    <% current_user.projects.finished.each do |project| %>
     <div>
       <%= link_to project.name, project_path(project) %>
     </div>
