@@ -15,6 +15,20 @@ class Project < ApplicationRecord
      note.update(attributes)
   end
 
+  def yarns_attributes=(attributes)
+     yarn = Yarn.find(id: attributes[:id])
+     yarn.update(attributes)
+     yarn.project = self.user.stash
+     yarn.save
+  end
+
+  def tools_attributes=(attributes)
+     tool = Tool.find(id: attributes[:id])
+     tool.update(attributes)
+     tool.project = self.user.stash
+     tool.save
+  end
+
   def yarns_by_brand
     self.yarns.sort_by { |yarn| yarn.color }.sort_by { |yarn| yarn.brand.name }
   end
