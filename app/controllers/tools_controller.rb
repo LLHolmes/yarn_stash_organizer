@@ -2,6 +2,11 @@ class ToolsController < ApplicationController
   before_action :find_tool, only: [:edit, :update, :destroy]
 
   def index
+    if params[:project_id]
+      @tools = Project.find(params[:project_id]).tools
+    else
+      @tools = current_user.tools
+    end
   end
 
   def new

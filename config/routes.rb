@@ -9,7 +9,7 @@ Rails.application.routes.draw do
 
   resources :projects do
     resources :yarns, only: [:index]
-    resources :tools, only: [:index]
+    resources :tools, only: [:index, :new]
   end
 
   resources :finish_projects, only: [:edit, :update]

@@ -33,16 +33,6 @@ class User < ApplicationRecord
     self.projects.where(name: "Stash").first
   end
 
-
-  #
-  # def yarns_by_brand
-  #   self.yarns.sort_by { |yarn| yarn.color }.sort_by { |yarn| yarn.brand.name }
-  # end
-  #
-  # def yarns_sorted
-  #   self.yarns_by_brand.sort_by { |yarn| yarn.brand.material }.sort_by { |yarn| yarn.brand.weight }
-  # end
-  #
   def brands_sorted
     self.brands.sort_by { |brand| brand.name }.sort_by { |brand| brand.material }
   end
@@ -54,9 +44,5 @@ class User < ApplicationRecord
   def yarns_sorted_by_brand
     brands_sorted.collect { |brand| brand.yarns_by_color }.flatten
   end
-
-  # def brand_yarns(given_brand)
-  #   self.yarns.select { |yarn| yarn.brand == given_brand }
-  # end
 
 end

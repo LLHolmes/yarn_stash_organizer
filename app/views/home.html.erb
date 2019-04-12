@@ -5,7 +5,7 @@
 </div>
 
 <div class="">
-  <%= render "tools/all" %>
+  <%= render partial: "tools/all", locals: {tools: current_user.tools} %>
 </div>
 
 <div class="">
