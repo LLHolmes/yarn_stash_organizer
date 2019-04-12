@@ -27,7 +27,11 @@ class ProjectsController < ApplicationController
 
   def update
     if @project.update(project_params)
-      redirect_to project_path(@project)
+      if @project.status == "Finished"
+        render "finish_projects/edit"
+      else
+        redirect_to project_path(@project)
+      end
     else
       render :edit
     end
