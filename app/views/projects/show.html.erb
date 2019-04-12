@@ -45,6 +45,7 @@
       <li><%= link_to tool.name, edit_tool_path(tool) %></li>
     <% end %>
   </ul>
+  <%= link_to "Add a tool to this project", new_project_tool_path(@project) %>
 </div>
 <% end %>
 

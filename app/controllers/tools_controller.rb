@@ -10,8 +10,12 @@ class ToolsController < ApplicationController
   end
 
   def new
-    @tool = Tool.new
-    @project = @tool.build_project
+    if params[:project_id]
+      @tool = Project.find(params[:project_id]).tools.build
+    else
+      @tool = Tool.new
+      @project = @tool.build_project
+    end
   end
 
   def create

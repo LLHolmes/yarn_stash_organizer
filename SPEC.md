@@ -27,8 +27,9 @@ Specs:
     (Used Devise.)
 [X] - Include third party signup/login
     (Used Devise/OmniAuth to signup through FaceBook or Google.)
-[ ] - Include nested resource show or index (URL e.g. users/2/recipes) (brands/2/yarns - projects/2/yarns -- users/2/projects [if public???])
-[ ] - Include nested resource "new" form (URL e.g. recipes/1/ingredients/new) (brands/1/yarns/new - projects/1/yarns/new?)
+[X] - Include nested resource show or index (URL e.g. users/2/recipes)
+    (Tools index nested within Projects - accessed from Project show page: projects/2/tools)
+[ ] - Include nested resource "new" form (URL e.g. recipes/1/ingredients/new) (projects/1/tools/new)
 [X] - Include form display of validation errors
     (Errors displayed on new/edit actions.)
     --> [X] - Your fields should be enclosed within a fields_with_errors class
@@ -54,3 +55,4 @@ Stretch Goals:
     --> [ ] - nest project routes/resources
     --> [ ] - add this project to my project list
     --> [ ] - create index of all projects for inspiration?
+[ ] - nest yarn in brands or projects??? (brands/2/yarns)

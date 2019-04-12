@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
   resources :brands, except: [:index] do
-    resources :yarns, only: [:index]
+    resources :yarns, only: [:index, :new]
   end
 
   resources :tools, except: [:show]
