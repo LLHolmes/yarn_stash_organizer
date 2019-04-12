@@ -34,28 +34,28 @@
 <% if @brand %>
 <fieldset>
   <legend>Create a Brand::</legend>
-    <%= f.fields_for :brand do |p| %>
+    <%= f.fields_for :brand do |b| %>
 
-      <%= p.label "Name:" %>
-      <%= p.text_field :name %><br>
+      <%= b.label "Name:" %>
+      <%= b.text_field :name %><br>
 
-      <%= f.label "Select Material:" %>
-      <%= p.select :material, material_choices %><br>
+      <%= b.label "Select Material:" %>
+      <%= b.select :material, material_choices %><br>
 
-      <%= f.label "Select Gauge:" %>
-      <%= p.select :weight, weight_choices, :selected => '4 - Medium' %><br>
+      <%= b.label "Select Gauge:" %>
+      <%= b.select :weight, weight_choices, :selected => '4 - Medium' %><br>
 
-      <%= p.label "Skein weight (oz):" %>
-      <%= p.number_field :skein_weight %><br>
+      <%= b.label "Skein weight (oz):" %>
+      <%= b.number_field :skein_weight %><br>
 
-      <%= p.label "Skein length (yd):" %>
-      <%= p.number_field :skein_length %><br>
+      <%= b.label "Skein length (yd):" %>
+      <%= b.number_field :skein_length %><br>
 
-      <%= p.label "Recommended crochet hook:" %>
-      <%= p.text_field :hook %><br>
+      <%= b.label "Recommended crochet hook:" %>
+      <%= b.text_field :hook %><br>
 
-      <%= p.label "Recommended knitting needle:" %>
-      <%= p.text_field :needle %><br>
+      <%= b.label "Recommended knitting needle:" %>
+      <%= b.text_field :needle %><br>
 
     <% end %>
 </fieldset>
