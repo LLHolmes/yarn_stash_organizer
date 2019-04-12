@@ -6,11 +6,18 @@ class BrandsController < ApplicationController
 
   def new
     @brand = Brand.new
+    @brand.yarns.build
+    @brand.yarns.build
+    # 5.times do
+    #   @brand.yarns.build
+    # end
   end
 
   def create
     @brand = Brand.new(brand_params)
-    if @brand.save
+    if @brand.save#valid?
+      # @brand.save
+      # redirect_to brand_yarns_path(@brand)
       redirect_to brand_path(@brand)
     else
       render :new
@@ -39,7 +46,10 @@ class BrandsController < ApplicationController
     end
 
     def brand_params
-      params.require(:brand).permit(:name, :material, :weight, :hook, :needle, :skein_weight, :skein_length)
+      params.require(:brand).permit(
+        :name, :material, :weight, :hook, :needle, :skein_weight, :skein_length,
+        yarns_attributes: [:color, :count, :scrap, :project_id, :brand_id]
+      )
     end
 
 end

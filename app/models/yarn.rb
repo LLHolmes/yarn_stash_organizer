@@ -2,6 +2,8 @@ class Yarn < ApplicationRecord
   belongs_to :project
   belongs_to :brand
 
+  validates_presence_of :color
+
   accepts_nested_attributes_for :project
   accepts_nested_attributes_for :brand
 
