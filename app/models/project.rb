@@ -19,6 +19,16 @@ class Project < ApplicationRecord
     self.yarns.sort_by { |yarn| yarn.color }.sort_by { |yarn| yarn.brand.name }
   end
 
+  def prep_for_delete
+    self.tools.each do |tool|
+      tool.project = self.user.stash
+    end
+
+    self.yarns.each do |yarn|
+      yarn.project = self.user.stash
+    end
+  end
+
   # def yarns_sorted
   #   self.yarns_by_brand.sort_by { |yarn| yarn.brand.material }.sort_by { |yarn| yarn.brand.weight }
   # end

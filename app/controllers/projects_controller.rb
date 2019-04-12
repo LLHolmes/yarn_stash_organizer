@@ -34,6 +34,7 @@ class ProjectsController < ApplicationController
   end
 
   def destroy
+    @project.prep_for_delete
     @project.destroy
   end
 
