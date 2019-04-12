@@ -1,20 +1,6 @@
 <h1>Congratulations on finishing your <%= @project.name %>!</h1>
 <h2>Please update your yarn amounts for your Stash.</h2>
 
-<% if @project.errors.any? %>
-  <div id="error_explanation">
-    <h2>
-      <%= pluralize(@project.errors.count, "error") %>
-      prohibited this project from being saved:
-    </h2>
-    <ul>
-    <% @project.errors.full_messages.each do |msg| %>
-      <li><%= msg %></li>
-    <% end %>
-    </ul>
-  </div>
-<% end %>
-
 <%= form_for @project, :url => { controller: "finish_projects", action: :update} do |f| %>
 <%= f.fields_for :yarns do |y| %>
   <fieldset>

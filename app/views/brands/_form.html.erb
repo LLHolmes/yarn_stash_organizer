@@ -15,45 +15,69 @@
 <%= form_for @brand do |f| %>
 <fieldset>
   <legend>Brand:</legend>
-  <%= f.label "Name:" %>
-  <%= f.text_field :name %><br>
+  <div class="field<%= ' field_with_errors' if @brand.errors[:name].any? %>">
+    <%= f.label "Name:" %>
+    <%= f.text_field :name %>
+  </div>
 
-  <%= f.label "Select Material:" %>
-  <%= f.select :material, material_choices %><br>
+  <div>
+    <%= f.label "Select Material:" %>
+    <%= f.select :material, material_choices %>
+  </div>
 
-  <%= f.label "Select Gauge:" %>
-  <%= f.select :weight, weight_choices, :selected => '4 - Medium' %><br>
+  <div>
+    <%= f.label "Select Gauge:" %>
+    <%= f.select :weight, weight_choices, :selected => '4 - Medium' %>
+  </div>
 
-  <%= f.label "Skein weight (oz):" %>
-  <%= f.number_field :skein_weight %><br>
+  <div>
+    <%= f.label "Skein weight (oz):" %>
+    <%= f.number_field :skein_weight %>
+  </div>
 
-  <%= f.label "Skein length (yd):" %>
-  <%= f.number_field :skein_length %><br>
+  <div>
+    <%= f.label "Skein length (yd):" %>
+    <%= f.number_field :skein_length %>
+  </div>
 
-  <%= f.label "Recommended crochet hook:" %>
-  <%= f.text_field :hook %><br>
+  <div>
+    <%= f.label "Recommended crochet hook:" %>
+    <%= f.text_field :hook %>
+  </div>
 
-  <%= f.label "Recommended knitting needle:" %>
-  <%= f.text_field :needle %><br>
+  <div>
+    <%= f.label "Recommended knitting needle:" %>
+    <%= f.text_field :needle %>
+  </div>
 </fieldset>
 
   <%= f.fields_for :yarns do |y| %>
   <fieldset>
     <legend>Yarn:</legend>
-    <%= y.label "Color:" %>
-    <%= y.text_field :color %><br>
+    <div class="field<%= ' field_with_errors' if y.object.errors[:color].any? %>">
+      <%= y.label "Color:" %>
+      <%= y.text_field :color %><br>
+    </div>
 
-    <%= y.label "Full skeins:" %>
-    <%= y.number_field :count %><br>
+    <div>
+      <%= y.label "Full skeins:" %>
+      <%= y.number_field :count %><br>
+    </div>
 
-    <%= y.label "Scrap (oz):" %>
-    <%= y.text_field :scrap %><br>
+    <div>
+      <%= y.label "Scrap (oz):" %>
+      <%= y.text_field :scrap %><br>
+    </div>
 
-    <%= y.label "Select Brand:" %>
-    <%= y.collection_select :brand_id, current_user.brands, :id, :name, {:prompt => "New Brand"} %><br>
+    <div>
+      <%= y.label "Select Brand:" %>
+      <%= y.collection_select :brand_id, current_user.brands, :id, :name, {:prompt => "New Brand"} %><br>
+    </div>
 
-    <%= y.label "Select Project:" %>
-    <%= y.collection_select :project_id, current_user.projects, :id, :name %><br>
+    <div>
+      <%= y.label "Select Project:" %>
+      <%= y.collection_select :project_id, current_user.projects, :id, :name %><br>
+    </div>
   </fieldset>
   <% end %>
 

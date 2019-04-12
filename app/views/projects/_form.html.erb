@@ -15,33 +15,52 @@
 <%= form_for @project do |f| %>
 <fieldset>
   <legend>Project:</legend>
-  <%= f.label "Name:" %>
-  <%= f.text_field :name %><br>
+  <div class="field<%= ' field_with_errors' if @project.errors[:name].any? %>">
+    <%= f.label "Name:" %>
+    <%= f.text_field :name %><br>
+  </div>
 
-  <%= f.select :status, status_choices, :prompt => 'Select Status' %><br>
+  <div class="field<%= ' field_with_errors' if @project.errors[:status].any? %>">
+    <%= f.select :status, status_choices, :prompt => 'Select Status' %>
+  </div>
 
-  <%= f.label "Pattern:" %>
-  <%= f.text_field :pattern_info %><br>
+  <div>
+    <%= f.label "Pattern:" %>
+    <%= f.text_field :pattern_info %>
+  </div>
 
-  <%= f.fields_for :notes do |n| %>
-    <% if @project.notes.first.note && n.object.note %>
-        <p><em><%= n.object.created_at.localtime.strftime("%m/%d/%Y, %l:%M %p") %></em></p>
-        <p><%= n.object.note %></p>
-    <% else  %>
-      <%= n.label "Note:" %><br>
-      <%= n.text_area :note %><br>
+
+  <div>
+    <%= f.fields_for :notes do |n| %>
+    <div>
+      <% if @project.notes.first.note && n.object.note %>
+          <p><em><%= n.object.created_at.localtime.strftime("%m/%d/%Y, %l:%M %p") unless !n.object.created_at %></em></p>
+          <p><%= n.object.note unless !n.object.created_at %></p>
+      <% else  %>
+    </div>
+
+
+      <div class="field<%= ' field_with_errors' if n.object.errors[:note].any? %>">
+        <%= n.label "Note:" %><br>
+        <%= n.text_area :note %>
+      </div>
+      <% end %>
     <% end %>
-  <% end %>
+  </div>
 </fieldset>
 
-<fieldset>
+<fieldset class="check_box">
   <legend>Select Yarn:</legend>
-  <%= f.collection_check_boxes(:yarn_ids, current_user.yarns_sorted_by_brand, :id, :yarn_with_brand) %><br>
+  <div>
+    <%= f.collection_check_boxes(:yarn_ids, current_user.yarns_sorted_by_brand, :id, :yarn_with_brand) %>
+  </div>
 </fieldset>
 
-<fieldset>
+<fieldset class="check_box">
   <legend>Select Tools:</legend>
-  <%= f.collection_check_boxes(:tool_ids, current_user.tools, :id, :name) %>
+  <div>
+    <%= f.collection_check_boxes(:tool_ids, current_user.tools, :id, :name) %>
+  </div>
 </fieldset>
 
   <%= f.submit %>

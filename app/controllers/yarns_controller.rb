@@ -12,7 +12,6 @@ class YarnsController < ApplicationController
 
   def create
     @yarn = Yarn.new(yarn_params)
-    binding.pry
     if @yarn.save
       redirect_to yarns_path
     else

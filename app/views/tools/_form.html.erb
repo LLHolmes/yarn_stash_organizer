@@ -15,30 +15,38 @@
 <%= form_for @tool do |f| %>
 <fieldset>
   <legend>Tool:</legend>
-  <%= f.label "Name:" %>
-  <%= f.text_field :name %><br>
+  <div class="field<%= ' field_with_errors' if @tool.errors[:name].any? %>">
+    <%= f.label "Name:" %>
+    <%= f.text_field :name %>
+  </div>
 </fieldset>
 
 <fieldset>
   <legend>Project:</legend>
-  <%= f.label "Select a Project:" %>
-  <%= f.collection_select :project_id, current_user.projects, :id, :name %><br>
+  <div>
+    <%= f.label "Select a Project:" %>
+    <%= f.collection_select :project_id, current_user.projects, :id, :name %>
+  </div>
 
   <% if @project %>
     <br>
     <p>Or Create a Project:</p>
     <%= f.fields_for :project do |p| %>
       <%= p.hidden_field :user_id, value: current_user.id %>
+      <div>
+        <%= p.label "Name:" %>
+        <%= p.text_field :name %>
+      </div>
 
-      <%= p.label "Name:" %>
-      <%= p.text_field :name %><br>
+      <div>
+        <%= p.label "Status:"%>
+        <%= p.select :status, status_choices %>
+      </div>
 
-      <%= p.label "Status:"%>
-      <%= p.select :status, status_choices %><br>
-
-      <%= p.label "Pattern:" %>
-      <%= p.text_field :pattern_info %><br>
-
+      <div>
+        <%= p.label "Pattern:" %>
+        <%= p.text_field :pattern_info %>
+      </div>
     <% end %>
   <% end %>
 </fieldset>

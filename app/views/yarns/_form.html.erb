@@ -15,48 +15,70 @@
 <%= form_for @yarn do |f| %>
 <fieldset>
   <legend>Yarn:</legend>
-  <%= f.label "Color:" %>
-  <%= f.text_field :color %><br>
+  <div class="field<%= ' field_with_errors' if @yarn.errors[:color].any? %>">
+    <%= f.label "Color:" %>
+    <%= f.text_field :color %>
+  </div>
 
-  <%= f.label "Full skeins:" %>
-  <%= f.number_field :count %><br>
+  <div>
+    <%= f.label "Full skeins:" %>
+    <%= f.number_field :count %>
+  </div>
 
-  <%= f.label "Scrap (oz):" %>
-  <%= f.text_field :scrap %><br>
+  <div>
+    <%= f.label "Scrap (oz):" %>
+    <%= f.text_field :scrap %>
+  </div>
 
-  <%= f.label "Select Brand:" %>
-  <%= f.collection_select :brand_id, current_user.brands, :id, :name, {:prompt => "New Brand"} %><br>
+  <div class="field<%= ' field_with_errors' if @yarn.errors[:brand].any? %>">
+    <%= f.label "Select Brand:" %>
+    <%= f.collection_select :brand_id, current_user.brands, :id, :name, {:prompt => "New Brand"} %>
+  </div>
 
-  <%= f.label "Select Project:" %>
-  <%= f.collection_select :project_id, current_user.projects, :id, :name, {:prompt => "New Project"} %><br>
+  <div class="field<%= ' field_with_errors' if @yarn.errors[:project].any? %>">
+    <%= f.label "Select Project:" %>
+    <%= f.collection_select :project_id, current_user.projects, :id, :name, {:prompt => "New Project"} %>
+  </div>
 </fieldset>
 
 <% if @brand %>
 <fieldset>
   <legend>Create a Brand:</legend>
     <%= f.fields_for :brand do |b| %>
-
+    <div>
       <%= b.label "Name:" %>
-      <%= b.text_field :name %><br>
+      <%= b.text_field :name %>
+    </div>
 
+    <div>
       <%= b.label "Select Material:" %>
-      <%= b.select :material, material_choices %><br>
+      <%= b.select :material, material_choices %>
+    </div>
 
+    <div>
       <%= b.label "Select Gauge:" %>
-      <%= b.select :weight, weight_choices, :selected => '4 - Medium' %><br>
+      <%= b.select :weight, weight_choices, :selected => '4 - Medium' %>
+    </div>
 
+    <div>
       <%= b.label "Skein weight (oz):" %>
-      <%= b.number_field :skein_weight %><br>
+      <%= b.number_field :skein_weight %>
+    </div>
 
+    <div>
       <%= b.label "Skein length (yd):" %>
-      <%= b.number_field :skein_length %><br>
+      <%= b.number_field :skein_length %>
+    </div>
 
+    <div>
       <%= b.label "Recommended crochet hook:" %>
-      <%= b.text_field :hook %><br>
+      <%= b.text_field :hook %>
+    </div>
 
+    <div>
       <%= b.label "Recommended knitting needle:" %>
-      <%= b.text_field :needle %><br>
-
+      <%= b.text_field :needle %>
+    </div>
     <% end %>
 </fieldset>
 <% end %>
@@ -67,15 +89,20 @@
     <%= f.fields_for :project do |p| %>
       <%= p.hidden_field :user_id, value: current_user.id %>
 
+    <div>
       <%= p.label "Name:" %>
-      <%= p.text_field :name %><br>
+      <%= p.text_field :name %>
+    </div>
 
+    <div>
       <%= p.label "Status:"%>
-      <%= p.select :status, status_choices %><br>
+      <%= p.select :status, status_choices %>
+    </div>
 
+    <div>
       <%= p.label "Pattern:" %>
-      <%= p.text_field :pattern_info %><br>
-
+      <%= p.text_field :pattern_info %>
+    </div>
     <% end %>
   <% end %>
 </fieldset>
