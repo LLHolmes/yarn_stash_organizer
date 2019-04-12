@@ -29,7 +29,8 @@ Specs:
     (Used Devise/OmniAuth to signup through FaceBook or Google.)
 [X] - Include nested resource show or index (URL e.g. users/2/recipes)
     (Tools index nested within Projects - accessed from Project show page: projects/2/tools)
-[ ] - Include nested resource "new" form (URL e.g. recipes/1/ingredients/new) (projects/1/tools/new)
+[X] - Include nested resource "new" form (URL e.g. recipes/1/ingredients/new)
+    (Tools new nested within Projects - accessed from Project show page: projects/2/tools/new)
 [X] - Include form display of validation errors
     (Errors displayed on new/edit actions.)
     --> [X] - Your fields should be enclosed within a fields_with_errors class
