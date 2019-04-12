@@ -6,7 +6,9 @@ class Brand < ApplicationRecord
   def yarns_attributes=(yarns_attributes)
     yarns_attributes.values.each do |yarn_attributes|
       if !yarn_attributes[:color].empty?
+        binding.pry
         yarn = self.yarns.build(yarn_attributes)
+        binding.pry
         yarn.save
         if !yarn_attributes[:brand_id].empty?
           yarn.update(yarn_attributes)
