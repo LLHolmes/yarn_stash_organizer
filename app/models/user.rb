@@ -11,6 +11,7 @@ class User < ApplicationRecord
   has_many :yarns, -> { distinct }, through: :projects
   has_many :brands, -> { distinct }, through: :yarns
 
+  validates_presence_of :email
   validates_uniqueness_of :email
 
   def initialize(attributes)

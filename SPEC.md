@@ -13,18 +13,24 @@ Specs:
     (A project has many brands and a brand has many projects through yarn.)
 [X] - The join table includes at least one user submittable attribute
     (Yarn connect projects and brands and need a color and amount.)
-[ ] - Include reasonable validations for simple model objects (list of model objects with validations e.g. User, Recipe, Ingredient, Item)
+[X] - Include reasonable validations for simple model objects
+    (Brand & Tool require a name, Project requires a name & status, Yarn requires a color, User requires a unique email)
 [ ] - Include at least one class level ActiveRecord scope method. a. Your scope method must be chainable, meaning that you must use ActiveRecord Query methods within it (such as .where and .order) rather than native ruby methods (such as #find_all or #sort).
 [ ] - Include a class level ActiveRecord scope method (model object & class method name and URL to see the working feature e.g. User.most_recipes URL: /users/most_recipes)
-[ ] - Include signup (how e.g. Devise) with standard user authentication
-[ ] - Include login (how e.g. Devise) with standard user authentication
-[ ] - Include logout (how e.g. Devise) with standard user authentication
-[ ] - Include third party signup/login (how e.g. Devise/OmniAuth)
+[X] - Include signup with standard user authentication
+    (Used Devise)
+[X] - Include login with standard user authentication
+    (Used Devise)
+[X] - Include logout with standard user authentication
+    (Used Devise)
+[X] - Include third party signup/login
+    (Used Devise/OmniAuth to signup through FaceBook or Google)
 [ ] - Include nested resource show or index (URL e.g. users/2/recipes) (brands/2/yarns - projects/2/yarns -- users/2/projects [if public???])
 [ ] - Include nested resource "new" form (URL e.g. recipes/1/ingredients/new) (brands/1/yarns/new - projects/1/yarns/new?)
-[ ] - Include form display of validation errors (form URL e.g. /recipes/new)
+[X] - Include form display of validation errors
+    (Errors displayed on new/edit actions)
     --> [ ] - Your fields should be enclosed within a fields_with_errors class
-    --> [ ] - Error messages describing the validation failures must be present within the view
+    --> [X] - Error messages describing the validation failures must be present within the view
 
 Confirm:
 [ ] - The application is pretty DRY
