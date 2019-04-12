@@ -1,21 +1,23 @@
 <h1>Yarn</h1>
 
 <% weight_choices.each do |gauge| %>
-  <div class="">
-    <h2><%= gauge %></h2>
-    <div>
-    <% current_user.brand_by_weight(gauge).each do |brand| %>
-      <h4><%= link_to brand.name, brand_path(brand) %> (<%= brand.material %>):</h4>
-        <ul>
-          <% brand.yarns_by_color.each do |yarn| %>
-            <div><%= link_to yarn.color, edit_yarn_path(yarn) %> <%= yarn_amount yarn %>
-              <% if yarn.project.name != "Stash" %>
-                ~  Current Project: <%= link_to yarn.project.name, project_path(yarn.project) %>
-              <% end %>
-            </div>
-          <% end %>
-        </ul>
-    <% end %>
+  <% if !current_user.brand_by_weight(gauge).empty? %>
+    <div class="">
+      <h2><%= gauge %></h2>
+      <div>
+      <% current_user.brand_by_weight(gauge).each do |brand| %>
+        <h4><%= link_to brand.name, brand_path(brand) %> (<%= brand.material %>):</h4>
+          <ul>
+            <% brand.yarns_by_color.each do |yarn| %>
+              <div><%= link_to yarn.color, edit_yarn_path(yarn) %> <%= yarn_amount yarn %>
+                <% if yarn.project.name != "Stash" %>
+                  ~  Current Project: <%= link_to yarn.project.name, project_path(yarn.project) %>
+                <% end %>
+              </div>
+            <% end %>
+          </ul>
+      <% end %>
+      </div>
     </div>
-  </div>
+  <% end %>
 <% end %>
