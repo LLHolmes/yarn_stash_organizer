@@ -16,7 +16,7 @@ class BrandsController < ApplicationController
     if @brand.save
       redirect_to brand_path(@brand)
     else
-      render :new
+      redirect_to yarns_path
     end
   end
 
