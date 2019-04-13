@@ -13,41 +13,43 @@
 <% end %>
 
 <%= form_for @project do |f| %>
-<fieldset>
-  <legend>Project:</legend>
-  <div class="field<%= ' field_with_errors' if @project.errors[:name].any? %>">
-    <%= f.label "Name:" %>
-    <%= f.text_field :name %><br>
-  </div>
+<% if @project != current_user.stash %>
+  <fieldset>
+    <legend>Project:</legend>
+    <div class="field<%= ' field_with_errors' if @project.errors[:name].any? %>">
+      <%= f.label "Name:" %>
+      <%= f.text_field :name %><br>
+    </div>
 
-  <div class="field<%= ' field_with_errors' if @project.errors[:status].any? %>">
-    <%= f.select :status, status_choices, :prompt => 'Select Status' %>
-  </div>
+    <div class="field<%= ' field_with_errors' if @project.errors[:status].any? %>">
+      <%= f.select :status, status_choices, :prompt => 'Select Status' %>
+    </div>
 
-  <div>
-    <%= f.label "Pattern:" %>
-    <%= f.text_field :pattern_info %>
-  </div>
-
-
-  <div>
-    <%= f.fields_for :notes do |n| %>
     <div>
-      <% if @project.notes.first.note && n.object.note %>
-          <p><em><%= n.object.created_at.localtime.strftime("%m/%d/%Y, %l:%M %p") unless !n.object.created_at %></em></p>
-          <p><%= n.object.note unless !n.object.created_at %></p>
-      <% else  %>
+      <%= f.label "Pattern:" %>
+      <%= f.text_field :pattern_info %>
     </div>
 
 
-      <div class="field<%= ' field_with_errors' if n.object.errors[:note].any? %>">
-        <%= n.label "Note:" %><br>
-        <%= n.text_area :note %>
+    <div>
+      <%= f.fields_for :notes do |n| %>
+      <div>
+        <% if @project.notes.first.note && n.object.note %>
+            <p><em><%= n.object.created_at.localtime.strftime("%m/%d/%Y, %l:%M %p") unless !n.object.created_at %></em></p>
+            <p><%= n.object.note unless !n.object.created_at %></p>
+        <% else  %>
       </div>
+
+
+        <div class="field<%= ' field_with_errors' if n.object.errors[:note].any? %>">
+          <%= n.label "Note:" %><br>
+          <%= n.text_area :note %>
+        </div>
+        <% end %>
       <% end %>
-    <% end %>
-  </div>
-</fieldset>
+    </div>
+  </fieldset>
+<% end %>
 
 <fieldset>
   <legend>Select Yarn:</legend>

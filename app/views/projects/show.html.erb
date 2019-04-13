@@ -51,5 +51,7 @@
   <% end %>
 
     <%= button_to "Edit Project", edit_project_path(@project), method: :get %>
+  <% if @project != current_user.stash %>
     <%= button_to "Delete Project", { action: "destroy", id: @project.id }, method: :delete, data: { confirm: "This will move all associated yarn and tools to your Stash. Are you sure you'd like to frog this project?" } %>
+  <% end %>
 </div>
