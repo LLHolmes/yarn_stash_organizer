@@ -8,7 +8,7 @@
   <h2>Colors of this yarn in your stash:</h2>
   <ul>
     <% @brand.yarns_by_color.each do |yarn| %>
-      <li><%= link_to yarn.color, edit_yarn_path(yarn) %> <%= yarn_amount yarn %></li>
+      <li><%= link_to yarn.color, edit_yarn_path(yarn) %> <%= yarn_amount yarn %> <%= list_project yarn %></li>
     <% end %>
   </ul>
 

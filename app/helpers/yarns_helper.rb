@@ -22,6 +22,12 @@ module YarnsHelper
     "#{link_to yarn.brand.name, brand_path(yarn.brand)} - #{link_to yarn.color, edit_yarn_path(yarn)}".html_safe
   end
 
+  def list_project(object)
+    if object.project != current_user.stash
+      "~  Current Project: #{link_to object.project.name, project_path(object.project)}".html_safe
+    end
+  end
+
   # def brand_link(yarn)
   #   "#{link_to yarn.brand.name, brand_path(yarn.brand)}".html_safe
   # end
