@@ -24,7 +24,7 @@ class Yarn < ApplicationRecord
     end
   end
 
-  def yarn_with_brand
+  def brand_yarn_with_project
     if self.project.name == "Stash"
       "#{self.brand.name} - #{self.color}"
     else
