@@ -5,7 +5,7 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable,
          :omniauthable, :omniauth_providers => [:facebook]
 
-  has_many :projects
+  has_many :projects, dependent: :destroy
   has_many :notes, -> { distinct }, through: :projects
   has_many :tools, -> { distinct }, through: :projects
   has_many :yarns, -> { distinct }, through: :projects
