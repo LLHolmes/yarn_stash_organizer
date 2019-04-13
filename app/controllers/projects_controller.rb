@@ -28,7 +28,12 @@ class ProjectsController < ApplicationController
   def update
     if @project.update(project_params)
       if @project.status == "Finished"
-        render "finish_projects/edit"
+        if !@project.yarns.empty?
+          render "finish_projects/edit"
+        else
+          @project.clear_to_stash
+          redirect_to project_path(@project)
+        end
       else
         redirect_to project_path(@project)
       end
