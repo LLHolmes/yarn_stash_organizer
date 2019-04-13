@@ -49,16 +49,16 @@
   </div>
 </fieldset>
 
-<fieldset class="check_box">
+<fieldset>
   <legend>Select Yarn:</legend>
-  <div>
+  <div class="checkbox_container">
     <%= f.collection_check_boxes(:yarn_ids, current_user.yarns_sorted_by_brand, :id, :yarn_with_brand) %>
   </div>
 </fieldset>
 
 <fieldset class="check_box">
   <legend>Select Tools:</legend>
-  <div>
+  <div class="checkbox_container">
     <%= f.collection_check_boxes(:tool_ids, current_user.tools, :id, :name) %>
   </div>
 </fieldset>
