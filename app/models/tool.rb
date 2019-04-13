@@ -12,4 +12,12 @@ class Tool < ApplicationRecord
     end
   end
 
+  def tool_with_project
+    if self.project.name == "Stash"
+      "#{self.name}"
+    else
+      "#{self.name}  ~  Current Project: #{self.project.name}"
+    end
+  end
+
 end

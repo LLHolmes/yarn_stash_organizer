@@ -14,12 +14,20 @@
  *= require_self
  */
 
+/* Errors */
 .field_with_errors {
   padding: 2px;
-  background-color: red;
+  background-color: #FEED01;
   display: table;
 }
 
+/* General */
+a {
+  text-decoration: none;
+  color: #863A6D;
+}
+
+/* Navigation bar - layouts/application.html.erb */
 ul.nav-bar {
   list-style-type: none;
   margin: 0;
@@ -52,11 +60,7 @@ li.nav:hover, li.nav-right:hover {
   color: white;
 }
 
-a {
-  text-decoration: none;
-  color: #863A6D;
-}
-
+/* Checkboxes - projects/_form.html.erb */
 .checkbox_container {
   display: block;
   vertical-align: -1px;
