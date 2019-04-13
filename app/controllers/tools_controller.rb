@@ -23,6 +23,7 @@ class ToolsController < ApplicationController
     if @tool.save
       redirect_to tools_path
     else
+      @project = @tool.build_project
       render :new
     end
   end

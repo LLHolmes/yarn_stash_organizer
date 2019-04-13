@@ -16,6 +16,9 @@ class BrandsController < ApplicationController
     if @brand.save
       redirect_to brand_path(@brand)
     elsif !params[:brand][:skein_weight].empty? || !params[:brand][:skein_length].empty?
+      5.times do
+        @brand.yarns.build
+      end
       render :new
     else
       redirect_to yarns_path

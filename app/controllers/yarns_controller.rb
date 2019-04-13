@@ -20,6 +20,8 @@ class YarnsController < ApplicationController
     if @yarn.save
       redirect_to yarns_path
     else
+      @project = @yarn.build_project
+      @brand = @yarn.build_brand
       render :new
     end
   end
