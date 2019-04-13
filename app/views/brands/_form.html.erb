@@ -50,35 +50,38 @@
     <%= f.text_field :needle %>
   </div>
 </fieldset>
-<br><br>
-  <%= f.fields_for :yarns do |y| %>
-  <fieldset>
-    <legend>Yarn:</legend>
-    <div class="field<%= ' field_with_errors' if y.object.errors[:color].any? %>">
-      <%= y.label "Color:" %>
-      <%= y.text_field :color %><br>
-    </div>
 
-    <div>
-      <%= y.label "Full skeins:" %>
-      <%= y.number_field :count %><br>
-    </div>
+<% if !@brand.id %>
+  <br><br>
+    <%= f.fields_for :yarns do |y| %>
+    <fieldset>
+      <legend>Yarn:</legend>
+      <div class="field<%= ' field_with_errors' if y.object.errors[:color].any? %>">
+        <%= y.label "Color:" %>
+        <%= y.text_field :color %><br>
+      </div>
 
-    <div>
-      <%= y.label "Scrap (oz):" %>
-      <%= y.text_field :scrap %><br>
-    </div>
+      <div>
+        <%= y.label "Full skeins:" %>
+        <%= y.number_field :count %><br>
+      </div>
 
-    <div>
-      <%= y.label "Select Brand:" %>
-      <%= y.collection_select :brand_id, current_user.brands, :id, :name, {:prompt => "New Brand"} %><br>
-    </div>
+      <div>
+        <%= y.label "Scrap (oz):" %>
+        <%= y.text_field :scrap %><br>
+      </div>
 
-    <div>
-      <%= y.label "Select Project:" %>
-      <%= y.collection_select :project_id, current_user.projects, :id, :name %><br>
-    </div>
-  </fieldset>
+      <div>
+        <%= y.label "Select Brand:" %>
+        <%= y.collection_select :brand_id, current_user.brands, :id, :name, {:prompt => "New Brand"} %><br>
+      </div>
+
+      <div>
+        <%= y.label "Select Project:" %>
+        <%= y.collection_select :project_id, current_user.projects, :id, :name %><br>
+      </div>
+    </fieldset>
+    <% end %>
   <% end %>
 
   <%= f.submit %>
