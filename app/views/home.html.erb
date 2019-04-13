@@ -1,4 +1,8 @@
-<h1>Yarn Stash Organizer Home</h1>
+<% if current_user.name.end_with?("s") %>
+  <h1><%= current_user.name %>' Stash Organizer</h1>
+<% else %>
+  <h1><%= current_user.name %>'s Stash Organizer</h1>
+<% end %>
 
 <div class="">
   <%= render "projects/all" %>

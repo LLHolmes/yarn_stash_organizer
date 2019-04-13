@@ -14,8 +14,35 @@
  *= require_self
  */
 
- .field_with_errors {
-   padding: 2px;
-   background-color: red;
-   display: table;
- }
+.field_with_errors {
+  padding: 2px;
+  background-color: red;
+  display: table;
+}
+
+ul.nav-bar {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  background-color: #F3C6C6;
+}
+ul.nav-bar li.nav {
+  float: left;
+  display: block;
+  color: white;
+  width: 80px;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+}
+
+li.nav:hover {
+  background-color: #CB6F6F;
+  color: white;
+}
+
+a {
+  text-decoration: none;
+  color: #863A6D;
+}

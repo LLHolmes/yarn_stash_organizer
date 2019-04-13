@@ -22,12 +22,4 @@ class Brand < ApplicationRecord
     self.yarns.sort_by { |yarn| yarn.color }
   end
 
-  # def brands_sorted
-  #   self.brands.sort_by { |brand| brand.name }.sort_by { |brand| brand.material }
-  # end
-  #
-  # def brand_by_weight(gauge)
-  #   self.brands_sorted.select { |brand| brand.weight == gauge }
-  # end
-
 end
