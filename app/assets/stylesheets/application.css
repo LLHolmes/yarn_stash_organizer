@@ -37,7 +37,17 @@ ul.nav-bar li.nav {
   text-decoration: none;
 }
 
-li.nav:hover {
+ul.nav-bar li.nav-right {
+  float: right;
+  display: block;
+  color: white;
+  width: 80px;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+}
+
+li.nav:hover, li.nav-right:hover {
   background-color: #CB6F6F;
   color: white;
 }
