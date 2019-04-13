@@ -15,7 +15,7 @@ class BrandsController < ApplicationController
     @brand = Brand.new(brand_params)
     if @brand.save
       redirect_to brand_path(@brand)
-    elsif params[:brand][:skein_weight] || params[:brand][:skein_length]
+    elsif !params[:brand][:skein_weight].empty? || !params[:brand][:skein_length].empty?
       render :new
     else
       redirect_to yarns_path

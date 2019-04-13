@@ -11,6 +11,9 @@ class Yarn < ApplicationRecord
     if !project_attributes[:name].empty?
       self.project = Project.find_or_create_by(name: project_attributes[:name], user_id: project_attributes[:user_id])
       self.project.update(project_attributes)
+    elsif !self.project_id
+      self.project = User.find(project_attributes[:user_id]).stash
+      self.project.save
     end
   end
 

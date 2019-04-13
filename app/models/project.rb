@@ -26,17 +26,12 @@ class Project < ApplicationRecord
     end
   end
 
-  def yarns_by_brand
-    self.yarns.sort_by { |yarn| yarn.color }.sort_by { |yarn| yarn.brand.name }
+  def project_yarns_by_color
+    self.yarns.sort_by { |yarn| yarn.color }
   end
 
-  def finish_project
-    self.yarns.each do |yarn|
-      if yarn.count == 0 && yarn.scrap.to_f == 0.0
-        yarn.destroy
-      end
-    end
-    self.clear_to_stash
+  def yarns_by_brand
+    self.project_yarns_by_color.sort_by { |yarn| yarn.brand.name }
   end
 
   def clear_to_stash
