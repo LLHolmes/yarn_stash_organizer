@@ -1,17 +1,19 @@
-<h1><%= @brand.name %></h1>
-<p>Material: <%= @brand.material %></p>
-<p>Gauge: <%= @brand.weight %></p>
-<p>Skein size: <%= @brand.skein_weight %>oz., <%= @brand.skein_length %>yd.</p>
-<p>Recommended Hook / Needle: <%= @brand.hook %>, <%= @brand.needle %></p>
+<div class="inside">
+  <h1><%= @brand.name %></h1>
+  <p>Material: <%= @brand.material %></p>
+  <p>Gauge: <%= @brand.weight %></p>
+  <p>Skein size: <%= @brand.skein_weight %>oz., <%= @brand.skein_length %>yd.</p>
+  <p>Recommended Hook / Needle: <%= @brand.hook %>, <%= @brand.needle %></p>
 
-<h2>Colors of this yarn in your stash:</h2>
-<ul>
-  <% @brand.yarns_by_color.each do |yarn| %>
-    <li><%= link_to yarn.color, edit_yarn_path(yarn) %> <%= yarn_amount yarn %></li>
-  <% end %>
-</ul>
+  <h2>Colors of this yarn in your stash:</h2>
+  <ul>
+    <% @brand.yarns_by_color.each do |yarn| %>
+      <li><%= link_to yarn.color, edit_yarn_path(yarn) %> <%= yarn_amount yarn %></li>
+    <% end %>
+  </ul>
 
-<%# if current_user.brands.include?(@brand) %>
-  <%= button_to "Edit Brand", edit_brand_path(@brand), method: :get %>
-  <%= button_to "Delete Brand", { action: "destroy", id: @brand.id }, method: :delete, data: { confirm: "This will delete all associated yarn. Are you sure?" } %>
-<%# end %>
+  <%# if current_user.brands.include?(@brand) %>
+    <%= button_to "Edit Brand", edit_brand_path(@brand), method: :get %>
+    <%= button_to "Delete Brand", { action: "destroy", id: @brand.id }, method: :delete, data: { confirm: "This will delete all associated yarn. Are you sure?" } %>
+  <%# end %>
+<div>

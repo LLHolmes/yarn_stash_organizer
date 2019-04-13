@@ -4,14 +4,14 @@
   <h1><%= current_user.name %>'s Stash Organizer</h1>
 <% end %>
 
-<div class="">
+<div class="main-box-1">
   <%= render "projects/all" %>
 </div>
 
-<div class="">
+<div class="main-box-2">
   <%= render partial: "tools/all", locals: {tools: current_user.tools} %>
 </div>
 
-<div class="">
+<div class="main-box-3">
   <%= render "yarns/all" %>
 </div>

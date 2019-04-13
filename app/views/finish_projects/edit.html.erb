@@ -1,17 +1,19 @@
-<h1>Congratulations on finishing your <%= @project.name %>!</h1>
-<h2>Please update your yarn amounts for your Stash.</h2>
+<div class="inside">
+  <h1>Congratulations on finishing your <%= @project.name %>!</h1>
+  <h2>Please update your yarn amounts for your Stash.</h2>
 
-<%= form_for @project, :url => { controller: "finish_projects", action: :update} do |f| %>
-<%= f.fields_for :yarns do |y| %>
-  <fieldset>
-    <legend><%= y.object.brand.name %> - <%= y.object.color %></legend>
-    <%= y.label "Full skeins:" %>
-    <%= y.number_field :count %><br>
+  <%= form_for @project, :url => { controller: "finish_projects", action: :update} do |f| %>
+  <%= f.fields_for :yarns do |y| %>
+    <fieldset>
+      <legend><%= y.object.brand.name %> - <%= y.object.color %></legend>
+      <%= y.label "Full skeins:" %>
+      <%= y.number_field :count %><br>
 
-    <%= y.label "Scrap (oz):" %>
-    <%= y.text_field :scrap %><br>
-  </fieldset>
+      <%= y.label "Scrap (oz):" %>
+      <%= y.text_field :scrap %><br>
+    </fieldset>
+    <% end %>
+
+    <%= f.submit %>
   <% end %>
-
-  <%= f.submit %>
-<% end %>
+</div>

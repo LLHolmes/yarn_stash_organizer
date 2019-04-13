@@ -1,55 +1,55 @@
-<h1><%= @project.name %></h1>
-<% if @project.name != "Stash" %>
-  <p>Status: <%= @project.status %></p>
-  <p>Pattern: <%= @project.pattern_info %></p>
-<% end %>
+<div class="inside">
+  <h1><%= @project.name %></h1>
+  <% if @project.name != "Stash" %>
+    <p>Status: <%= @project.status %></p>
+    <p>Pattern: <%= @project.pattern_info %></p>
+  <% end %>
 
-<div>
-  <% if !@project.notes.empty? %>
-    <h2>Notes:</h2>
-    <div>
-      <% @project.notes.each do |note| %>
-        <div>
-          <p><em><%= note.created_at.localtime.strftime("%m/%d/%Y, %l:%M %p") %></em></p>
-          <p><%= note.note %></p>
-        </div>
+  <div>
+    <% if !@project.notes.empty? %>
+      <h2>Notes:</h2>
+      <div>
+        <% @project.notes.each do |note| %>
+          <div>
+            <p><em><%= note.created_at.localtime.strftime("%m/%d/%Y, %l:%M %p") %></em></p>
+            <p><%= note.note %></p>
+          </div>
+        <% end %>
+      </div>
+    <% end %>
+  </div>
+
+  <% if !@project.yarns.empty? %>
+  <div>
+    <% if @project.name != "Stash" %>
+      <h2>Project Yarn:</h2>
+    <% else %>
+      <h2>Stashed Yarn:</h2>
+    <% end %>
+    <ul>
+      <% @project.yarns_by_brand.each do |yarn| %>
+        <li><%= brand_yarn_links yarn %> <%= yarn_amount yarn %></li>
       <% end %>
-    </div>
+    </ul>
+  </div>
   <% end %>
-</div>
 
-<% if !@project.yarns.empty? %>
-<div>
-  <% if @project.name != "Stash" %>
-    <h2>Project Yarn:</h2>
-  <% else %>
-    <h2>Stashed Yarn:</h2>
-  <% end %>
-  <ul>
-    <% @project.yarns_by_brand.each do |yarn| %>
-      <li><%= brand_yarn_links yarn %> <%= yarn_amount yarn %></li>
+  <% if !@project.tools.empty? %>
+  <div>
+    <% if @project.name != "Stash" %>
+      <h2><%= link_to "Project Tools:", project_tools_path(@project) %></h2>
+    <% else %>
+      <h2><%= link_to "Stashed Tools:", project_tools_path(@project) %></h2>
     <% end %>
-  </ul>
-</div>
-<% end %>
-
-<% if !@project.tools.empty? %>
-<div>
-  <% if @project.name != "Stash" %>
-    <h2><%= link_to "Project Tools:", project_tools_path(@project) %></h2>
-  <% else %>
-    <h2><%= link_to "Stashed Tools:", project_tools_path(@project) %></h2>
+    <ul>
+      <% @project.tools.each do |tool| %>
+        <li><%= link_to tool.name, edit_tool_path(tool) %></li>
+      <% end %>
+    </ul>
+    <%= link_to "Add a tool to this project", new_project_tool_path(@project) %>
+  </div>
   <% end %>
-  <ul>
-    <% @project.tools.each do |tool| %>
-      <li><%= link_to tool.name, edit_tool_path(tool) %></li>
-    <% end %>
-  </ul>
-  <%= link_to "Add a tool to this project", new_project_tool_path(@project) %>
-</div>
-<% end %>
 
-<%# if current_user.brands.include?(@brand) %>
-  <%= button_to "Edit Project", edit_project_path(@project), method: :get %>
-  <%= button_to "Delete Project", { action: "destroy", id: @project.id }, method: :delete, data: { confirm: "This will move all associated yarn and tools to your Stash. Are you sure you'd like to frog this project?" } %>
-<%# end %>
+    <%= button_to "Edit Project", edit_project_path(@project), method: :get %>
+    <%= button_to "Delete Project", { action: "destroy", id: @project.id }, method: :delete, data: { confirm: "This will move all associated yarn and tools to your Stash. Are you sure you'd like to frog this project?" } %>
+</div>

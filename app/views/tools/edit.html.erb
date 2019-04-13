@@ -1,4 +1,6 @@
-<h1>Edit <%= @tool.name %></h1>
+<div class="inside">
+  <h1>Edit <%= @tool.name %></h1>
 
-<%= render "form" %>
-<%= button_to "Delete Tool", { action: "destroy", id: @tool.id }, method: :delete, data: { confirm: "Are you sure?" } %>
+  <%= render "form" %>
+  <%= button_to "Delete Tool", { action: "destroy", id: @tool.id }, method: :delete, data: { confirm: "Are you sure?" } %>
+</div>
