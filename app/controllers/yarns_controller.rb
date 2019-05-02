@@ -57,7 +57,7 @@ class YarnsController < ApplicationController
     end
 
     def auth_user
-      if current_user == @yarn.user
+      if current_user == @yarn.project.user
       else
         flash['error'] = "You are not allowed to view or edit another users yarn."
         redirect_to root_path
