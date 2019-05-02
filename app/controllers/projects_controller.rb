@@ -1,5 +1,6 @@
 class ProjectsController < ApplicationController
   before_action :find_project, only: [:show, :edit, :update, :destroy]
+  before_action :auth_user, only: [:show, :edit, :update, :destroy]
 
   def index
   end
@@ -56,6 +57,14 @@ class ProjectsController < ApplicationController
 
     def project_params
       params.require(:project).permit(:name, :status, :pattern_info, notes_attributes: [:note], yarn_ids:[], tool_ids:[])
+    end
+
+    def auth_user
+      if current_user == @project.user
+      else
+        flash['error'] = "You are not allowed to view or edit another users project."
+        redirect_to projects_path
+      end
     end
 
 end

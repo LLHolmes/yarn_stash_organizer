@@ -17,7 +17,8 @@ class Brand < ApplicationRecord
   end
 
   def yarns_by_color
-    self.yarns.sort_by { |yarn| yarn.color }
+    yarns.order(:color)
+    #self.yarns.sort_by { |yarn| yarn.color }
   end
 
 end

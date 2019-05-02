@@ -37,6 +37,12 @@ class User < ApplicationRecord
     self.brands.sort_by { |brand| brand.name }.sort_by { |brand| brand.material }
   end
 
+# For sorting examples:
+  # def super_sort
+  #   brands.order('name, material desc')
+  #   # brands.order(:name, material: DESC)
+  # end
+
   def brand_by_weight(gauge)
     self.brands_sorted.select { |brand| brand.weight == gauge }
   end
