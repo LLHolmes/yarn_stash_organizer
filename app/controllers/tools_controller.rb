@@ -1,5 +1,6 @@
 class ToolsController < ApplicationController
   before_action :find_tool, only: [:edit, :update, :destroy]
+  before_action :auth_user, only: [:edit, :update, :destroy]
 
   def index
     if params[:project_id]
@@ -51,6 +52,14 @@ class ToolsController < ApplicationController
 
     def tool_params
       params.require(:tool).permit(:name, :project_id, project_attributes: [:user_id, :name, :pattern_info, :status])
+    end
+
+    def auth_user
+      if current_user == @tool.user
+      else
+        flash['error'] = "You are not allowed to view or edit another users tool."
+        redirect_to projects_path
+      end
     end
 
 end
