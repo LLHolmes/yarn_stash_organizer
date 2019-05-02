@@ -63,7 +63,7 @@ class ProjectsController < ApplicationController
       if current_user == @project.user
       else
         flash['error'] = "You are not allowed to view or edit another users project."
-        redirect_to projects_path
+        redirect_to root_path
       end
     end
 

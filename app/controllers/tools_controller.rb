@@ -58,7 +58,7 @@ class ToolsController < ApplicationController
       if current_user == @tool.user
       else
         flash['error'] = "You are not allowed to view or edit another users tool."
-        redirect_to projects_path
+        redirect_to root_path
       end
     end
 

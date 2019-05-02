@@ -1,5 +1,6 @@
 class YarnsController < ApplicationController
   before_action :find_yarn, only: [:edit, :update, :destroy]
+  before_action :auth_user, only: [:edit, :update, :destroy]
 
   def index
     # if params[:brand_id]
@@ -53,6 +54,14 @@ class YarnsController < ApplicationController
         project_attributes: [:user_id, :name, :pattern_info, :status],
         brand_attributes: [:name, :material, :weight, :hook, :needle, :skein_weight, :skein_length]
       )
+    end
+
+    def auth_user
+      if current_user == @yarn.user
+      else
+        flash['error'] = "You are not allowed to view or edit another users yarn."
+        redirect_to root_path
+      end
     end
 
 end
