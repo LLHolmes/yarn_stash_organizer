@@ -8,6 +8,12 @@ class YarnsController < ApplicationController
     # else
     #   @yarns = current_user.yarns
     # end
+    
+    @yarns = current_user.yarns
+    respond_to do |f|
+      f.html
+      f.json {render json: @yarns}
+    end
   end
 
   def new
