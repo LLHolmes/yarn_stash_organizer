@@ -3,6 +3,11 @@ class ProjectsController < ApplicationController
   before_action :auth_user, only: [:show, :edit, :update, :destroy]
 
   def index
+    @projects = current_user.projects
+    respond_to do |f|
+      f.html
+      f.json {render json: @projects}
+    end
   end
 
   def show
