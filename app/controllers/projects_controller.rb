@@ -4,6 +4,7 @@ class ProjectsController < ApplicationController
 
   def index
     @projects = current_user.projects
+    # binding.pry
     respond_to do |f|
       f.html
       f.json {render json: @projects}
