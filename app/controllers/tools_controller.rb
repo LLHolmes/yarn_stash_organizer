@@ -8,6 +8,11 @@ class ToolsController < ApplicationController
     else
       @tools = current_user.tools
     end
+
+    respond_to do |f|
+      f.html
+      f.json {render json: @tools}
+    end
   end
 
   def new
