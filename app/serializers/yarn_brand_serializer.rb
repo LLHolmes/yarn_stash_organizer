@@ -1,3 +1,3 @@
 class YarnBrandSerializer < ActiveModel::Serializer
-  attributes :id
+  attributes :id, :name, :material, :weight
 end
