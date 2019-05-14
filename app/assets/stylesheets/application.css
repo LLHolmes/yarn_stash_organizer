@@ -53,6 +53,7 @@ a {
 
 /* Navigation bar - layouts/application.html.erb */
 ul.nav-bar {
+  color: #863A6D;
   list-style-type: none;
   margin: 0;
   padding: 0;
@@ -65,7 +66,6 @@ ul.nav-bar {
 ul.nav-bar li.nav {
   float: left;
   display: block;
-  color: white;
   width: 80px;
   text-align: center;
   padding: 14px 16px;
@@ -75,7 +75,6 @@ ul.nav-bar li.nav {
 ul.nav-bar li.nav-right {
   float: right;
   display: block;
-  color: white;
   width: 80px;
   text-align: center;
   padding: 14px 16px;
