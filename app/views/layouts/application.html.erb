@@ -14,9 +14,9 @@
       <ul class="nav-bar">
       <% if user_signed_in? %>
         <li class="nav active"><%= link_to "Home", root_path %></li>
-        <li class="nav active"><%= link_to "Projects", projects_path, class: "js-projects" %></li>
+        <li class="nav active js-projects"><%= link_to "Projects", projects_path, class: "js-projects" %></li>
         <li class="nav active"><%= link_to "New Project", new_project_path %></li>
-        <li class="nav active"><%= link_to "Yarn", yarns_path, class: "js-yarns" %></li>
+        <li class="nav active js-yarns"><%= link_to "Yarn", yarns_path %></li>
         <li class="nav active"><%= link_to "New Yarn", new_yarn_path %></li>
         <li class="nav active"><%= link_to "New Yarns", new_brand_path %></li>
         <li class="nav active js-tools"><%= link_to "Tools", tools_path %></li>

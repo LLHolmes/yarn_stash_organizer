@@ -1,18 +1,18 @@
-$(document).on('turbolinks:load', () => {
-  bindClickHandlers();
-});
+// $(document).on('turbolinks:load', () => {
+//   bindClickHandlers();
+// });
+//
+// const bindClickHandlers = () => {
+//   $(".js-tools").on("click", (event) => {
+//     event.preventDefault();
+//     history.pushState(null, null, "tools")
+//     fetch(`/tools.json`)
+//       .then(response => response.json())
+//       .then(data => displayData(data));
+//   });
+// };
 
-const bindClickHandlers = () => {
-  $(".js-tools").on("click", (event) => {
-    event.preventDefault();
-    history.pushState(null, null, "tools")
-    fetch(`/tools.json`)
-      .then(response => response.json())
-      .then(data => displayData(data));
-  });
-};
-
-const displayData = (data) => {
+const displayTools = (data) => {
   $('#main-body').html('<h1>Tools</h1>')
   data.forEach(tool => {
     let newTool = new Tool(tool)
