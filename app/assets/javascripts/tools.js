@@ -4,7 +4,14 @@ $(document).on('turbolinks:load', () => {
 
 const bindClickHandlers = () => {
   $(".js-tools").on("click", (event) => {
-    event.preventDefault()
-    console.log('hello')
-  })
-}
+    event.preventDefault();
+    fetch(`/tools.json`)
+      .then(response => response.json())
+      .then(data => displayData(data));
+  });
+};
+
+const displayData = (data) => {
+
+  });
+};
