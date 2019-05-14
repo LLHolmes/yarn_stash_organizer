@@ -1,5 +1,4 @@
-$(() => {
-  console.log('ready')
+$(document).on('turbolinks:load', () => {
   bindClickHandlers();
 });
 
