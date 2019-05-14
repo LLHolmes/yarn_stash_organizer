@@ -13,14 +13,14 @@
     <nav>
       <ul class="nav-bar">
       <% if user_signed_in? %>
-        <li class="nav active"><%= link_to "Home", root_path %></li>
+        <a href="/"><li class="nav active">Home</li></a>
         <a href="/projects"><li class="nav active js-projects">Projects</li></a>
-        <li class="nav active"><%= link_to "New Project", new_project_path %></li>
+        <a href="/projects/new"><li class="nav active js-add-project">New Project</li></a>
         <a href="/yarns"><li class="nav active js-yarns">Yarn</li></a>
-        <li class="nav active"><%= link_to "New Yarn", new_yarn_path %></li>
-        <li class="nav active"><%= link_to "New Yarns", new_brand_path %></li>
+        <a href="/yarns/new"><li class="nav active js-add-yarn">New Yarn</li></a>
+        <a href="/brands/new"><li class="nav active js-add-yarns">New Yarns</li></a>
         <a href="/tools"><li class="nav active js-tools">Tools</li></a>
-        <li class="nav active"><%= link_to "New Tool", new_tool_path %></li>
+        <a href="/tools/new"><li class="nav active js-add-tool">New Tool</li></a>
         <li class="nav-right active"><%= link_to "Sign Out", destroy_user_session_path, method: :delete %></li>
         <li class="nav-right active"><%= link_to "Account", edit_user_registration_path %></li>
 

@@ -17,8 +17,9 @@ const bindClickHandlers = () => {
         .then(data => displayTools(data));
     } else if (targetClasses.includes("js-yarns")) {
       console.log("yarn!")
-    } else if (targetClasses.includes("js-projects"))
+    } else if (targetClasses.includes("js-projects")) {
       console.log("projects!")
+    }
   });
 };
 
