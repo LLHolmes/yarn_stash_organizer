@@ -19,6 +19,10 @@ const bindClickHandlers = () => {
       console.log("yarn!")
     } else if (targetClasses.includes("js-projects")) {
       console.log("projects!")
+      history.pushState(null, null, "projects")
+      fetch(`/projects.json`)
+        .then(response => response.json())
+        .then(data => displayProjects(data));
     }
   });
 };
