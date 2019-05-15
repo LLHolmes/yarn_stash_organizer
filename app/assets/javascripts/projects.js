@@ -3,9 +3,8 @@ const displayProjects = (data) => {
   $('#main-body').html(indexHtml)
   data.forEach(project => {
     let newProject = new Project(project)
-    let status = findStatus(newProject)
-    let eachHtml = newProject.formatIndex(status)
-    $(`.${status}`).append(eachHtml)
+    let eachHtml = newProject.formatIndex()
+    $(`.${newProject.divStatus}`).append(eachHtml)
   });
 };
 
@@ -45,11 +44,25 @@ function Project(project) {
   this.tools = project.tools;
   this.yarns = project.yarns;
   this.notes = project.notes;
+  this.divStatus = this.findDivStatus();
 };
 
-Project.prototype.formatIndex = function(status) {
-  let projectHtml
-  if (status === "constant") {
+Project.prototype.findDivStatus = function() {
+  switch (this.status) {
+    case "CONSTANT":
+      return "constant";
+    case "In Progress":
+      return "inProgress";
+    case "Upcoming":
+      return "upcoming";
+    case "Finished":
+      return "finished";
+  };
+};
+
+Project.prototype.formatIndex = function() {
+  let projectHtml;
+  if (this.divStatus === "constant") {
     projectHtml = `
       <div class="each-project">
         <h2><a href="/projects/${this.id}">${this.name}</a></h2>
@@ -63,23 +76,4 @@ Project.prototype.formatIndex = function(status) {
     `
   }
   return projectHtml;
-};
-
-function findStatus(project) {
-  let status;
-  switch (project.status) {
-    case "CONSTANT":
-      status = "constant";
-      break;
-    case "In Progress":
-      status = "inProgress";
-      break;
-    case "Upcoming":
-      status = "upcoming";
-      break;
-    case "Finished":
-      status = "finished";
-      break;
-  };
-  return status;
 };
