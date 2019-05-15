@@ -11,7 +11,7 @@ const displayProjects = (data) => {
 function buildProjectIndex(data) {
   const statusArray = []
   let indexHtml = `
-    <div class="main-single"><div class="inside">
+    <div class="inside">
     <h1>Projects</h1>
   `
   data.forEach(project => {
@@ -31,7 +31,7 @@ function buildProjectIndex(data) {
   if (unique.includes("Finished")) {
     indexHtml = indexHtml + '<div class="list-project finished"><h2>Finished:</h2></div>'
   };
-  indexHtml = indexHtml + '</div></div>'
+  indexHtml = indexHtml + '</div>'
 
   return indexHtml
 };
