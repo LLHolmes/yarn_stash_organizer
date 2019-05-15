@@ -44,6 +44,7 @@ function Project(project) {
   this.tools = project.tools;
   this.yarns = project.yarns;
   this.notes = project.notes;
+  this.brands = project.brands;
   this.divStatus = this.findDivStatus();
 };
 
@@ -78,8 +79,46 @@ Project.prototype.formatIndex = function() {
   return projectHtml;
 };
 
-Project.prototype.formatShow = function() {
+
+
+
+
+
+
+
+
+
+Project.prototype.buildShowHtml = function() {
   let projectHtml = `<div class="inside"><h1>${this.name}</h1</div>`;
+  console.log(this)
+  // let indexHtml = `
+  //   <div class="inside">
+  //   <h1>Projects</h1>
+  // `
+  // data.forEach(project => {
+  //   statusArray.push(project.status);
+  // });
+  // let unique = [...new Set(statusArray)];
+  //
+  // if (unique.includes("CONSTANT")) {
+  //   indexHtml = indexHtml + '<div class="list-project constant"></div>'
+  // };
+  // if (unique.includes("In Progress")) {
+  //   indexHtml = indexHtml + '<div class="list-project inProgress"><h2>In Progress:</h2></div>'
+  // };
+  // if (unique.includes("Upcoming")) {
+  //   indexHtml = indexHtml + '<div class="list-project upcoming"><h2>Upcoming:</h2></div>'
+  // };
+  // if (unique.includes("Finished")) {
+  //   indexHtml = indexHtml + '<div class="list-project finished"><h2>Finished:</h2></div>'
+  // };
+  // indexHtml = indexHtml + '</div>'
+  //
+  // return indexHtml
+};
+
+Project.prototype.formatShow = function() {
+  let projectHtml = this.buildShowHtml;
   // let projectHtml;
   // if (this.divStatus === "constant") {
   //   projectHtml = `
@@ -100,6 +139,7 @@ Project.prototype.formatShow = function() {
 const showProject = (data) => {
   console.log("SHOWING")
   let newProject = new Project(data)
-  let indexHtml = newProject.formatShow()
+  let indexHtml = newProject.buildShowHtml()
+  // indexHtml = newProject.formatShow()
   $('#main-body').html(indexHtml)
 };
