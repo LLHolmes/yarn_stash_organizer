@@ -79,7 +79,7 @@ Project.prototype.formatIndex = function() {
 };
 
 Project.prototype.formatShow = function() {
-  let projectHtml = `<div class="inside"><h1>${this.name}</h1></div>`;
+  let projectHtml = `<div class="inside"><h1>${this.name}</h1</div>`;
   // let projectHtml;
   // if (this.divStatus === "constant") {
   //   projectHtml = `
@@ -94,14 +94,12 @@ Project.prototype.formatShow = function() {
   //     </div>
   //   `
   // }
-  // return projectHtml;
+  return projectHtml;
 };
 
 const showProject = (data) => {
-  $('#main-body').html("")
-  console.log(data)
+  console.log("SHOWING")
   let newProject = new Project(data)
-  console.log(newProject)
   let indexHtml = newProject.formatShow()
-  $('#main-body').append(indexHtml)
+  $('#main-body').html(indexHtml)
 };
