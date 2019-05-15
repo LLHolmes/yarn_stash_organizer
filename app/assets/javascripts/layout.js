@@ -24,6 +24,14 @@ const bindClickHandlers = () => {
         .then(data => displayProjects(data));
     }
   });
+
+  $(document).on("click", ".show-project", function(event) {
+    event.preventDefault();
+    let id = $(this).attr('data-id')
+    fetch(`/projects/${id}.json`)
+      .then(response => response.json())
+      .then(data => showProject(data));
+  });
 };
 
 function listProject(object) {

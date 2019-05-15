@@ -77,3 +77,8 @@ Project.prototype.formatIndex = function() {
   }
   return projectHtml;
 };
+
+const showProject = (data) => {
+  console.log("SHOW PROJECT!")
+  console.log(data)
+};
