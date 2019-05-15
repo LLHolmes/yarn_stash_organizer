@@ -17,6 +17,10 @@ const bindClickHandlers = () => {
         .then(data => displayTools(data));
     } else if (targetClasses.includes("js-yarns")) {
       console.log("yarn!")
+      history.pushState(null, null, "tools")
+      fetch(`/yarns.json`)
+        .then(response => response.json())
+        .then(data => displayYarns(data));
     } else if (targetClasses.includes("js-projects")) {
       console.log("projects!")
       history.pushState(null, null, "projects")

@@ -1,81 +1,74 @@
 const displayYarns = (data) => {
-  let indexHtml = buildYarnIndex(data)
-  $('#main-body').html(indexHtml)
-  data.forEach(project => {
-    let newYarn = new Yarn(project)
+  $('#main-body').html('<div class="inside"><h1>Yarn</h1><div class="list-yarns"></div></div>')
+  // let indexHtml = buildYarnIndex(data)
+  // $('#main-body').html(indexHtml)
+  data.forEach(yarn => {
+    let newYarn = new Yarn(yarn)
     let eachHtml = newYarn.formatIndex()
-    $(`.${newYarn.divStatus}`).append(eachHtml)
+    $('.list-yarns').append(eachHtml)
+    // $(`.${newYarn.divStatus}`).append(eachHtml)
   });
 };
 
-function buildYarnIndex(data) {
-  const statusArray = []
-  let indexHtml = `
-    <div class="inside">
-    <h1>Yarn</h1>
-  `
-  data.forEach(project => {
-    statusArray.push(project.status);
-  });
-  let unique = [...new Set(statusArray)];
+// function buildYarnIndex(data) {
+//   const statusArray = []
+//   let indexHtml = `
+//     <div class="inside">
+//     <h1>Yarn</h1>
+//   `
+//   data.forEach(yarn => {
+//     statusArray.push(yarn.status);
+//   });
+//   let unique = [...new Set(statusArray)];
+//
+//   if (unique.includes("CONSTANT")) {
+//     indexHtml = indexHtml + '<div class="list-yarn constant"></div>'
+//   };
+//   if (unique.includes("In Progress")) {
+//     indexHtml = indexHtml + '<div class="list-yarn inProgress"><h2>In Progress:</h2></div>'
+//   };
+//   if (unique.includes("Upcoming")) {
+//     indexHtml = indexHtml + '<div class="list-yarn upcoming"><h2>Upcoming:</h2></div>'
+//   };
+//   if (unique.includes("Finished")) {
+//     indexHtml = indexHtml + '<div class="list-yarn finished"><h2>Finished:</h2></div>'
+//   };
+//   indexHtml = indexHtml + '</div>'
+//
+//   return indexHtml
+// };
 
-  if (unique.includes("CONSTANT")) {
-    indexHtml = indexHtml + '<div class="list-project constant"></div>'
-  };
-  if (unique.includes("In Progress")) {
-    indexHtml = indexHtml + '<div class="list-project inProgress"><h2>In Progress:</h2></div>'
-  };
-  if (unique.includes("Upcoming")) {
-    indexHtml = indexHtml + '<div class="list-project upcoming"><h2>Upcoming:</h2></div>'
-  };
-  if (unique.includes("Finished")) {
-    indexHtml = indexHtml + '<div class="list-project finished"><h2>Finished:</h2></div>'
-  };
-  indexHtml = indexHtml + '</div>'
-
-  return indexHtml
+function Yarn(yarn) {
+  this.id = yarn.id;
+  this.color = yarn.color;
+  this.count = yarn.count;
+  this.scrap = yarn.scrap;
+  this.brand = yarn.brand;
+  this.project = yarn.project;
+  // this.divStatus = this.findDivStatus();
 };
 
-function Yarn(project) {
-  this.id = project.id;
-  this.name = project.name;
-  this.status = project.status;
-  this.pattern_info = project.pattern_info;
-  this.tools = project.tools;
-  this.yarns = project.yarns;
-  this.notes = project.notes;
-  this.divStatus = this.findDivStatus();
-};
-
-Yarn.prototype.findDivStatus = function() {
-  switch (this.status) {
-    case "CONSTANT":
-      return "constant";
-    case "In Progress":
-      return "inProgress";
-    case "Upcoming":
-      return "upcoming";
-    case "Finished":
-      return "finished";
-  };
-};
+// Yarn.prototype.findDivStatus = function() {
+//   switch (this.status) {
+//     case "CONSTANT":
+//       return "constant";
+//     case "In Progress":
+//       return "inProgress";
+//     case "Upcoming":
+//       return "upcoming";
+//     case "Finished":
+//       return "finished";
+//   };
+// };
 
 Yarn.prototype.formatIndex = function() {
-  let projectHtml;
-  if (this.divStatus === "constant") {
-    projectHtml = `
-      <div class="each-project">
-        <h2><a href="/projects/${this.id}">${this.name}</a></h2>
-      </div>
-    `
-  } else {
-    projectHtml = `
-      <div class="each-project">
-        <a href="/projects/${this.id}">${this.name}</a>
-      </div>
-    `
-  }
-  return projectHtml;
+  let yarnHtml;
+  yarnHtml = `
+    <div class="each-yarn">
+      <a href="/yarns/${this.id}/edit">${this.brand.name} - ${this.color}</a> ${listProject(this)}
+    </div>
+  `
+  return yarnHtml;
 };
 
 // <% weight_choices.each do |gauge| %>

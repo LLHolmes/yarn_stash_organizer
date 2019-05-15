@@ -1,5 +1,5 @@
 const displayProjects = (data) => {
-  let indexHtml = buildHtml(data)
+  let indexHtml = buildProjectIndex(data)
   $('#main-body').html(indexHtml)
   data.forEach(project => {
     let newProject = new Project(project)
@@ -8,7 +8,7 @@ const displayProjects = (data) => {
   });
 };
 
-function buildHtml(data) {
+function buildProjectIndex(data) {
   const statusArray = []
   let indexHtml = `
     <div class="inside">
