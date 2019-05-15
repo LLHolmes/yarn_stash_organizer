@@ -89,8 +89,81 @@ Project.prototype.formatIndex = function() {
 
 
 Project.prototype.buildShowHtml = function() {
-  let projectHtml = `<div class="inside"><h1>${this.name}</h1</div>`;
-  console.log(this)
+  // let sortedYarn;
+  if (this.name === "Stash") {
+    let stash = true
+  };
+
+  let projectHtml = `<div class="inside"><h1>${this.name}</h1>`;
+  let statusHtml = `
+    <p>Status: ${this.status}</p>
+    <p>Pattern: ${this.pattern_info}</p>
+  `
+  let notesHtml = `
+    </div>
+  `
+  let yarnHtml = ""
+  let toolHtml = `
+    BUTTONS!!!!!
+    </div>
+  `
+
+  if (stash === true) {
+    statusHtml = ""
+  };
+  if (this.notes.length > 0) {
+    notesHtml = `
+      </div><div class="notes">
+          <h2>Notes:</h2>
+      </div>
+    `
+  };
+  if (this.yarns.length > 0) {
+    // sortedYarn = yarns.sort((a, b) => (a.brand_name > b.brand_name) ? 1 : (a.brand_name === b.brand_name) ? ((a.color > b.color) ? 1 : -1) : -1)
+    if (stash === true) {
+      yarnHtml = `
+      <div class="project-yarns">
+        <h2>Stashed Yarn:</h2>
+        <ul class="project-yarn-list"></ul>
+      </div>
+      `
+    } else {
+      yarnHtml = `
+      <div class="project-yarns">
+        <h2>Stashed Yarn:</h2>
+        <ul class="project-yarn-list"></ul>
+      </div>
+      `
+    };
+  };
+  if (this.tools.length > 0) {
+    if (stash === true) {
+      toolHtml = `
+      <div class="project-tools">
+        <h2><a href="/projects/${this.id}/tools">Stashed Tools:</a></h2>
+        <ul class="project-tools-list"></ul>
+        <a href="/projects/${this.id}/tools/new">Add a tool to this project</a>
+      </div>
+      `
+    } else {
+      toolHtml = `
+      <div class="project-tools">
+        <h2><a href="/projects/${this.id}/tools">Project Tools:</a></h2>
+        <ul class="project-tools-list"></ul>
+        <a href="/projects/${this.id}/tools/new">Add a tool to this project</a>
+      </div>
+      `
+    };
+  };
+
+
+
+
+  console.log(this.notes)
+  console.log(this.notes.length)
+  projectHtml = projectHtml + statusHtml + notesHtml + yarnHtml + toolHtml
+
+
   // let indexHtml = `
   //   <div class="inside">
   //   <h1>Projects</h1>
