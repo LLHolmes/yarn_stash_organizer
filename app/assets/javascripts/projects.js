@@ -98,9 +98,10 @@ Project.prototype.formatShow = function() {
 };
 
 const showProject = (data) => {
+  $('#main-body').html("")
   console.log(data)
   let newProject = new Project(data)
   console.log(newProject)
   let indexHtml = newProject.formatShow()
-  $('#main-body').html(indexHtml)
+  $('#main-body').append(indexHtml)
 };
