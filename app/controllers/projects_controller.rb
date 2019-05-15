@@ -13,7 +13,7 @@ class ProjectsController < ApplicationController
   def show
     respond_to do |f|
       f.html
-      f.json {render json: @projects}
+      f.json {render json: @project}
     end
   end
 
