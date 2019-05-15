@@ -5,4 +5,5 @@ class ProjectSerializer < ActiveModel::Serializer
   has_many :tools
   has_many :yarns, serializer: ProjectYarnSerializer
   has_many :notes
+  has_many :brands, serializer: ProjectBrandSerializer
 end
