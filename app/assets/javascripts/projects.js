@@ -20,16 +20,16 @@ function buildHtml(data) {
   let unique = [...new Set(statusArray)];
 
   if (unique.includes("CONSTANT")) {
-    indexHtml = indexHtml + '<div class="constant"></div>'
+    indexHtml = indexHtml + '<div class="list-project constant"></div>'
   };
   if (unique.includes("In Progress")) {
-    indexHtml = indexHtml + '<div class="inProgress"><h2>In Progress:</h2></div>'
+    indexHtml = indexHtml + '<div class="list-project inProgress"><h2>In Progress:</h2></div>'
   };
   if (unique.includes("Upcoming")) {
-    indexHtml = indexHtml + '<div class="upcoming"><h2>Upcoming:</h2></div>'
+    indexHtml = indexHtml + '<div class="list-project upcoming"><h2>Upcoming:</h2></div>'
   };
   if (unique.includes("Finished")) {
-    indexHtml = indexHtml + '<div class="finished"><h2>Finished:</h2></div>'
+    indexHtml = indexHtml + '<div class="list-project finished"><h2>Finished:</h2></div>'
   };
   indexHtml = indexHtml + '</div>'
 

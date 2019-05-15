@@ -1,9 +1,9 @@
 const displayTools = (data) => {
-  $('#main-body').html('<h1>Tools</h1>')
+  $('#main-body').html('<div class="inside"><h1>Tools</h1><div class="list-tools"></div></div>')
   data.forEach(tool => {
     let newTool = new Tool(tool)
     let eachHtml = newTool.formatIndex()
-    $('#main-body').append(eachHtml)
+    $('.list-tools').append(eachHtml)
   });
 };
 
