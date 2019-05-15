@@ -1,22 +1,40 @@
 const displayProjects = (data) => {
-  let indexHtml = `
-    <div class="inside">
-    <h1>Projects</h1>
-    <div class="constant"><h2></h2></div>
-    <div class="inProgress"><h2>In Progress:</h2></div>
-    <div class="upcoming"><h2>Upcoming:</h2></div>
-    <div class="finished"><h2>Finished:</h2></div>
-    </div>
-  `
+  let indexHtml = buildHtml(data)
   $('#main-body').html(indexHtml)
-  console.log(data)
   data.forEach(project => {
     let newProject = new Project(project)
     let status = findStatus(newProject)
     let eachHtml = newProject.formatIndex(status)
-    console.log(`${newProject.name} - ${status}`)
-    $(`.${findStatus(newProject)}`).append(eachHtml)
+    $(`.${status}`).append(eachHtml)
   });
+};
+
+function buildHtml(data) {
+  const statusArray = []
+  let indexHtml = `
+    <div class="inside">
+    <h1>Projects</h1>
+  `
+  data.forEach(project => {
+    statusArray.push(project.status);
+  });
+  let unique = [...new Set(statusArray)];
+
+  if (unique.includes("CONSTANT")) {
+    indexHtml = indexHtml + '<div class="constant"></div>'
+  };
+  if (unique.includes("In Progress")) {
+    indexHtml = indexHtml + '<div class="inProgress"><h2>In Progress:</h2></div>'
+  };
+  if (unique.includes("Upcoming")) {
+    indexHtml = indexHtml + '<div class="upcoming"><h2>Upcoming:</h2></div>'
+  };
+  if (unique.includes("Finished")) {
+    indexHtml = indexHtml + '<div class="finished"><h2>Finished:</h2></div>'
+  };
+  indexHtml = indexHtml + '</div>'
+
+  return indexHtml
 };
 
 function Project(project) {
