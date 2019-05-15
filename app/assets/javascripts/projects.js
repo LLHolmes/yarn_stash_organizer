@@ -65,13 +65,13 @@ Project.prototype.formatIndex = function() {
   if (this.divStatus === "constant") {
     projectHtml = `
       <div class="each-project">
-        <h2><a href="/projects/${this.id}">${this.name}</a></h2>
+        <h2><a href="/projects/${this.id}" class="show-project">${this.name}</a></h2>
       </div>
     `
   } else {
     projectHtml = `
       <div class="each-project">
-        <a href="/projects/${this.id}">${this.name}</a>
+        <a href="/projects/${this.id}" class="show-project">${this.name}</a>
       </div>
     `
   }
