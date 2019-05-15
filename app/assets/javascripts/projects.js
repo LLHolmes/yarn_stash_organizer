@@ -78,7 +78,29 @@ Project.prototype.formatIndex = function() {
   return projectHtml;
 };
 
+Project.prototype.formatShow = function() {
+  let projectHtml = `<div class="inside"><h1>${this.name}</h1></div>`;
+  // let projectHtml;
+  // if (this.divStatus === "constant") {
+  //   projectHtml = `
+  //     <div class="each-project">
+  //       <h2><a href="/projects/${this.id}" data-id="${this.id}" class="show-project">${this.name}</a></h2>
+  //     </div>
+  //   `
+  // } else {
+  //   projectHtml = `
+  //     <div class="each-project">
+  //       <a href="/projects/${this.id}" data-id="${this.id}" class="show-project">${this.name}</a>
+  //     </div>
+  //   `
+  // }
+  // return projectHtml;
+};
+
 const showProject = (data) => {
-  console.log("SHOW PROJECT!")
   console.log(data)
+  let newProject = new Project(data)
+  console.log(newProject)
+  let indexHtml = newProject.formatShow()
+  $('#main-body').html(indexHtml)
 };
