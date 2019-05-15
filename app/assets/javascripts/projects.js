@@ -1,10 +1,12 @@
 const displayProjects = (data) => {
   let indexHtml = `
+    <div class="inside">
     <h1>Projects</h1>
     <div class="constant"><h2></h2></div>
     <div class="inProgress"><h2>In Progress:</h2></div>
     <div class="upcoming"><h2>Upcoming:</h2></div>
     <div class="finished"><h2>Finished:</h2></div>
+    </div>
   `
   $('#main-body').html(indexHtml)
   console.log(data)
