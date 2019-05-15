@@ -3,6 +3,6 @@ class ProjectSerializer < ActiveModel::Serializer
 
   # belongs_to :user
   has_many :tools
-  has_many :yarns
+  has_many :yarns, serializer: ProjectYarnSerializer
   has_many :notes
 end
