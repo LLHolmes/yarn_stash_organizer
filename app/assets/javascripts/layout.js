@@ -5,9 +5,7 @@ $(document).on('turbolinks:load', () => {
 const bindClickHandlers = () => {
   $(".nav-bar").on("click", (event) => {
     event.preventDefault();
-    console.log(event)
     let targetClasses = Object.values(event.target.classList)
-    console.log(targetClasses)
 
     if (targetClasses.includes("js-tools")) {
       history.pushState(null, null, "tools")
