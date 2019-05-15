@@ -44,6 +44,13 @@ a {
   margin: 0 auto;
 }
 
+.main-single {
+  width: 100%;
+  background: rgba(255,255,255, 0.4);
+  border: 1px;
+  border-color: grey;
+}
+
 .main-box-1, .main-box-2, .main-box-3 {
   width: 40%;
   background: rgba(255,255,255, 0.4);
