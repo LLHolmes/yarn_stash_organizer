@@ -1,11 +1,13 @@
 # Yarn Stash Organizer
 
-FlatIron School - Rails Portfolio Project
+FlatIron School - Rails with JavaScript Portfolio Project
 
-Welcome to Yarn Stash Organizer, a Rails based application designed to help you wrangle your yarn stash and crafty projects.
+Welcome to Yarn Stash Organizer, an application designed to help you wrangle your yarn stash and crafty projects.
 
 ## Usage
 This project is currently run on your local host.
+
+Please fork and clone this repo then:
 
 Run:
   $ bundle install
@@ -16,9 +18,8 @@ Then:
 To run on your local machine:
   $ rails s
 
-If you would like to user OmniAuth to log-in through FaceBook or Google:
-
-$ thin start --ssl
+If you would like to user OmniAuth to log-in through FaceBook:
+  $ thin start --ssl
 
 Copy the given host (for example "http://localhost:3000/" or "https://0.0.0.0:3000/") into the URL of your favorite web browser.
 
