@@ -1,14 +1,3 @@
-const displayProjects = (data) => {
-  let indexHtml = buildProjectIndex(data)
-  $('#main-body').html(indexHtml)
-  data.forEach(project => {
-    let newProject = new Project(project)
-    let eachHtml = newProject.formatIndex()
-    console.log(newProject)
-    $(`.status-${newProject.statusDiv}`).append(eachHtml)
-  });
-};
-
 // Create Project Objects
 function Project(project) {
   this.id = project.id;
@@ -171,6 +160,23 @@ Project.prototype.formatShow = function() {
 
   projectHtml = '<div class="inside">' + projectHtml + statusHtml + notesHtml + yarnHtml + toolHtml + buttonHtml + "</div>"
   return projectHtml
+};
+
+
+
+
+
+
+// On Click Functions
+const displayProjects = (data) => {
+  let indexHtml = buildProjectIndex(data)
+  $('#main-body').html(indexHtml)
+  data.forEach(project => {
+    let newProject = new Project(project)
+    let eachHtml = newProject.formatIndex()
+    console.log(newProject)
+    $(`.status-${newProject.statusDiv}`).append(eachHtml)
+  });
 };
 
 const showProject = (data) => {
