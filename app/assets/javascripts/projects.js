@@ -193,11 +193,19 @@ Project.prototype.formatShowTools = function() {
 
 Project.prototype.formatShowButton = function() {
   let statusHtml = `
-    <button class="edit-project" data-id="${this.id}">Edit Project</button>
-    <button class="delete-project" data-id="${this.id}">Delete Project</button>
+    <form class="button_to" method="get" action="/projects/${this.id}/edit">
+      <input type="submit" value="Edit Project">
+    </form>
+    <form class="button_to" method="post" action="/projects/${this.id}">
+      <input data-confirm="This will move all associated yarn and tools to your Stash. Are you sure you'd like to frog this project?" type="submit" value="Delete Project">
+    </form>
   `
   if (this.name === "Stash") {
-    statusHtml = `<button class="edit-project" data-id="${this.id}">Edit Project</button>`
+    statusHtml = `
+      <form class="button_to" method="get" action="/projects/${this.id}/edit">
+        <input type="submit" value="Edit Project">
+      </form>
+    `
   };
   return statusHtml;
 };
