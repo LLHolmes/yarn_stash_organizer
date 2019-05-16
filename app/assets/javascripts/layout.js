@@ -48,26 +48,23 @@ function sortBrandYarns(yarns) {
 };
 
 function formatYarnAmount(yarn) {
-  let amount;
   if (!!yarn.count && yarn.count === 1) {
     if (!!yarn.scrap && yarn.scrap > 0) {
-      amount = `(${yarn.count} skein, ${yarn.scrap} oz. scrap)`
+      return `(${yarn.count} skein, ${yarn.scrap} oz. scrap)`
     } else {
-      amount = `(${yarn.count} skein)`
+      return `(${yarn.count} skein)`
     };
   } else if (!!yarn.count && yarn.count > 1) {
     if (!!yarn.scrap && yarn.scrap > 0) {
-      amount = `(${yarn.count} skeins, ${yarn.scrap} oz. scrap)`
+      return `(${yarn.count} skeins, ${yarn.scrap} oz. scrap)`
     } else {
-      amount = `(${yarn.count} skeins)`
+      return `(${yarn.count} skeins)`
     };
   } else if (!!yarn.scrap) {
-    amount = `(${yarn.scrap} oz. scrap)`
-    };
+    return `(${yarn.scrap} oz. scrap)`
   };
-  return amount;
 };
 
 function formatBrandYarnLinks(yarn) {
-  return (`<a href="/brands/${yarn.brand_id}">${yarn.brand_name}</a> - <a href="/yarns/${yarn.id/edit}">${yarn.color}</a>`)
+  return (`<a href="/brands/${yarn.brand_id}">${yarn.brand_name}</a> - <a href="/yarns/${yarn.id}/edit">${yarn.color}</a>`)
 };

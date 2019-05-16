@@ -72,8 +72,8 @@ Project.prototype.formatShowStatus = function() {
 };
 
 Project.prototype.formatShowNotes = function() {
-  let notesHtml;
-  let singleNote;
+  let notesHtml = "";
+  let singleNote = "";
   if (this.notes.length > 0) {
     notesHtml = `
       <div class="project-notes">
@@ -95,29 +95,24 @@ Project.prototype.formatShowNotes = function() {
 };
 
 Project.prototype.formatShowYarns = function() {
-  //
-  //     <% @project.yarns_by_brand.each do |yarn| %>
-  //       <li><%= brand_yarn_links yarn %> <%= yarn_amount yarn %></li>
-  //
-
-  let yarnsHtml;
-  let singleYarn;
-
-  if (this.yarns.length > 0) {
+  let yarnsHtml = "";
+  let singleYarn = "";
+  let sortedYarn = sortBrandYarns(this.yarns)
+  if (!!this.yarns.length) {
     if (this.name === "Stash") {
-      yarnHtml = `
+      yarnsHtml = `
       <div class="project-yarns">
         <h2>Stashed Yarn:</h2>
         <ul class="project-yarn-list">
       `
     } else {
-      yarnHtml = `
+      yarnsHtml = `
       <div class="project-yarns">
         <h2>Project Yarn:</h2>
         <ul class="project-yarn-list">
       `
     };
-    this.yarns.forEach(yarn => {
+    sortedYarn.forEach(yarn => {
       singleYarn = `
         <li class="each-yarn">${formatBrandYarnLinks(yarn)} ${formatYarnAmount(yarn)}</li>
       `
@@ -152,24 +147,6 @@ Project.prototype.formatShow = function() {
       <button class="edit-project" data-id="${this.id}">Edit Project</button>
       </div>
     `
-  };
-  if (this.yarns.length > 0) {
-    // sortedYarn = yarns.sort((a, b) => (a.brand_name > b.brand_name) ? 1 : (a.brand_name === b.brand_name) ? ((a.color > b.color) ? 1 : -1) : -1)
-    if (this.name === "Stash") {
-      yarnHtml = `
-      <div class="project-yarns">
-        <h2>Stashed Yarn:</h2>
-        <ul class="project-yarn-list"></ul>
-      </div>
-      `
-    } else {
-      yarnHtml = `
-      <div class="project-yarns">
-        <h2>Project Yarn:</h2>
-        <ul class="project-yarn-list"></ul>
-      </div>
-      `
-    };
   };
   if (this.tools.length > 0) {
     if (this.name === "Stash") {
