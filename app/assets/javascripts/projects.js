@@ -4,7 +4,8 @@ const displayProjects = (data) => {
   data.forEach(project => {
     let newProject = new Project(project)
     let eachHtml = newProject.formatIndex()
-    $(`.${newProject.divStatus}`).append(eachHtml)
+    console.log(newProject)
+    $(`.status-${newProject.statusDiv}`).append(eachHtml)
   });
 };
 
@@ -14,13 +15,14 @@ function Project(project) {
   this.name = project.name;
   this.status = project.status;
   this.pattern_info = project.pattern_info;
+  this.statusDiv = project.statusDiv;
   this.tools = project.tools;
   this.yarns = project.yarns;
   this.notes = project.notes;
   // this.brands = project.brands;
-  this.divStatus = this.findDivStatus();
 };
 
+// Format Project Index Page - Skeleton
 function buildProjectIndex(data) {
   const statusArray = []
   let indexHtml = `
@@ -33,39 +35,26 @@ function buildProjectIndex(data) {
   let unique = [...new Set(statusArray)];
 
   if (unique.includes("CONSTANT")) {
-    indexHtml = indexHtml + '<div class="list-project constant"></div>'
+    indexHtml = indexHtml + '<div class="list-project status-constant"></div>'
   };
   if (unique.includes("In Progress")) {
-    indexHtml = indexHtml + '<div class="list-project inProgress"><h2>In Progress:</h2></div>'
+    indexHtml = indexHtml + '<div class="list-project status-in-progress"><h2>In Progress:</h2></div>'
   };
   if (unique.includes("Upcoming")) {
-    indexHtml = indexHtml + '<div class="list-project upcoming"><h2>Upcoming:</h2></div>'
+    indexHtml = indexHtml + '<div class="list-project status-upcoming"><h2>Upcoming:</h2></div>'
   };
   if (unique.includes("Finished")) {
-    indexHtml = indexHtml + '<div class="list-project finished"><h2>Finished:</h2></div>'
+    indexHtml = indexHtml + '<div class="list-project status-finished"><h2>Finished:</h2></div>'
   };
   indexHtml = indexHtml + '</div>'
 
   return indexHtml
 };
 
-// Project.prototype.findDivStatus = function() {
-//   switch (this.status) {
-//     case "CONSTANT":
-//       return "constant";
-//     case "In Progress":
-//       return "inProgress";
-//     case "Upcoming":
-//       return "upcoming";
-//     case "Finished":
-//       return "finished";
-//   };
-// };
-
-// Format Project Index Page
+// Format Project Index Page - Individual Projects
 Project.prototype.formatIndex = function() {
   let projectHtml;
-  if (this.divStatus === "constant") {
+  if (this.statusDiv === "constant") {
     projectHtml = `
       <div class="each-project">
         <h2><a href="/projects/${this.id}" data-id="${this.id}" class="show-project">${this.name}</a></h2>
