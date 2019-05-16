@@ -23,6 +23,7 @@ const displayProjects = (data) => {
 };
 
 const showProject = (data) => {
+  console.log("in showProject")
   let newProject = new Project(data)
   let showHtml = newProject.formatShow()
   $('#main-body').html(showHtml)
@@ -197,6 +198,7 @@ Project.prototype.formatShowButton = function() {
       <input type="submit" value="Edit Project">
     </form>
     <form class="button_to" method="post" action="/projects/${this.id}">
+      <input type="hidden" name="_method" value="delete">
       <input data-confirm="This will move all associated yarn and tools to your Stash. Are you sure you'd like to frog this project?" type="submit" value="Delete Project">
     </form>
   `

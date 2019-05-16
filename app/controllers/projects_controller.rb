@@ -25,7 +25,8 @@ class ProjectsController < ApplicationController
   def create
     @project = current_user.projects.build(project_params)
     if @project.save
-      redirect_to project_path(@project)
+      # redirect_to project_path(@project)
+      render json: @project
     else
       @project.notes.build
       render :new

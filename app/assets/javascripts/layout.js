@@ -37,11 +37,19 @@ const bindClickHandlers = () => {
 
   $("#new_yarn").submit ((event) => {
     event.preventDefault();
-    console.log("SUBMITTED")
     const values = $("form").serialize()
     $.post("/yarns", values)
       .done(data => {
         showYarn(data)
+      });
+  });
+
+  $("#new_project").submit ((event) => {
+    event.preventDefault();
+    const values = $("form").serialize()
+    $.post("/projects", values)
+      .done(data => {
+        showProject(data)
       });
   });
 };
