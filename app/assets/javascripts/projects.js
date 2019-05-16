@@ -123,11 +123,48 @@ Project.prototype.formatShowYarns = function() {
   return yarnsHtml;
 };
 
+Project.prototype.formatShowTools = function() {
+  let toolsHtml = `
+    <div class="project-tools">
+      <a href="/projects/${this.id}/tools/new">Add a tool to this project</a>
+    </div>
+  `;
+  let singleTool = "";
+  if (!!this.tools.length) {
+    if (this.name === "Stash") {
+      toolsHtml = `
+      <div class="project-tools">
+        <a href="/projects/${this.id}/tools"><h2>Stashed Tools:</h2></a>
+        <ul class="project-tool-list">
+      `
+    } else {
+      toolsHtml = `
+      <div class="project-tools">
+        <a href="/projects/${this.id}/tools"><h2>Project Tools:</h2></a>
+        <ul class="project-tool-list">
+      `
+    };
+    this.tools.forEach(tool => {
+      singleTool = `
+        <li class="each-tool"><a href="/tools/${tool.id}/edit">${tool.name}</a></li>
+      `
+      toolsHtml = toolsHtml + singleTool
+    });
+    toolsHtml = toolsHtml + `</ul><a href="/projects/${this.id}/tools/new">Add a tool to this project</a></div>`
+  };
+  return toolsHtml;
+};
 
-
-
-
-
+Project.prototype.formatShowButton = function() {
+  let statusHtml = `
+    <button class="edit-project" data-id="${this.id}">Edit Project</button>
+    <button class="delete-project" data-id="${this.id}">Delete Project</button>
+  `
+  if (this.name === "Stash") {
+    statusHtml = `<button class="edit-project" data-id="${this.id}">Edit Project</button>`
+  };
+  return statusHtml;
+};
 
 // Format Project Show Page - All
 Project.prototype.formatShow = function() {
@@ -135,41 +172,11 @@ Project.prototype.formatShow = function() {
   let statusHtml = this.formatShowStatus()
   let notesHtml = this.formatShowNotes()
   let yarnHtml = this.formatShowYarns()
-  let toolHtml = ""
-  let buttonHtml = `
-    <button class="edit-project" data-id="${this.id}">Edit Project</button>
-    <button class="delete-project" data-id="${this.id}">Delete Project</button>
-    </div>
-  `
-
-  if (this.name === "Stash") {
-    buttonHtml = `
-      <button class="edit-project" data-id="${this.id}">Edit Project</button>
-      </div>
-    `
-  };
-  if (this.tools.length > 0) {
-    if (this.name === "Stash") {
-      toolHtml = `
-      <div class="project-tools">
-        <h2><a href="/projects/${this.id}/tools">Stashed Tools:</a></h2>
-        <ul class="project-tools-list"></ul>
-        <a href="/projects/${this.id}/tools/new">Add a tool to this project</a>
-      </div>
-      `
-    } else {
-      toolHtml = `
-      <div class="project-tools">
-        <h2><a href="/projects/${this.id}/tools">Project Tools:</a></h2>
-        <ul class="project-tools-list"></ul>
-        <a href="/projects/${this.id}/tools/new">Add a tool to this project</a>
-      </div>
-      `
-    };
-  };
+  let toolHtml = this.formatShowTools()
+  let buttonHtml = this.formatShowButton()
 
   projectHtml = '<div class="inside">' + projectHtml + statusHtml + notesHtml + yarnHtml + toolHtml + buttonHtml + "</div>"
-  return projectHtml
+  return projectHtml;
 };
 
 

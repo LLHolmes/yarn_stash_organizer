@@ -26,7 +26,7 @@
     <% else %>
       <h2>Stashed Yarn:</h2>
     <% end %>
-    <ul>
+    <ul class="project-yarn-list">
       <% @project.yarns_by_brand.each do |yarn| %>
         <li class="each-yarn"><%= brand_yarn_links yarn %> <%= yarn_amount yarn %></li>
       <% end %>
@@ -41,7 +41,7 @@
     <% else %>
       <h2><%= link_to "Stashed Tools:", project_tools_path(@project) %></h2>
     <% end %>
-    <ul>
+    <ul class="project-tool-list">
       <% @project.tools.each do |tool| %>
         <li class="each-tool"><%= link_to tool.name, edit_tool_path(tool) %></li>
       <% end %>
