@@ -18,13 +18,11 @@ const displayProjects = (data) => {
   data.forEach(project => {
     let newProject = new Project(project)
     let eachHtml = newProject.formatIndex()
-    console.log(newProject)
     $(`.status-${newProject.statusDiv}`).append(eachHtml)
   });
 };
 
 const showProject = (data) => {
-  console.log("SHOWING")
   let newProject = new Project(data)
   let showHtml = newProject.formatShow()
   $('#main-body').html(showHtml)
