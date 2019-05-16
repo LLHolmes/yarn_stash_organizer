@@ -52,4 +52,14 @@ const bindClickHandlers = () => {
         showProject(data)
       });
   });
+
+  $(document).on("click", ".delete_project", function(event) {
+    event.preventDefault();
+    let id = $(this).attr('data-id')
+    console.log(`DELETE PROJECT: ${id}`)
+    const values = $("form").serialize()
+    console.log(values)
+    // history.pushState(null, null, `/projects/${id}`)
+    // fetchProjectShow(id)
+  });
 };

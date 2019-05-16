@@ -198,8 +198,7 @@ Project.prototype.formatShowButton = function() {
       <input type="submit" value="Edit Project">
     </form>
     <form class="button_to" method="post" action="/projects/${this.id}">
-      <input type="hidden" name="_method" value="delete">
-      <input data-confirm="This will move all associated yarn and tools to your Stash. Are you sure you'd like to frog this project?" type="submit" value="Delete Project">
+      <input class="delete_project" data-id="${this.id}" data-confirm="This will move all associated yarn and tools to your Stash. Are you sure you'd like to frog this project?" type="submit" value="Delete Project">
     </form>
   `
   if (this.name === "Stash") {
