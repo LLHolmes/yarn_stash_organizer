@@ -59,7 +59,7 @@ Project.prototype.formatIndex = function() {
   return projectHtml;
 };
 
-// Format Project Show Page
+// Format Project Show Page - Pieces
 Project.prototype.formatShowStatus = function() {
   let statusHtml = `
     <p>Status: ${this.status}</p>
@@ -72,8 +72,8 @@ Project.prototype.formatShowStatus = function() {
 };
 
 Project.prototype.formatShowNotes = function() {
-  let notesHtml = ""
-  let singleNote = ""
+  let notesHtml;
+  let singleNote;
   if (this.notes.length > 0) {
     notesHtml = `
       <div class="notes">
@@ -101,7 +101,7 @@ Project.prototype.formatShowNotes = function() {
 
 
 
-
+// Format Project Show Page - All
 Project.prototype.formatShow = function() {
   let projectHtml = `<h1>${this.name}</h1>`;
   let statusHtml = this.formatShowStatus()
