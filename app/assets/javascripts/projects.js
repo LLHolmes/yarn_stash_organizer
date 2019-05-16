@@ -35,45 +35,41 @@ function buildProjectIndex(data) {
   if (unique.includes("Finished")) {
     indexHtml = indexHtml + '<div class="list-project status-finished"><h2>Finished:</h2></div>'
   };
-  indexHtml = indexHtml + '</div>'
-
-  return indexHtml
+  return (indexHtml + '</div>')
 };
 
 // Format Project Index Page - Individual Projects
 Project.prototype.formatIndex = function() {
-  let projectHtml;
   if (this.statusDiv === "constant") {
-    projectHtml = `
+    return (`
       <div class="each-project">
         <h2><a href="/projects/${this.id}" data-id="${this.id}" class="show-project">${this.name}</a></h2>
       </div>
-    `
+    `)
   } else {
-    projectHtml = `
+    return (`
       <div class="each-project">
         <a href="/projects/${this.id}" data-id="${this.id}" class="show-project">${this.name}</a>
       </div>
-    `
-  }
-  return projectHtml;
+    `)
+  };
 };
 
 // Format Project Show Page - Pieces
 Project.prototype.formatShowStatus = function() {
-  let statusHtml = `
-    <p>Status: ${this.status}</p>
-    <p>Pattern: ${this.pattern_info}</p>
-  `
   if (this.name === "Stash") {
-    statusHtml = ""
+    return ""
+  } else {
+    return (`
+      <p>Status: ${this.status}</p>
+      <p>Pattern: ${this.pattern_info}</p>
+    `)
   };
-  return statusHtml;
 };
 
 Project.prototype.formatShowNotes = function() {
   let notesHtml = "";
-  let singleNote = "";
+  let singleNote;
   if (this.notes.length > 0) {
     notesHtml = `
       <div class="project-notes">
@@ -96,7 +92,7 @@ Project.prototype.formatShowNotes = function() {
 
 Project.prototype.formatShowYarns = function() {
   let yarnsHtml = "";
-  let singleYarn = "";
+  let singleYarn;
   let sortedYarn = sortBrandYarns(this.yarns)
   if (!!this.yarns.length) {
     if (this.name === "Stash") {
@@ -113,14 +109,12 @@ Project.prototype.formatShowYarns = function() {
       `
     };
     sortedYarn.forEach(yarn => {
-      singleYarn = `
-        <li class="each-yarn">${formatBrandYarnLinks(yarn)} ${formatYarnAmount(yarn)}</li>
-      `
+      singleYarn = `<li class="each-yarn">${formatBrandYarnLinks(yarn)} ${formatYarnAmount(yarn)}</li>`
       yarnsHtml = yarnsHtml + singleYarn
     });
     yarnsHtml = yarnsHtml + "</ul></div>"
   };
-  return yarnsHtml;
+  return yarnsHtml
 };
 
 Project.prototype.formatShowTools = function() {
@@ -128,8 +122,8 @@ Project.prototype.formatShowTools = function() {
     <div class="project-tools">
       <a href="/projects/${this.id}/tools/new">Add a tool to this project</a>
     </div>
-  `;
-  let singleTool = "";
+  `
+  let singleTool;
   if (!!this.tools.length) {
     if (this.name === "Stash") {
       toolsHtml = `
@@ -145,9 +139,7 @@ Project.prototype.formatShowTools = function() {
       `
     };
     this.tools.forEach(tool => {
-      singleTool = `
-        <li class="each-tool"><a href="/tools/${tool.id}/edit">${tool.name}</a></li>
-      `
+      singleTool = `<li class="each-tool"><a href="/tools/${tool.id}/edit">${tool.name}</a></li>`
       toolsHtml = toolsHtml + singleTool
     });
     toolsHtml = toolsHtml + `</ul><a href="/projects/${this.id}/tools/new">Add a tool to this project</a></div>`
@@ -175,8 +167,7 @@ Project.prototype.formatShow = function() {
   let toolHtml = this.formatShowTools()
   let buttonHtml = this.formatShowButton()
 
-  projectHtml = '<div class="inside">' + projectHtml + statusHtml + notesHtml + yarnHtml + toolHtml + buttonHtml + "</div>"
-  return projectHtml;
+  return ('<div class="inside">' + projectHtml + statusHtml + notesHtml + yarnHtml + toolHtml + buttonHtml + "</div>")
 };
 
 
@@ -200,6 +191,5 @@ const showProject = (data) => {
   console.log("SHOWING")
   let newProject = new Project(data)
   let showHtml = newProject.formatShow()
-  // indexHtml = newProject.formatShow()
   $('#main-body').html(showHtml)
 };
