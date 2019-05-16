@@ -41,3 +41,8 @@ function listProject(object) {
   }
   return listProject
 };
+
+function sortBrandYarns(yarns) {
+  let sortedYarn = yarns.sort((a, b) => (a.brand_name > b.brand_name) ? 1 : (a.brand_name === b.brand_name) ? ((a.color > b.color) ? 1 : -1) : -1)
+  return sortedYarn
+};
