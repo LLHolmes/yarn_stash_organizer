@@ -25,4 +25,9 @@ const bindClickHandlers = () => {
     history.pushState(null, null, `/projects/${id}`)
     fetchProjectShow(id)
   });
+
+  $("#new_tool").on("submit", (event) => {
+    event.preventDefault();
+    console.log("SUBMITTED TOOL")
+  });
 };
