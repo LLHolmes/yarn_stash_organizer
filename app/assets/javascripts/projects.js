@@ -117,7 +117,6 @@ Project.prototype.formatShowYarns = function() {
         <ul class="project-yarn-list">
       `
     };
-
     this.yarns.forEach(yarn => {
       singleYarn = `
         <li class="each-yarn">${formatBrandYarnLinks(yarn)} ${formatYarnAmount(yarn)}</li>
@@ -140,7 +139,7 @@ Project.prototype.formatShow = function() {
   let projectHtml = `<h1>${this.name}</h1>`;
   let statusHtml = this.formatShowStatus()
   let notesHtml = this.formatShowNotes()
-  let yarnHtml = ""
+  let yarnHtml = this.formatShowYarns()
   let toolHtml = ""
   let buttonHtml = `
     <button class="edit-project" data-id="${this.id}">Edit Project</button>
