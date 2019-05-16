@@ -26,8 +26,17 @@ const bindClickHandlers = () => {
     fetchProjectShow(id)
   });
 
-  $("#new_tool").on("submit", (event) => {
+  $("#new_tool").submit ((event) => {
     event.preventDefault();
-    console.log("SUBMITTED TOOL")
+    const values = $("form").serialize()
+    $.post("/tools", values).done(data => {console.log(data)})
   });
+
+  // $("#new_tool").on("submit", (event) => {
+  //   event.preventDefault();
+  //   console.log("SUBMITTED TOOL")
+  //   console.log(this)
+  //   console.log($(this))
+  //   console.log($(this).serialize())
+  // });
 };
