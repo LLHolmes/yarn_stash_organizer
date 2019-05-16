@@ -29,6 +29,25 @@ function formatYarnAmount(yarn) {
   };
 };
 
+function formatYarnAmountNew(yarn) {
+  if (!!yarn.count) {
+    if (!!yarn.scrap) {
+      return `
+        <p>Full skeins: ${yarn.count}</p>
+        <p>Scrap (oz.): ${yarn.scrap}</p>
+      `
+    } else {
+      return `
+        <p>Full skeins: ${yarn.count}</p>
+      `
+    };
+  } else if (!!yarn.scrap) {
+    return `
+      <p>Scrap (oz.): ${yarn.scrap}</p>
+    `
+  };
+};
+
 function formatBrandYarnLinks(yarn) {
   return (`<a href="/brands/${yarn.brand_id}">${yarn.brand_name}</a> - <a href="/yarns/${yarn.id}/edit">${yarn.color}</a>`)
 };

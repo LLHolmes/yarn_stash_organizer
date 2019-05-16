@@ -34,4 +34,14 @@ const bindClickHandlers = () => {
         showTool(data)
       });
   });
+
+  $("#new_yarn").submit ((event) => {
+    event.preventDefault();
+    console.log("SUBMITTED")
+    const values = $("form").serialize()
+    $.post("/yarns", values)
+      .done(data => {
+        showYarn(data)
+      });
+  });
 };

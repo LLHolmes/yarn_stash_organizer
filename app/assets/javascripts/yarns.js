@@ -4,6 +4,12 @@ const fetchYarns = () => {
     .then(data => displayYarns(data));
 };
 
+const showYarn = (data) => {
+  let newYarn = new Yarn(data)
+  let showHtml = newYarn.formatShow()
+  $("#main-body").html(showHtml)
+};
+
 const displayYarns = (data) => {
   $('#main-body').html('<div class="inside"><h1>Yarn</h1><div class="list-yarns"></div></div>')
   // let indexHtml = buildYarnIndex(data)
@@ -96,3 +102,14 @@ Yarn.prototype.formatIndex = function() {
 //     </div>
 //   <% end %>
 // <% end %>
+
+Yarn.prototype.formatShow = function() {
+  let yarnHtml = `
+    <div class="inside">
+      <h1><a href="/brands/${this.brand.id}">${this.brand.name}</a> - <a href="/yarns/${this.id}/edit">${this.color}</a></h1>
+      <h2>Current Project: <a href="/projects/${this.project.id}">${this.project.name}</a></h2>
+      ${formatYarnAmountNew(this)}
+    </div>
+  `
+  return yarnHtml
+};

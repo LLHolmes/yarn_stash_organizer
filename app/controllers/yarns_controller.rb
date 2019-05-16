@@ -8,7 +8,7 @@ class YarnsController < ApplicationController
     # else
     #   @yarns = current_user.yarns
     # end
-    
+
     @yarns = current_user.yarns
     respond_to do |f|
       f.html
@@ -25,7 +25,8 @@ class YarnsController < ApplicationController
   def create
     @yarn = Yarn.new(yarn_params)
     if @yarn.save
-      redirect_to yarns_path
+      # redirect_to yarns_path
+      render json: @yarn
     else
       @project = @yarn.build_project
       @brand = @yarn.build_brand
