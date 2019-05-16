@@ -31,16 +31,7 @@ const bindClickHandlers = () => {
     const values = $("form").serialize()
     $.post("/tools", values)
       .done(data => {
-        $("#main-body").html("")
-        $("#main-body").html("<h1>NEW TOOL CONTENT GOES HERE!</h1>")
+        showTool(data)
       });
   });
-
-  // $("#new_tool").on("submit", (event) => {
-  //   event.preventDefault();
-  //   console.log("SUBMITTED TOOL")
-  //   console.log(this)
-  //   console.log($(this))
-  //   console.log($(this).serialize())
-  // });
 };

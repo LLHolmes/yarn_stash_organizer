@@ -27,7 +27,6 @@ class ToolsController < ApplicationController
   def create
     @tool = Tool.new(tool_params)
     if @tool.save
-      # redirect_to tools_path
       render json: @tool
     else
       @project = @tool.build_project
