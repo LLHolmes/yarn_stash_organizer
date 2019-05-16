@@ -3,21 +3,20 @@ $(document).on('turbolinks:load', () => {
 });
 
 const bindClickHandlers = () => {
-    $(".js-tools").on("click", (event) => {
-      event.preventDefault();
-      history.pushState(null, null, "tools")
-      fetchTools()
-    });
-    $(".js-yarns").on("click", (event) => {
-      event.preventDefault();
-      history.pushState(null, null, "yarns")
-      fetchYarns()
-    });
-    $(".js-projects").on("click", (event) => {
-      event.preventDefault();
-      history.pushState(null, null, "projects")
-      fetchProjects()
-    });
+  $(".js-tools").on("click", (event) => {
+    event.preventDefault();
+    history.pushState(null, null, "tools")
+    fetchTools()
+  });
+  $(".js-yarns").on("click", (event) => {
+    event.preventDefault();
+    history.pushState(null, null, "yarns")
+    fetchYarns()
+  });
+  $(".js-projects").on("click", (event) => {
+    event.preventDefault();
+    history.pushState(null, null, "projects")
+    fetchProjects()
   });
 
   $(document).on("click", ".show-project", function(event) {
