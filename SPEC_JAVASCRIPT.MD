@@ -3,14 +3,17 @@ Rails App with JavaScript Frontend Requirements:
 Project Specs:
 [ ] - Must have a Rails Backend and new requirements implemented through JavaScript.
 [ ] - Makes use of ES6 features as much as possible(e.g Arrow functions, Let & Const, Constructor Functions)
-[ ] - Must translate the JSON responses into Javascript Model Objects using either ES6 class or constructor syntax.
-[ ] - Must render at least one index page (index resource - 'list of things') via JavaScript and an Active Model Serialization JSON Backend.
-[ ] - Must render at least one show page (show resource - 'one specific thing') via JavaScript and an Active Model Serialization JSON Backend.
+[X] - Must translate the JSON responses into Javascript Model Objects using either ES6 class or constructor syntax.
+    (Projects, Tools, Yarns index & Projects show pages)
+[X] - Must render at least one index page (index resource - 'list of things') via JavaScript and an Active Model Serialization JSON Backend.
+    (Projects, Tools, *Yarns* index pages)
+[X] - Must render at least one show page (show resource - 'one specific thing') via JavaScript and an Active Model Serialization JSON Backend.
     (Projects show page)
-[ ] - Your Rails application must reveal at least one `has-many` relationship through JSON that is then rendered to the page.
-    (A Project has_many Tools & Yarns)
+[X] - Your Rails application must reveal at least one `has-many` relationship through JSON that is then rendered to the page.
+    (A Project has_many Tools, Yarns, & Notes - yarns brands??? [not sure because of use of serializer])
 [ ] - Must use your Rails application to render a form for creating a resource that is submitted dynamically through JavaScript.
-[ ] - At least one of the JS Model Objects must have a method on the prototype.d  -- ??????
+[X] - At least one of the JS Model Objects must have a method on the prototype.
+    (Tools & Yarns both have 1, Projects has ton)
 
 Project Repo Specs:
 Read Me file contains:
