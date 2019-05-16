@@ -95,16 +95,15 @@ Project.prototype.formatShow = function() {
     stash = true
   };
 
-  let projectHtml = `<div class="inside"><h1>${this.name}</h1>`;
+  let projectHtml = `<h1>${this.name}</h1>`;
   let statusHtml = `
     <p>Status: ${this.status}</p>
     <p>Pattern: ${this.pattern_info}</p>
   `
-  let notesHtml = `
-    </div>
-  `
+  let notesHtml = ""
   let yarnHtml = ""
-  let toolHtml = `
+  let toolHtml = ""
+  let buttonHtml = `
     <button class="edit-project" data-id="${this.id}">Edit Project</button>
     <button class="delete-project" data-id="${this.id}">Delete Project</button>
     </div>
@@ -112,14 +111,14 @@ Project.prototype.formatShow = function() {
 
   if (stash === true) {
     statusHtml = ""
-    toolHTML = `
+    buttonHtml = `
       <button class="edit-project" data-id="${this.id}">Edit Project</button>
       </div>
     `
   };
   if (this.notes.length > 0) {
     notesHtml = `
-      </div><div class="notes">
+      <div class="notes">
           <h2>Notes:</h2>
       </div>
     `
@@ -167,7 +166,7 @@ Project.prototype.formatShow = function() {
 
   console.log(this.notes)
   console.log(this.notes.length)
-  projectHtml = projectHtml + statusHtml + notesHtml + yarnHtml + toolHtml
+  projectHtml = '<div class="inside">' + projectHtml + statusHtml + notesHtml + yarnHtml + toolHtml + buttonHtml + "</div>"
 
 
   // let indexHtml = `
