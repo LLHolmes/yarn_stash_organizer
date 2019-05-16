@@ -5,22 +5,22 @@
     <p>Pattern: <%= @project.pattern_info %></p>
   <% end %>
 
-  <div>
-    <% if !@project.notes.empty? %>
-      <h2>Notes:</h2>
-      <div>
-        <% @project.notes.each do |note| %>
-          <div>
-            <p><em><%= note.created_at.localtime.strftime("%m/%d/%Y, %l:%M %p") %></em></p>
-            <p><%= note.note %></p>
-          </div>
-        <% end %>
-      </div>
-    <% end %>
+  <% if !@project.notes.empty? %>
+  <div class="project-notes">
+    <h2>Notes:</h2>
+    <div>
+      <% @project.notes.each do |note| %>
+        <div class="each-note">
+          <p><em><%= note.created_at.localtime.strftime("%m/%d/%Y, %l:%M %p") %></em></p>
+          <p><%= note.note %></p>
+        </div>
+      <% end %>
+    </div>
   </div>
+  <% end %>
 
   <% if !@project.yarns.empty? %>
-  <div>
+  <div class="project-yarns">
     <% if @project.name != "Stash" %>
       <h2>Project Yarn:</h2>
     <% else %>
@@ -28,14 +28,14 @@
     <% end %>
     <ul>
       <% @project.yarns_by_brand.each do |yarn| %>
-        <li><%= brand_yarn_links yarn %> <%= yarn_amount yarn %></li>
+        <li class="each-yarn"><%= brand_yarn_links yarn %> <%= yarn_amount yarn %></li>
       <% end %>
     </ul>
   </div>
   <% end %>
 
   <% if !@project.tools.empty? %>
-  <div>
+  <div class="project-tools">
     <% if @project.name != "Stash" %>
       <h2><%= link_to "Project Tools:", project_tools_path(@project) %></h2>
     <% else %>
@@ -43,7 +43,7 @@
     <% end %>
     <ul>
       <% @project.tools.each do |tool| %>
-        <li><%= link_to tool.name, edit_tool_path(tool) %></li>
+        <li class="each-tool"><%= link_to tool.name, edit_tool_path(tool) %></li>
       <% end %>
     </ul>
     <%= link_to "Add a tool to this project", new_project_tool_path(@project) %>

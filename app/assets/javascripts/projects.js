@@ -76,13 +76,13 @@ Project.prototype.formatShowNotes = function() {
   let singleNote;
   if (this.notes.length > 0) {
     notesHtml = `
-      <div class="notes">
+      <div class="project-notes">
         <h2>Notes:</h2>
         <div>
     `
     this.notes.forEach(note => {
       singleNote = `
-        <div class="project-notes">
+        <div class="each-note">
           <p><em>${note.created}</em></p>
           <p>${note.note}</p>
         </div>
@@ -94,6 +94,40 @@ Project.prototype.formatShowNotes = function() {
   return notesHtml;
 };
 
+Project.prototype.formatShowYarns = function() {
+  //
+  //     <% @project.yarns_by_brand.each do |yarn| %>
+  //       <li><%= brand_yarn_links yarn %> <%= yarn_amount yarn %></li>
+  //
+
+  let yarnsHtml;
+  let singleYarn;
+
+  if (this.yarns.length > 0) {
+    if (this.name === "Stash") {
+      yarnHtml = `
+      <div class="project-yarns">
+        <h2>Stashed Yarn:</h2>
+        <ul class="project-yarn-list">
+      `
+    } else {
+      yarnHtml = `
+      <div class="project-yarns">
+        <h2>Project Yarn:</h2>
+        <ul class="project-yarn-list">
+      `
+    };
+
+    this.yarns.forEach(yarn => {
+      singleYarn = `
+        <li class="each-yarn">${formatBrandYarnLinks(yarn)} ${formatYarnAmount(yarn)}</li>
+      `
+      yarnsHtml = yarnsHtml + singleYarn
+    });
+    yarnsHtml = yarnsHtml + "</ul></div>"
+  };
+  return yarnsHtml;
+};
 
 
 
