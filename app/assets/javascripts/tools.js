@@ -1,3 +1,9 @@
+const fetchTools = () => {
+  fetch(`/tools.json`)
+    .then(response => response.json())
+    .then(data => displayTools(data));
+};
+
 const displayTools = (data) => {
   $('#main-body').html('<div class="inside"><h1>Tools</h1><div class="list-tools"></div></div>')
   data.forEach(tool => {

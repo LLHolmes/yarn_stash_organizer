@@ -1,3 +1,35 @@
+// On Click Fetch Functions
+const fetchProjects = () => {
+  fetch(`/projects.json`)
+    .then(response => response.json())
+    .then(data => displayProjects(data));
+};
+
+const fetchProjectShow = (id) => {
+  fetch(`/projects/${id}.json`)
+    .then(response => response.json())
+    .then(data => showProject(data));
+};
+
+// Display Functions
+const displayProjects = (data) => {
+  let indexHtml = buildProjectIndex(data)
+  $('#main-body').html(indexHtml)
+  data.forEach(project => {
+    let newProject = new Project(project)
+    let eachHtml = newProject.formatIndex()
+    console.log(newProject)
+    $(`.status-${newProject.statusDiv}`).append(eachHtml)
+  });
+};
+
+const showProject = (data) => {
+  console.log("SHOWING")
+  let newProject = new Project(data)
+  let showHtml = newProject.formatShow()
+  $('#main-body').html(showHtml)
+};
+
 // Create Project Objects
 function Project(project) {
   this.id = project.id;
@@ -11,7 +43,8 @@ function Project(project) {
   // this.brands = project.brands;
 };
 
-// Format Project Index Page - Skeleton
+// PROJECT INDEX PAGE FUNCTIONS:
+// Format Index Page - Skeleton
 function buildProjectIndex(data) {
   const statusArray = []
   let indexHtml = `
@@ -38,7 +71,7 @@ function buildProjectIndex(data) {
   return (indexHtml + '</div>')
 };
 
-// Format Project Index Page - Individual Projects
+// Format Individual Project for Index Page
 Project.prototype.formatIndex = function() {
   if (this.statusDiv === "constant") {
     return (`
@@ -53,6 +86,19 @@ Project.prototype.formatIndex = function() {
       </div>
     `)
   };
+};
+
+// PROJECT SHOW PAGE FUNCTIONS:
+// Format Project Show Page - All
+Project.prototype.formatShow = function() {
+  let projectHtml = `<h1>${this.name}</h1>`;
+  let statusHtml = this.formatShowStatus()
+  let notesHtml = this.formatShowNotes()
+  let yarnHtml = this.formatShowYarns()
+  let toolHtml = this.formatShowTools()
+  let buttonHtml = this.formatShowButton()
+
+  return ('<div class="inside">' + projectHtml + statusHtml + notesHtml + yarnHtml + toolHtml + buttonHtml + "</div>")
 };
 
 // Format Project Show Page - Pieces
@@ -156,40 +202,4 @@ Project.prototype.formatShowButton = function() {
     statusHtml = `<button class="edit-project" data-id="${this.id}">Edit Project</button>`
   };
   return statusHtml;
-};
-
-// Format Project Show Page - All
-Project.prototype.formatShow = function() {
-  let projectHtml = `<h1>${this.name}</h1>`;
-  let statusHtml = this.formatShowStatus()
-  let notesHtml = this.formatShowNotes()
-  let yarnHtml = this.formatShowYarns()
-  let toolHtml = this.formatShowTools()
-  let buttonHtml = this.formatShowButton()
-
-  return ('<div class="inside">' + projectHtml + statusHtml + notesHtml + yarnHtml + toolHtml + buttonHtml + "</div>")
-};
-
-
-
-
-
-
-// On Click Functions
-const displayProjects = (data) => {
-  let indexHtml = buildProjectIndex(data)
-  $('#main-body').html(indexHtml)
-  data.forEach(project => {
-    let newProject = new Project(project)
-    let eachHtml = newProject.formatIndex()
-    console.log(newProject)
-    $(`.status-${newProject.statusDiv}`).append(eachHtml)
-  });
-};
-
-const showProject = (data) => {
-  console.log("SHOWING")
-  let newProject = new Project(data)
-  let showHtml = newProject.formatShow()
-  $('#main-body').html(showHtml)
 };

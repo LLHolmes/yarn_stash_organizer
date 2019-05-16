@@ -1,3 +1,9 @@
+const fetchYarns = () => {
+  fetch(`/yarns.json`)
+    .then(response => response.json())
+    .then(data => displayYarns(data));
+};
+
 const displayYarns = (data) => {
   $('#main-body').html('<div class="inside"><h1>Yarn</h1><div class="list-yarns"></div></div>')
   // let indexHtml = buildYarnIndex(data)

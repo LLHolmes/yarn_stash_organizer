@@ -9,29 +9,22 @@ const bindClickHandlers = () => {
     if (targetClasses.includes("js-tools")) {
       event.preventDefault();
       history.pushState(null, null, "tools")
-      fetch(`/tools.json`)
-        .then(response => response.json())
-        .then(data => displayTools(data));
+      fetchTools()
     } else if (targetClasses.includes("js-yarns")) {
       event.preventDefault();
       history.pushState(null, null, "yarns")
-      fetch(`/yarns.json`)
-        .then(response => response.json())
-        .then(data => displayYarns(data));
+      fetchYarns()
     } else if (targetClasses.includes("js-projects")) {
       event.preventDefault();
       history.pushState(null, null, "projects")
-      fetch(`/projects.json`)
-        .then(response => response.json())
-        .then(data => displayProjects(data));
+      fetchProjects()
     }
   });
 
   $(document).on("click", ".show-project", function(event) {
     event.preventDefault();
     let id = $(this).attr('data-id')
-    fetch(`/projects/${id}.json`)
-      .then(response => response.json())
-      .then(data => showProject(data));
+    history.pushState(null, null, `/projects/${id}`)
+    fetchProjectShow(id)
   });
 };
