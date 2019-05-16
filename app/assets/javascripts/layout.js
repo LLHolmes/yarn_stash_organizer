@@ -29,7 +29,11 @@ const bindClickHandlers = () => {
   $("#new_tool").submit ((event) => {
     event.preventDefault();
     const values = $("form").serialize()
-    $.post("/tools", values).done(data => {console.log(data)})
+    $.post("/tools", values)
+      .done(data => {
+        $("#main-body").html("")
+        $("#main-body").html("<h1>NEW TOOL CONTENT GOES HERE!</h1>")
+      });
   });
 
   // $("#new_tool").on("submit", (event) => {
