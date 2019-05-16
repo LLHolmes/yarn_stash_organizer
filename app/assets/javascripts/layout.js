@@ -14,7 +14,7 @@ const bindClickHandlers = () => {
         .then(data => displayTools(data));
     } else if (targetClasses.includes("js-yarns")) {
       event.preventDefault();
-      history.pushState(null, null, "tools")
+      history.pushState(null, null, "yarns")
       fetch(`/yarns.json`)
         .then(response => response.json())
         .then(data => displayYarns(data));
