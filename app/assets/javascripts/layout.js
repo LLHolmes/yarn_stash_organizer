@@ -4,20 +4,22 @@ $(document).on('turbolinks:load', () => {
 
 const bindClickHandlers = () => {
   $(".nav-bar").on("click", (event) => {
-    event.preventDefault();
     let targetClasses = Object.values(event.target.classList)
 
     if (targetClasses.includes("js-tools")) {
+      event.preventDefault();
       history.pushState(null, null, "tools")
       fetch(`/tools.json`)
         .then(response => response.json())
         .then(data => displayTools(data));
     } else if (targetClasses.includes("js-yarns")) {
+      event.preventDefault();
       history.pushState(null, null, "tools")
       fetch(`/yarns.json`)
         .then(response => response.json())
         .then(data => displayYarns(data));
     } else if (targetClasses.includes("js-projects")) {
+      event.preventDefault();
       history.pushState(null, null, "projects")
       fetch(`/projects.json`)
         .then(response => response.json())
