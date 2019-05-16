@@ -3,22 +3,21 @@ $(document).on('turbolinks:load', () => {
 });
 
 const bindClickHandlers = () => {
-  $(".nav-bar").on("click", (event) => {
-    let targetClasses = Object.values(event.target.classList)
-
-    if (targetClasses.includes("js-tools")) {
+    $(".js-tools").on("click", (event) => {
       event.preventDefault();
       history.pushState(null, null, "tools")
       fetchTools()
-    } else if (targetClasses.includes("js-yarns")) {
+    });
+    $(".js-yarns").on("click", (event) => {
       event.preventDefault();
       history.pushState(null, null, "yarns")
       fetchYarns()
-    } else if (targetClasses.includes("js-projects")) {
+    });
+    $(".js-projects").on("click", (event) => {
       event.preventDefault();
       history.pushState(null, null, "projects")
       fetchProjects()
-    }
+    });
   });
 
   $(document).on("click", ".show-project", function(event) {
