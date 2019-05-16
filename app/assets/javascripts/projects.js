@@ -8,6 +8,19 @@ const displayProjects = (data) => {
   });
 };
 
+// Create Project Objects
+function Project(project) {
+  this.id = project.id;
+  this.name = project.name;
+  this.status = project.status;
+  this.pattern_info = project.pattern_info;
+  this.tools = project.tools;
+  this.yarns = project.yarns;
+  this.notes = project.notes;
+  // this.brands = project.brands;
+  this.divStatus = this.findDivStatus();
+};
+
 function buildProjectIndex(data) {
   const statusArray = []
   let indexHtml = `
@@ -36,31 +49,20 @@ function buildProjectIndex(data) {
   return indexHtml
 };
 
-function Project(project) {
-  this.id = project.id;
-  this.name = project.name;
-  this.status = project.status;
-  this.pattern_info = project.pattern_info;
-  this.tools = project.tools;
-  this.yarns = project.yarns;
-  this.notes = project.notes;
-  this.brands = project.brands;
-  this.divStatus = this.findDivStatus();
-};
+// Project.prototype.findDivStatus = function() {
+//   switch (this.status) {
+//     case "CONSTANT":
+//       return "constant";
+//     case "In Progress":
+//       return "inProgress";
+//     case "Upcoming":
+//       return "upcoming";
+//     case "Finished":
+//       return "finished";
+//   };
+// };
 
-Project.prototype.findDivStatus = function() {
-  switch (this.status) {
-    case "CONSTANT":
-      return "constant";
-    case "In Progress":
-      return "inProgress";
-    case "Upcoming":
-      return "upcoming";
-    case "Finished":
-      return "finished";
-  };
-};
-
+// Format Project Index Page
 Project.prototype.formatIndex = function() {
   let projectHtml;
   if (this.divStatus === "constant") {
@@ -79,6 +81,7 @@ Project.prototype.formatIndex = function() {
   return projectHtml;
 };
 
+// Format Project Show Page
 Project.prototype.formatShowStatus = function() {
   let statusHtml = `
     <p>Status: ${this.status}</p>
@@ -92,19 +95,24 @@ Project.prototype.formatShowStatus = function() {
 
 Project.prototype.formatShowNotes = function() {
   let notesHtml = ""
+  let singleNote = ""
   if (this.notes.length > 0) {
     notesHtml = `
       <div class="notes">
-          <h2>Notes:</h2>
-      </div>
+        <h2>Notes:</h2>
+        <div>
     `
+    this.notes.forEach(note => {
+      singleNote = `
+        <div class="project-notes">
+          <p><em>${note.created}</em></p>
+          <p>${note.note}</p>
+        </div>
+      `
+      notesHtml = notesHtml + singleNote
+    });
+    notesHtml = notesHtml + "</div></div>"
   };
-  this.notes.forEach(note => {
-    console.log(note)
-    // let newProject = new Project(project)
-    // let eachHtml = newProject.formatIndex()
-    // $(".notes").append("Note")
-  });
   return notesHtml;
 };
 
@@ -117,12 +125,6 @@ Project.prototype.formatShowNotes = function() {
 
 
 Project.prototype.formatShow = function() {
-  // let sortedYarn;
-  // let stash = false
-  // if (this.name === "Stash") {
-  //   stash = true
-  // };
-
   let projectHtml = `<h1>${this.name}</h1>`;
   let statusHtml = this.formatShowStatus()
   let notesHtml = this.formatShowNotes()
@@ -140,13 +142,6 @@ Project.prototype.formatShow = function() {
       </div>
     `
   };
-  // if (this.notes.length > 0) {
-  //   notesHtml = `
-  //     <div class="notes">
-  //         <h2>Notes:</h2>
-  //     </div>
-  //   `
-  // };
   if (this.yarns.length > 0) {
     // sortedYarn = yarns.sort((a, b) => (a.brand_name > b.brand_name) ? 1 : (a.brand_name === b.brand_name) ? ((a.color > b.color) ? 1 : -1) : -1)
     if (this.name === "Stash") {
