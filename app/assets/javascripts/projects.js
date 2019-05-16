@@ -88,10 +88,11 @@ Project.prototype.formatIndex = function() {
 
 
 
-Project.prototype.buildShowHtml = function() {
+Project.prototype.formatShow = function() {
   // let sortedYarn;
+  let stash = false
   if (this.name === "Stash") {
-    let stash = true
+    stash = true
   };
 
   let projectHtml = `<div class="inside"><h1>${this.name}</h1>`;
@@ -104,12 +105,17 @@ Project.prototype.buildShowHtml = function() {
   `
   let yarnHtml = ""
   let toolHtml = `
-    BUTTONS!!!!!
+    <button class="edit-project" data-id="${this.id}">Edit Project</button>
+    <button class="delete-project" data-id="${this.id}">Delete Project</button>
     </div>
   `
 
   if (stash === true) {
     statusHtml = ""
+    toolHTML = `
+      <button class="edit-project" data-id="${this.id}">Edit Project</button>
+      </div>
+    `
   };
   if (this.notes.length > 0) {
     notesHtml = `
@@ -130,7 +136,7 @@ Project.prototype.buildShowHtml = function() {
     } else {
       yarnHtml = `
       <div class="project-yarns">
-        <h2>Stashed Yarn:</h2>
+        <h2>Project Yarn:</h2>
         <ul class="project-yarn-list"></ul>
       </div>
       `
@@ -187,11 +193,11 @@ Project.prototype.buildShowHtml = function() {
   // };
   // indexHtml = indexHtml + '</div>'
   //
-  // return indexHtml
+  return projectHtml
 };
 
-Project.prototype.formatShow = function() {
-  let projectHtml = this.buildShowHtml;
+// Project.prototype.formatShow = function() {
+  // let projectHtml = this.buildShowHtml;
   // let projectHtml;
   // if (this.divStatus === "constant") {
   //   projectHtml = `
@@ -206,13 +212,13 @@ Project.prototype.formatShow = function() {
   //     </div>
   //   `
   // }
-  return projectHtml;
-};
+//   return projectHtml;
+// };
 
 const showProject = (data) => {
   console.log("SHOWING")
   let newProject = new Project(data)
-  let indexHtml = newProject.buildShowHtml()
+  let showHtml = newProject.formatShow()
   // indexHtml = newProject.formatShow()
-  $('#main-body').html(indexHtml)
+  $('#main-body').html(showHtml)
 };
