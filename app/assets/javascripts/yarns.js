@@ -1,15 +1,11 @@
+// On Click Fetch Functions
 const fetchYarns = () => {
   fetch(`/yarns.json`)
     .then(response => response.json())
     .then(data => displayYarns(data));
 };
 
-const showYarn = (data) => {
-  let newYarn = new Yarn(data)
-  let showHtml = newYarn.formatShow()
-  $("#main-body").html(showHtml)
-};
-
+// Display Functions
 const displayYarns = (data) => {
   sortYarnData(data)
   let weightHtml = buildYarnWeightIndex(data)
@@ -22,6 +18,38 @@ const displayYarns = (data) => {
   });
 };
 
+const showYarn = (data) => {
+  let newYarn = new Yarn(data)
+  let showHtml = newYarn.formatShow()
+  $("#main-body").html(showHtml)
+};
+
+// Create Objects
+function Yarn(yarn) {
+  this.id = yarn.id;
+  this.color = yarn.color;
+  this.count = yarn.count;
+  this.scrap = yarn.scrap;
+  this.brand = yarn.brand;
+  this.project = yarn.project;
+};
+
+let store = {brands:[], brand_ids:[]};
+
+function Brand(yarn) {
+  this.id = yarn.brand.id;
+  this.name = yarn.brand.name;
+  this.material = yarn.brand.material;
+  this.weight = yarn.brand.weight;
+  this.nameDiv = yarn.brand.nameDiv;
+  this.weightDiv = yarn.brand.weightDiv;
+
+  store.brands.push(this);
+  store.brand_ids.push(this.id);
+};
+
+// YARN INDEX PAGE FUNCTIONS:
+// Format Index Page - Weight Skeleton
 function buildYarnWeightIndex(data) {
   const brandWeightOptions = {
     'weight-0-lace': '0 - Lace',
@@ -57,6 +85,7 @@ function buildYarnWeightIndex(data) {
   return indexHtml;
 };
 
+// Format Index Page - Brands Skeleton
 function formatYarnBrands(data) {
   let listBrand;
   data.forEach(yarn => {
@@ -73,28 +102,7 @@ function formatYarnBrands(data) {
   });
 };
 
-function Yarn(yarn) {
-  this.id = yarn.id;
-  this.color = yarn.color;
-  this.count = yarn.count;
-  this.scrap = yarn.scrap;
-  this.brand = yarn.brand;
-  this.project = yarn.project;
-};
-
-let store = {brands:[], brand_ids:[]};
-function Brand(yarn) {
-  this.id = yarn.brand.id;
-  this.name = yarn.brand.name;
-  this.material = yarn.brand.material;
-  this.weight = yarn.brand.weight;
-  this.nameDiv = yarn.brand.nameDiv;
-  this.weightDiv = yarn.brand.weightDiv;
-
-  store.brands.push(this);
-  store.brand_ids.push(this.id);
-};
-
+// Format Individual Yarns for Index Page
 Yarn.prototype.formatIndex = function() {
   let yarnHtml;
   yarnHtml = `
@@ -105,6 +113,8 @@ Yarn.prototype.formatIndex = function() {
   return yarnHtml;
 };
 
+// YARN SHOW PAGE FUNCTION:
+// Format Show Page
 Yarn.prototype.formatShow = function() {
   let yarnHtml = `
     <div class="inside">
