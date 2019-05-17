@@ -3,6 +3,7 @@ $(document).on('turbolinks:load', () => {
 });
 
 const bindClickHandlers = () => {
+  // Render index pages
   $(".js-tools").on("click", (event) => {
     event.preventDefault();
     history.pushState(null, null, "tools")
@@ -19,6 +20,7 @@ const bindClickHandlers = () => {
     fetchProjects()
   });
 
+  // Render project show page
   $(document).on("click", ".show-project", function(event) {
     event.preventDefault();
     let id = $(this).attr('data-id')
@@ -26,6 +28,7 @@ const bindClickHandlers = () => {
     fetchProjectShow(id)
   });
 
+  // Create new objects (not including brands)
   $("#new_tool").submit ((event) => {
     event.preventDefault();
     const values = $("form").serialize()
@@ -53,7 +56,7 @@ const bindClickHandlers = () => {
       });
   });
 
-  // Deleting Project after JS call
+  // Deleting project after JS call to show page
   $(document).on("click", ".delete_project", function(event) {
     event.preventDefault();
     let id = $(this).attr('data-id')
