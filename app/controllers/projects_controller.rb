@@ -55,7 +55,6 @@ class ProjectsController < ApplicationController
   end
 
   def destroy
-    puts ("IN DESTROY")
     @project.clear_to_stash
     @project.destroy
     @projects = current_user.projects
