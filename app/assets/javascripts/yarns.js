@@ -74,7 +74,7 @@ function formatYarnBrands(data) {
         weightDiv: brandArray.find(item => item.nameDiv === nameDiv).weightDiv
       }
     });
-  console.log(unique)
+  unique.sort((a, b) => (a.nameDiv > b.nameDiv) ? 1 : -1)
 
   unique.forEach(brand => {
     listBrand = `
