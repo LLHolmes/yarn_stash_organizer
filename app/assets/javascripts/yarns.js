@@ -11,9 +11,9 @@ const showYarn = (data) => {
 };
 
 const displayYarns = (data) => {
-  // $('#main-body').html('<div class="inside"><h1>Yarn</h1><div class="list-yarns"></div></div>')
-  let indexHtml = buildYarnIndex(data)
-  $('#main-body').html(indexHtml)
+  let weightHtml = buildYarnWeightIndex(data)
+  $('#main-body').html(weightHtml)
+  formatYarnBrands(data)
   data.forEach(yarn => {
     let newYarn = new Yarn(yarn)
     let eachHtml = newYarn.formatIndex()
@@ -21,7 +21,7 @@ const displayYarns = (data) => {
   });
 };
 
-function buildYarnIndex(data) {
+function buildYarnWeightIndex(data) {
   const brandWeightOptions = {
     'weight-0-lace': '0 - Lace',
     'weight-1-superfine': '1 - Super Fine',
@@ -53,8 +53,48 @@ function buildYarnIndex(data) {
     indexHtml = indexHtml + listWeight;
   });
   indexHtml = indexHtml + '</div>';
-
   return indexHtml;
+};
+
+function formatYarnBrands(data) {
+  const brandArray = [];
+  let listBrand;
+  // let indexHtml = `
+  //   <div class="inside">
+  //   <h1>Yarn</h1>
+  // `
+  data.forEach(yarn => {
+    brandArray.push({nameDiv: yarn.brand.nameDiv, name: yarn.brand.name, weightDiv: yarn.brand.weightDiv});
+  });
+  console.log(brandArray)
+  // let unique = [...new Set(brandArray.map(item => item[0]))];
+  // function onlyUnique(value, index, self) {
+  //   return self.indexOf(value) === index;
+  // }
+  //
+  // var unique = brandArray.filter( onlyUnique )
+  // var unique = brandArray.filter((v, i, brand) => brand.indexOf(v) === i)
+  let unique = Array.from(new Set(brandArray.map(item => item.nameDiv)))
+    .map(nameDiv => {
+      return {
+        nameDiv: nameDiv,
+        name: brandArray.find(item => item.nameDiv === nameDiv).name,
+        weightDiv: brandArray.find(item => item.nameDiv === nameDiv).weightDiv
+      }
+    });
+  console.log(unique)
+
+  unique.forEach(brand => {
+    listBrand = `
+    <div class="brand-by-name ${brand[0]}">
+      <h4>${brand[1]}</h4>
+    </div>
+    `
+    $(`.${brand[2]}`).append(listBrand);
+  });
+  // indexHtml = indexHtml + '</div>';
+
+  // return indexHtml;
 };
 
 function Yarn(yarn) {
