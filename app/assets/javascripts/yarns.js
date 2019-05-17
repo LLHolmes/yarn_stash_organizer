@@ -66,14 +66,6 @@ function formatYarnBrands(data) {
   data.forEach(yarn => {
     brandArray.push({nameDiv: yarn.brand.nameDiv, name: yarn.brand.name, weightDiv: yarn.brand.weightDiv});
   });
-  console.log(brandArray)
-  // let unique = [...new Set(brandArray.map(item => item[0]))];
-  // function onlyUnique(value, index, self) {
-  //   return self.indexOf(value) === index;
-  // }
-  //
-  // var unique = brandArray.filter( onlyUnique )
-  // var unique = brandArray.filter((v, i, brand) => brand.indexOf(v) === i)
   let unique = Array.from(new Set(brandArray.map(item => item.nameDiv)))
     .map(nameDiv => {
       return {
@@ -86,11 +78,11 @@ function formatYarnBrands(data) {
 
   unique.forEach(brand => {
     listBrand = `
-    <div class="brand-by-name ${brand[0]}">
-      <h4>${brand[1]}</h4>
+    <div class="brand-by-name ${brand.nameDiv}">
+      <h4>${brand.name}</h4>
     </div>
     `
-    $(`.${brand[2]}`).append(listBrand);
+    $(`.${brand.weightDiv}`).append(listBrand);
   });
   // indexHtml = indexHtml + '</div>';
 
