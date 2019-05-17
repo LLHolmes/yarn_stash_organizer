@@ -28,7 +28,7 @@ const showProject = (data) => {
   $('#main-body').html(showHtml)
 };
 
-// Create Project Objects
+// Constructor Function
 function Project(project) {
   this.id = project.id;
   this.name = project.name;

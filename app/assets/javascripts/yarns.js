@@ -8,6 +8,7 @@ const fetchYarns = () => {
 // Display Functions
 const displayYarns = (data) => {
   sortYarnData(data)
+  formatYarnBrands(data)
   let weightHtml = buildYarnWeightIndex(data)
   $('#main-body').html(weightHtml)
   formatYarnBrands(data)
@@ -24,7 +25,7 @@ const showYarn = (data) => {
   $("#main-body").html(showHtml)
 };
 
-// Create Objects
+// Constructor Functions
 function Yarn(yarn) {
   this.id = yarn.id;
   this.color = yarn.color;
@@ -34,7 +35,7 @@ function Yarn(yarn) {
   this.project = yarn.project;
 };
 
-let store = {brands:[], brand_ids:[]};
+let store = {brands:[], brand_ids:[], brand_weights:[]};
 
 function Brand(yarn) {
   this.id = yarn.brand.id;
@@ -46,40 +47,37 @@ function Brand(yarn) {
 
   store.brands.push(this);
   store.brand_ids.push(this.id);
+  store.brand_weights.push(this.weightDiv);
 };
 
-// YARN INDEX PAGE FUNCTIONS:
+// YARN INDEX PAGE FUNCTIONS
 // Format Index Page - Weight Skeleton
 function buildYarnWeightIndex(data) {
-  const brandWeightOptions = {
-    'weight-0-lace': '0 - Lace',
-    'weight-1-superfine': '1 - Super Fine',
-    'weight-2-fine': '2 - Fine',
-    'weight-3-light': '3 - Light',
-    'weight-4-medium': '4 - Medium',
-    'weight-5-bulky': '5 - Bulky',
-    'weight-6-superbulky': '6 - Super Bulky',
-    'weight-7-jumbo': '7 - Jumbo',
-    'weight-novelty': 'Novelty'
-  };
-  const weightArray = [];
+  const brandWeightOptions = [
+    {weightDiv: 'weight-0-lace', weight: '0 - Lace'},
+    {weightDiv: 'weight-1-superfine', weight: '1 - Super Fine'},
+    {weightDiv: 'weight-2-fine', weight: '2 - Fine'},
+    {weightDiv: 'weight-3-light', weight: '3 - Light'},
+    {weightDiv: 'weight-4-medium', weight: '4 - Medium'},
+    {weightDiv: 'weight-5-bulky', weight: '5 - Bulky'},
+    {weightDiv: 'weight-6-superbulky', weight: '6 - Super Bulky'},
+    {weightDiv: 'weight-7-jumbo', weight: '7 - Jumbo'},
+    {weightDiv: 'weight-novelty', weight: 'Novelty'}
+  ];
   let listWeight;
   let indexHtml = `
     <div class="inside">
     <h1>Yarn</h1>
   `
-  data.forEach(yarn => {
-    weightArray.push(yarn.brand.weightDiv);
-  });
-  let unique = [...new Set(weightArray)];
-
-  unique.forEach(weightDiv => {
-    listWeight = `
-    <div class="weight ${weightDiv}">
-      <h2>${brandWeightOptions[weightDiv]}</h2>
-    </div>
-    `
-    indexHtml = indexHtml + listWeight;
+  brandWeightOptions.forEach(option => {
+    if (store.brand_weights.includes(option.weightDiv)) {
+      listWeight = `
+      <div class="weight ${option.weightDiv}">
+        <h2>${option.weight}</h2>
+      </div>
+      `
+      indexHtml = indexHtml + listWeight;
+    };
   });
   indexHtml = indexHtml + '</div>';
   return indexHtml;
@@ -113,7 +111,7 @@ Yarn.prototype.formatIndex = function() {
   return yarnHtml;
 };
 
-// YARN SHOW PAGE FUNCTION:
+// YARN SHOW PAGE FUNCTION
 // Format Show Page
 Yarn.prototype.formatShow = function() {
   let yarnHtml = `
