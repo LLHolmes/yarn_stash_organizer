@@ -7,11 +7,11 @@ const fetchYarns = () => {
 
 // Display Functions
 const displayYarns = (data) => {
-  sortYarnData(data)
-  formatYarnBrands(data)
-  let weightHtml = buildYarnWeightIndex(data)
-  $('#main-body').html(weightHtml)
-  formatYarnBrands(data)
+  sortYarnData(data);
+  createYarnBrands(data);
+  let weightHtml = buildYarnWeightIndex();
+  $('#main-body').html(weightHtml);
+  formatYarnBrands()
   data.forEach(yarn => {
     let newYarn = new Yarn(yarn)
     let eachHtml = newYarn.formatIndex()
@@ -20,9 +20,9 @@ const displayYarns = (data) => {
 };
 
 const showYarn = (data) => {
-  let newYarn = new Yarn(data)
-  let showHtml = newYarn.formatShow()
-  $("#main-body").html(showHtml)
+  let newYarn = new Yarn(data);
+  let showHtml = newYarn.formatShow();
+  $("#main-body").html(showHtml);
 };
 
 // Constructor Functions
@@ -50,9 +50,17 @@ function Brand(yarn) {
   store.brand_weights.push(this.weightDiv);
 };
 
+function createYarnBrands(data) {
+  data.forEach(yarn => {
+    if (!store.brand_ids.includes(yarn.brand.id)) {
+      new Brand(yarn)
+    };
+  });
+};
+
 // YARN INDEX PAGE FUNCTIONS
 // Format Index Page - Weight Skeleton
-function buildYarnWeightIndex(data) {
+function buildYarnWeightIndex() {
   const brandWeightOptions = [
     {weightDiv: 'weight-0-lace', weight: '0 - Lace'},
     {weightDiv: 'weight-1-superfine', weight: '1 - Super Fine'},
@@ -84,16 +92,11 @@ function buildYarnWeightIndex(data) {
 };
 
 // Format Index Page - Brands Skeleton
-function formatYarnBrands(data) {
+function formatYarnBrands() {
   let listBrand;
-  data.forEach(yarn => {
-    if (!store.brand_ids.includes(yarn.brand.id)) {
-      new Brand(yarn)
-    };
-  });
   store.brands.forEach(brand => {
     listBrand = `
-    <h4><a href="/brand/${brand.id}" data-id="${brand.id}" class="show-brand">${brand.name}</a> (${brand.material}):</h4>
+    <h4><a href="/brands/${brand.id}" data-id="${brand.id}" class="show-brand">${brand.name}</a> (${brand.material}):</h4>
     <ul class="brand-by-name ${brand.nameDiv}"></ul>
     `
     $(`.${brand.weightDiv}`).append(listBrand);
@@ -121,5 +124,5 @@ Yarn.prototype.formatShow = function() {
       ${formatYarnAmountNew(this)}
     </div>
   `
-  return yarnHtml
+  return yarnHtml;
 };

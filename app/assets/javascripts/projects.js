@@ -13,19 +13,19 @@ const fetchProjectShow = (id) => {
 
 // Display Functions
 const displayProjects = (data) => {
-  let indexHtml = buildProjectIndex(data)
-  $('#main-body').html(indexHtml)
+  let indexHtml = buildProjectIndex(data);
+  $('#main-body').html(indexHtml);
   data.forEach(project => {
-    let newProject = new Project(project)
-    let eachHtml = newProject.formatIndex()
-    $(`.status-${newProject.statusDiv}`).append(eachHtml)
+    let newProject = new Project(project);
+    let eachHtml = newProject.formatIndex();
+    $(`.status-${newProject.statusDiv}`).append(eachHtml);
   });
 };
 
 const showProject = (data) => {
-  let newProject = new Project(data)
-  let showHtml = newProject.formatShow()
-  $('#main-body').html(showHtml)
+  let newProject = new Project(data);
+  let showHtml = newProject.formatShow();
+  $('#main-body').html(showHtml);
 };
 
 // Constructor Function
@@ -89,24 +89,24 @@ Project.prototype.formatIndex = function() {
 // Format Project Show Page - All
 Project.prototype.formatShow = function() {
   let projectHtml = `<h1>${this.name}</h1>`;
-  let statusHtml = this.formatShowStatus()
-  let notesHtml = this.formatShowNotes()
-  let yarnHtml = this.formatShowYarns()
-  let toolHtml = this.formatShowTools()
-  let buttonHtml = this.formatShowButton()
+  let statusHtml = this.formatShowStatus();
+  let notesHtml = this.formatShowNotes();
+  let yarnHtml = this.formatShowYarns();
+  let toolHtml = this.formatShowTools();
+  let buttonHtml = this.formatShowButton();
 
-  return ('<div class="inside">' + projectHtml + statusHtml + notesHtml + yarnHtml + toolHtml + buttonHtml + "</div>")
+  return ('<div class="inside">' + projectHtml + statusHtml + notesHtml + yarnHtml + toolHtml + buttonHtml + "</div>");
 };
 
 // Format Project Show Page - Pieces
 Project.prototype.formatShowStatus = function() {
   if (this.name === "Stash") {
-    return ""
+    return "";
   } else {
     return (`
       <p>Status: ${this.status}</p>
       <p>Pattern: ${this.pattern_info}</p>
-    `)
+    `);
   };
 };
 
@@ -126,9 +126,9 @@ Project.prototype.formatShowNotes = function() {
           <p>${note.note}</p>
         </div>
       `
-      notesHtml = notesHtml + singleNote
+      notesHtml = notesHtml + singleNote;
     });
-    notesHtml = notesHtml + "</div></div>"
+    notesHtml = notesHtml + "</div></div>";
   };
   return notesHtml;
 };
@@ -136,7 +136,7 @@ Project.prototype.formatShowNotes = function() {
 Project.prototype.formatShowYarns = function() {
   let yarnsHtml = "";
   let singleYarn;
-  let sortedYarn = sortBrandYarns(this.yarns)
+  let sortedYarn = sortBrandYarns(this.yarns);
   if (!!this.yarns.length) {
     if (this.name === "Stash") {
       yarnsHtml = `
@@ -153,11 +153,11 @@ Project.prototype.formatShowYarns = function() {
     };
     sortedYarn.forEach(yarn => {
       singleYarn = `<li class="each-yarn">${formatBrandYarnLinks(yarn)} ${formatYarnAmount(yarn)}</li>`
-      yarnsHtml = yarnsHtml + singleYarn
+      yarnsHtml = yarnsHtml + singleYarn;
     });
-    yarnsHtml = yarnsHtml + "</ul></div>"
+    yarnsHtml = yarnsHtml + "</ul></div>";
   };
-  return yarnsHtml
+  return yarnsHtml;
 };
 
 Project.prototype.formatShowTools = function() {
