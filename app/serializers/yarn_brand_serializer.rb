@@ -1,5 +1,5 @@
 class YarnBrandSerializer < ActiveModel::Serializer
-  attributes :id, :name, :material, :weight, :nameDiv, :materialDiv
+  attributes :id, :name, :material, :weight, :nameDiv, :weightDiv
 
   def nameDiv
     "brand-#{object.name.downcase.split(" ").join("-")}"
