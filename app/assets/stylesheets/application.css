@@ -23,7 +23,16 @@
 
 /* General */
 body {
-  /* background-color: #AF064A; */
+  /* pink balls */
+  /* background-image: url("https://live.staticflickr.com/8104/8638710754_af31bf40b2_h.jpg"); */
+  /* red balls */
+  background-image: url("https://live.staticflickr.com/8255/8645200914_742a23fc79_h.jpg");
+  background-color: white; /* Used if the image is unavailable */
+  height: 500px; /* You must set a specified height */
+  background-position: center; /* Center the image */
+  background-repeat: no-repeat; /* Do not repeat the image */
+  background-size: cover; /* Resize the background image to cover the entire container */
+  background-attachment: fixed;
 }
 
 a {
@@ -36,7 +45,7 @@ a {
   background: rgba(255,255,255, 0.4);
   margin: 46px auto;
   padding-bottom: 20px;
-  background: linear-gradient(to right, rgba(255,255,255,0) 0%, rgba(255,255,255,0.3) 5%, rgba(255,255,255,0.3) 95%, rgba(255,255,255,0) 100%);
+  background: linear-gradient(to right, rgba(255,255,255,0) 0%, rgba(255,255,255,0.6) 5%, rgba(255,255,255,0.6) 95%, rgba(255,255,255,0) 100%);
 }
 
 .content-container {
@@ -47,7 +56,7 @@ a {
 .inside {
   width: 100%;
   box-sizing: border-box;
-  background: rgba(255,255,255, 0.4);
+  background: rgba(255,255,255, 0.6);
   padding: 0px 10px 10px 10px;
   margin: 10px;
   border: 1px;
