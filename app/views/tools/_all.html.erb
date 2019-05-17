@@ -2,7 +2,7 @@
   <h1>Tools</h1>
   <div class="list-tools">
     <% tools.each do |tool| %>
-      <div>
+      <div class="each-tool">
         <%= link_to tool.name, edit_tool_path(tool) %> <%= list_project tool %>
       </div>
     <% end %>

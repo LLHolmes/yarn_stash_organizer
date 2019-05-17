@@ -97,7 +97,7 @@ function formatYarnBrands() {
   store.brands.forEach(brand => {
     listBrand = `
     <h4><a href="/brands/${brand.id}" data-id="${brand.id}" class="show-brand">${brand.name}</a> (${brand.material}):</h4>
-    <ul class="brand-by-name ${brand.nameDiv}"></ul>
+    <ul class="each-brand ${brand.nameDiv}"></ul>
     `
     $(`.${brand.weightDiv}`).append(listBrand);
   });
@@ -107,7 +107,7 @@ function formatYarnBrands() {
 Yarn.prototype.formatIndex = function() {
   let yarnHtml;
   yarnHtml = `
-    <div class="each-yarn-index">
+    <div class="each-yarn">
       <a href="/yarns/${this.id}/edit">${this.color}</a> ${formatYarnAmount(this)} ${listProject(this)}
     </div>
   `
