@@ -55,8 +55,14 @@ class ProjectsController < ApplicationController
   end
 
   def destroy
+    puts ("IN DESTROY")
     @project.clear_to_stash
     @project.destroy
+    @projects = current_user.projects
+    respond_to do |f|
+      f.html
+      f.json {render json: @projects}
+    end
     redirect_to projects_path
   end
 

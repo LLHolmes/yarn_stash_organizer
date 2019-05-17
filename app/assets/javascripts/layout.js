@@ -53,13 +53,16 @@ const bindClickHandlers = () => {
       });
   });
 
+  // Deleting Project after JS call
   $(document).on("click", ".delete_project", function(event) {
     event.preventDefault();
     let id = $(this).attr('data-id')
-    console.log(`DELETE PROJECT: ${id}`)
-    const values = $("form").serialize()
-    console.log(values)
-    // history.pushState(null, null, `/projects/${id}`)
-    // fetchProjectShow(id)
+    $.ajax({
+      type: 'DELETE',
+      url: `/projects/${id}`,
+      beforeSend: function(xhr) {xhr.setRequestHeader('X-CSRF-Token', $('meta[name="csrf-token"]').attr('content'))},
+      success: function(result) {
+      };
+    });
   });
 };
