@@ -4,9 +4,9 @@ Project Specs:
 [X] - Must have a Rails Backend and new requirements implemented through JavaScript.
 [X] - Makes use of ES6 features as much as possible(e.g Arrow functions, Let & Const, Constructor Functions)
 [X] - Must translate the JSON responses into Javascript Model Objects using either ES6 class or constructor syntax.
-    (Projects, Tools index & Projects show pages - *Yarns to be finished*)
+    (Projects, Tools, Yarns index & Projects show pages)
 [X] - Must render at least one index page (index resource - 'list of things') via JavaScript and an Active Model Serialization JSON Backend.
-    (Projects, Tools index pages - *Yarns to be finished*)
+    (Projects, Tools, yarns index pages)
 [X] - Must render at least one show page (show resource - 'one specific thing') via JavaScript and an Active Model Serialization JSON Backend.
     (Projects show page)
 [X] - Your Rails application must reveal at least one `has-many` relationship through JSON that is then rendered to the page.
@@ -14,7 +14,7 @@ Project Specs:
 [x] - Must use your Rails application to render a form for creating a resource that is submitted dynamically through JavaScript.
     (New Tool)
 [X] - At least one of the JS Model Objects must have a method on the prototype.
-    (Tools & Yarns both have 1, Projects has ton)
+    (Tools & Yarns both have 2, Projects has a ton)
 
 Project Repo Specs:
 Read Me file contains:
@@ -44,3 +44,4 @@ Stretch Goals:
     --> [ ] - add this project to my project list
     --> [ ] - create index of all projects for inspiration?
 [ ] - nest yarn in brands or projects??? (brands/2/yarns)
+[ ] - Brands as public??? Brands belongs to user??? Brands under admin???
