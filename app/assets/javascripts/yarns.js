@@ -21,7 +21,7 @@ const displayYarns = (data) => {
   });
 };
 
-const yarnMaterialOptions = [{}]
+const brandWeightOptions = [{}]
 // function buildYarnIndex(data) {
 //   const statusArray = []
 //   let indexHtml = `

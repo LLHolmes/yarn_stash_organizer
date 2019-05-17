@@ -5,8 +5,8 @@ class YarnBrandSerializer < ActiveModel::Serializer
     "brand-#{object.name.downcase.split(" ").join("-")}"
   end
 
-  def materialDiv
-    "material-#{object.material.downcase.split(" ").join("-")}"
+  def weightDiv
+    "weight-#{object.weight.downcase.split(" ").join("-")}"
   end
 
 end
