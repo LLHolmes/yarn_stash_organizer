@@ -22,13 +22,19 @@
 }
 
 /* General */
+html, body {
+  height: 100%;
+  margin: 0px;
+  padding: 0px;
+}
+
 body {
   /* pink balls */
   /* background-image: url("https://live.staticflickr.com/8104/8638710754_af31bf40b2_h.jpg"); */
   /* red balls */
   background-image: url("https://live.staticflickr.com/8255/8645200914_742a23fc79_h.jpg");
   background-color: white; /* Used if the image is unavailable */
-  height: 500px; /* You must set a specified height */
+  /* height: 500px; */
   background-position: center; /* Center the image */
   background-repeat: no-repeat; /* Do not repeat the image */
   background-size: cover; /* Resize the background image to cover the entire container */
@@ -41,6 +47,7 @@ a {
 }
 
 .container {
+  /* height: 100%; */
   width: 90%;
   background: rgba(255,255,255, 0.4);
   margin: 46px auto;
@@ -49,18 +56,29 @@ a {
 }
 
 .content-container {
+  box-sizing: border-box;
   width: 90%;
   margin: 0 auto;
+  padding: 0;
 }
 
 .inside {
   width: 100%;
   box-sizing: border-box;
   background: rgba(255,255,255, 0.6);
-  padding: 0px 10px 10px 10px;
+  padding: 15px;
   margin: 10px;
   border: 1px;
+}
 
+h1 {
+  width: 100%;
+  box-sizing: border-box;
+  background: rgba(255,255,255, 0.6);
+  padding: 10px 10px 10px 10px;
+  margin: 0 auto;
+  /* margin: 10px; */
+  border: 1px;
 }
 
 .main-single {
@@ -78,11 +96,10 @@ a {
 }
 
 /* Navigation bar - layouts/application.html.erb */
-
 ul.nav-bar {
   color: #863A6D;
   list-style-type: none;
-  margin: 0;
+  margin: 0px 0px 0px 0px;
   padding: 0;
   overflow: hidden;
   background-color: #F3C6C6;

@@ -1,9 +1,10 @@
 <div class="inside">
   <h1>Tools</h1>
-
-  <% tools.each do |tool| %>
-    <div>
-      <%= link_to tool.name, edit_tool_path(tool) %> <%= list_project tool %>
-    </div>
-  <% end %>
+  <div class="list-tools">
+    <% tools.each do |tool| %>
+      <div>
+        <%= link_to tool.name, edit_tool_path(tool) %> <%= list_project tool %>
+      </div>
+    <% end %>
+  </div>
 </div>

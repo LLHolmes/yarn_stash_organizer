@@ -1,8 +1,10 @@
-<% if current_user.name.end_with?("s") %>
-  <h1 class="inside"><%= current_user.name %>' Stash Organizer</h1>
-<% else %>
-  <h1 class="inside"><%= current_user.name %>'s Stash Organizer</h1>
-<% end %>
+<div class="inside">
+  <% if current_user.name.end_with?("s") %>
+    <h1><%= current_user.name %>' Stash Organizer</h1>
+  <% else %>
+    <h1><%= current_user.name %>'s Stash Organizer</h1>
+  <% end %>
+</div>
 
 <div class="main-box-1">
   <%= render "projects/all" %>

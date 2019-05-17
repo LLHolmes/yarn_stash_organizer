@@ -1,34 +1,42 @@
 <div class="inside">
   <h1>Projects</h1>
 
-  <div>
-    <h2><%= link_to current_user.stash.name, project_path(current_user.stash) %></h2>
+  <div class="list-project status-constant">
+    <div>
+      <h2><%= link_to current_user.stash.name, project_path(current_user.stash) %></h2>
+    </div>
   </div>
 
-  <% if !current_user.projects.wip.empty? %>
-    <h2>In Progress:</h2>
-      <% current_user.projects.wip.each do |project| %>
-      <div>
-        <%= link_to project.name, project_path(project) %>
-      </div>
-      <% end %>
-  <% end %>
+  <div class="list-project status-in-progress">
+    <% if !current_user.projects.wip.empty? %>
+      <h2>In Progress:</h2>
+        <% current_user.projects.wip.each do |project| %>
+        <div class="each-project">
+          <%= link_to project.name, project_path(project) %>
+        </div>
+        <% end %>
+    <% end %>
+  </div>
 
-  <% if !current_user.projects.upcoming.empty? %>
-    <h2>Upcoming:</h2>
-      <% current_user.projects.upcoming.each do |project| %>
-      <div>
-        <%= link_to project.name, project_path(project) %>
-      </div>
-      <% end %>
-  <% end %>
+  <div class="list-project status-upcoming">
+    <% if !current_user.projects.upcoming.empty? %>
+      <h2>Upcoming:</h2>
+        <% current_user.projects.upcoming.each do |project| %>
+        <div class="each-project">
+          <%= link_to project.name, project_path(project) %>
+        </div>
+        <% end %>
+    <% end %>
+  </div>
 
-  <% if !current_user.projects.finished.empty? %>
-    <h2>Finished:</h2>
-      <% current_user.projects.finished.each do |project| %>
-      <div>
-        <%= link_to project.name, project_path(project) %>
-      </div>
-      <% end %>
-  <% end %>
+  <div class="list-project status-finished">
+    <% if !current_user.projects.finished.empty? %>
+      <h2>Finished:</h2>
+        <% current_user.projects.finished.each do |project| %>
+        <div class="each-project">
+          <%= link_to project.name, project_path(project) %>
+        </div>
+        <% end %>
+    <% end %>
+  </div>
 </div>
