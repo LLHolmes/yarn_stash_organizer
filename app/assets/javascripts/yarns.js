@@ -11,17 +11,17 @@ const showYarn = (data) => {
 };
 
 const displayYarns = (data) => {
-  $('#main-body').html('<div class="inside"><h1>Yarn</h1><div class="list-yarns"></div></div>')
-  // let indexHtml = buildYarnIndex(data)
-  // $('#main-body').html(indexHtml)
+  // $('#main-body').html('<div class="inside"><h1>Yarn</h1><div class="list-yarns"></div></div>')
+  let indexHtml = buildYarnIndex(data)
+  $('#main-body').html(indexHtml)
   data.forEach(yarn => {
     let newYarn = new Yarn(yarn)
     let eachHtml = newYarn.formatIndex()
-    $('.list-yarns').append(eachHtml)
-    // $(`.${newYarn.divStatus}`).append(eachHtml)
+    $(`.${newYarn.brand.nameDiv}`).append(eachHtml)
   });
 };
 
+const yarnMaterialOptions = [{}]
 // function buildYarnIndex(data) {
 //   const statusArray = []
 //   let indexHtml = `

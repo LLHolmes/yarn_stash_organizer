@@ -9,11 +9,11 @@ const bindClickHandlers = () => {
     history.pushState(null, null, "tools")
     fetchTools()
   });
-  // $(".js-yarns").on("click", (event) => {
-  //   event.preventDefault();
-  //   history.pushState(null, null, "yarns")
-  //   fetchYarns()
-  // });
+  $(".js-yarns").on("click", (event) => {
+    event.preventDefault();
+    history.pushState(null, null, "yarns")
+    fetchYarns()
+  });
   $(".js-projects").on("click", (event) => {
     event.preventDefault();
     history.pushState(null, null, "projects")
