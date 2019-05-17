@@ -21,7 +21,7 @@ const displayYarns = (data) => {
   });
 };
 
-const brandWeightOptions = [{}]
+const brandWeightOptions = [{'0 - Lace', 'weight-0-lace'}, {'1 - Super Fine','weight-1-superfine'}, {'2 - Fine','weight-2-fine'}, {'3 - Light','weight-3-light'}, {'4 - Medium','weight-4-medium'}, {'5 - Bulky','weight-5-bulky'}, {'6 - Super Bulky','weight-6-superbulky'}, {'7 - Jumbo','weight-7-jumbo'}, {'Novelty','weight-novelty'}]
 // function buildYarnIndex(data) {
 //   const statusArray = []
 //   let indexHtml = `
