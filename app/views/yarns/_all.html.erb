@@ -3,14 +3,14 @@
 
   <% weight_choices.each do |gauge| %>
     <% if !current_user.brand_by_weight(gauge).empty? %>
-      <div class="">
+      <div class="weight">
         <h2><%= gauge %></h2>
         <div>
         <% current_user.brand_by_weight(gauge).each do |brand| %>
           <h4><%= link_to brand.name, brand_path(brand) %> (<%= brand.material %>):</h4>
-            <ul>
+            <ul class="brand-by-name">
               <% brand.yarns_by_color.each do |yarn| %>
-                <div>
+                <div class="each-yarn-index">
                   <%= link_to yarn.color, edit_yarn_path(yarn) %> <%= yarn_amount yarn %> <%= list_project yarn %>
                 </div>
               <% end %>
