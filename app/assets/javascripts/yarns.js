@@ -96,8 +96,10 @@ function formatYarnBrands() {
   let listBrand;
   store.brands.forEach(brand => {
     listBrand = `
+    <div class="each-brand>
     <h4><a href="/brands/${brand.id}" data-id="${brand.id}" class="show-brand">${brand.name}</a> (${brand.material}):</h4>
-    <ul class="each-brand ${brand.nameDiv}"></ul>
+    <ul class="${brand.nameDiv}"></ul>
+    </div>
     `
     $(`.${brand.weightDiv}`).append(listBrand);
   });

@@ -81,6 +81,16 @@ h1 {
   border: 1px;
 }
 
+.list-project, .list-tools, .weight {
+  width: 100%;
+  box-sizing: border-box;
+  background: rgba(255,255,255, 0.6);
+  padding: 10px 10px 10px 10px;
+  /* margin: 0 auto; */
+  margin: 10px auto;
+  border: 1px;
+}
+
 .main-single {
   width: 100%;
   background: rgba(255,255,255, 0.4);
