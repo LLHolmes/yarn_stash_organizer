@@ -6,7 +6,7 @@ class YarnBrandSerializer < ActiveModel::Serializer
   end
 
   def weightDiv
-    "weight-#{object.weight.downcase.split(" ").join("-")}"
+    "weight-#{object.weight.downcase.split(" ")}"
   end
 
 end
