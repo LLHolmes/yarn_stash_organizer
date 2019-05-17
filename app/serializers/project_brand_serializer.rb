@@ -1,7 +1,7 @@
 class ProjectBrandSerializer < ActiveModel::Serializer
-  attributes :id, :name, :div
+  attributes :id, :name, :nameDiv
 
-  def div
+  def nameDiv
     "#{object.name.downcase.split(" ").join("-")}"
   end
 

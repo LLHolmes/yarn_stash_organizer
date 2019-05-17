@@ -38,7 +38,6 @@ function Project(project) {
   this.tools = project.tools;
   this.yarns = project.yarns;
   this.notes = project.notes;
-  // this.brands = project.brands;
 };
 
 // PROJECT INDEX PAGE FUNCTIONS:

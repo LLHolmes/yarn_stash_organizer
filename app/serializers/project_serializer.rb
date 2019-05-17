@@ -5,7 +5,7 @@ class ProjectSerializer < ActiveModel::Serializer
   has_many :tools
   has_many :yarns, serializer: ProjectYarnSerializer
   has_many :notes
-  has_many :brands, serializer: ProjectBrandSerializer
+  # has_many :brands, serializer: ProjectBrandSerializer
 
   def statusDiv
     "#{object.status.downcase.split(" ").join("-")}"
