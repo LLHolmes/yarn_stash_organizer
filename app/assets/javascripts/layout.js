@@ -65,7 +65,7 @@ const bindClickHandlers = () => {
       url: `/projects/${id}`,
       beforeSend: function(xhr) {xhr.setRequestHeader('X-CSRF-Token', $('meta[name="csrf-token"]').attr('content'))},
       success: function(result) {
-      };
+      }
     });
   });
 };
