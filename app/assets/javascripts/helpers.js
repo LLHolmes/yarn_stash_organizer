@@ -7,7 +7,8 @@ function listProject(object) {
 };
 
 function sortBrandYarns(yarns) {
-  yarns.sort((a, b) => (a.brand_name > b.brand_name) ? 1 : (a.brand_name === b.brand_name) ? ((a.color > b.color) ? 1 : -1) : -1)
+  let sortedYarns = yarns.sort((a, b) => (a.brand_name > b.brand_name) ? 1 : (a.brand_name === b.brand_name) ? ((a.color > b.color) ? 1 : -1) : -1);
+  return sortedYarns;
 };
 
 function sortYarnData(data) {
