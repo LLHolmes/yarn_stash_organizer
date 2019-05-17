@@ -14,8 +14,7 @@ const displayYarns = (data) => {
   sortYarnData(data)
   let weightHtml = buildYarnWeightIndex(data)
   $('#main-body').html(weightHtml)
-  formatYarnBrandsAnother(data)
-  // formatYarnBrands(data)
+  formatYarnBrands(data)
   data.forEach(yarn => {
     let newYarn = new Yarn(yarn)
     let eachHtml = newYarn.formatIndex()
@@ -59,41 +58,12 @@ function buildYarnWeightIndex(data) {
 };
 
 function formatYarnBrands(data) {
-  const brandArray = [];
-  let listBrand;
-  // Find unique, alphabetized list of brand attributes
-  data.forEach(yarn => {
-    brandArray.push({id: yarn.brand.id, nameDiv: yarn.brand.nameDiv, name: yarn.brand.name, material: yarn.brand.material, weightDiv: yarn.brand.weightDiv});
-  });
-  let unique = Array.from(new Set(brandArray.map(item => item.id)))
-    .map(id => {
-      return {
-        id: id,
-        nameDiv: brandArray.find(item => item.id === id).nameDiv,
-        name: brandArray.find(item => item.id === id).name,
-        material: brandArray.find(item => item.id === id).material,
-        weightDiv: brandArray.find(item => item.id === id).weightDiv
-      }
-    });
-  unique.sort((a, b) => (a.nameDiv > b.nameDiv) ? 1 : -1)
-
-  // Add each unique brand div to appropriate weightDiv
-  unique.forEach(brand => {
-    listBrand = `
-    <h4><a href="/brand/${brand.id}" data-id="${brand.id}" class="show-brand">${brand.name}</a> (${brand.material}):</h4>
-    <ul class="brand-by-name ${brand.nameDiv}"></ul>
-    `
-    $(`.${brand.weightDiv}`).append(listBrand);
-  });
-};
-function formatYarnBrandsAnother(data) {
   let listBrand;
   data.forEach(yarn => {
     if (!store.brand_ids.includes(yarn.brand.id)) {
       new Brand(yarn)
     };
   });
-
   store.brands.forEach(brand => {
     listBrand = `
     <h4><a href="/brand/${brand.id}" data-id="${brand.id}" class="show-brand">${brand.name}</a> (${brand.material}):</h4>
@@ -101,10 +71,6 @@ function formatYarnBrandsAnother(data) {
     `
     $(`.${brand.weightDiv}`).append(listBrand);
   });
-  // console.log(store)
-  // // store.brands.forEach
-  // console.log(store.brands)
-  // console.log(store.brand_ids)
 };
 
 function Yarn(yarn) {
@@ -118,7 +84,6 @@ function Yarn(yarn) {
 
 let store = {brands:[], brand_ids:[]};
 function Brand(yarn) {
-  // store.brand_ids.includes(yarn.brand.id))
   this.id = yarn.brand.id;
   this.name = yarn.brand.name;
   this.material = yarn.brand.material;
