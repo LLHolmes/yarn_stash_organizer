@@ -12,7 +12,7 @@ function sortBrandYarns(yarns) {
 };
 
 function sortYarnData(data) {
-  data.sort((a, b) => (a.color > b.color) ? 1 : -1)
+  data.sort((a, b) => (a.brand.name > b.brand.name) ? 1 : (a.brand.name === b.brand.name) ? ((a.color > b.color) ? 1 : -1) : -1)
 };
 
 function formatYarnAmount(yarn) {
