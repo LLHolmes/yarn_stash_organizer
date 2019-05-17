@@ -104,8 +104,10 @@ Project.prototype.formatShowStatus = function() {
     return "";
   } else {
     return (`
-      <p>Status: ${this.status}</p>
-      <p>Pattern: ${this.pattern_info}</p>
+      <div class="project-details">
+        <p>Status: ${this.status}</p>
+        <p>Pattern: ${this.pattern_info}</p>
+      </div>
     `);
   };
 };
@@ -152,7 +154,7 @@ Project.prototype.formatShowYarns = function() {
       `
     };
     sortedYarn.forEach(yarn => {
-      singleYarn = `<li class="each-yarn">${formatBrandYarnLinks(yarn)} ${formatYarnAmount(yarn)}</li>`
+      singleYarn = `<li class="each-project-yarn">${formatBrandYarnLinks(yarn)} ${formatYarnAmount(yarn)}</li>`
       yarnsHtml = yarnsHtml + singleYarn;
     });
     yarnsHtml = yarnsHtml + "</ul></div>";
@@ -182,7 +184,7 @@ Project.prototype.formatShowTools = function() {
       `
     };
     this.tools.forEach(tool => {
-      singleTool = `<li class="each-tool"><a href="/tools/${tool.id}/edit">${tool.name}</a></li>`
+      singleTool = `<li class="each-project-tool"><a href="/tools/${tool.id}/edit">${tool.name}</a></li>`
       toolsHtml = toolsHtml + singleTool
     });
     toolsHtml = toolsHtml + `</ul><a href="/projects/${this.id}/tools/new">Add a tool to this project</a></div>`

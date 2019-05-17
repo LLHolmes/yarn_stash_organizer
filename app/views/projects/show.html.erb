@@ -1,8 +1,10 @@
 <div class="inside">
   <h1><%= @project.name %></h1>
   <% if @project.name != "Stash" %>
-    <p>Status: <%= @project.status %></p>
-    <p>Pattern: <%= @project.pattern_info %></p>
+    <div class="project-details">
+      <p>Status: <%= @project.status %></p>
+      <p>Pattern: <%= @project.pattern_info %></p>
+    </div>
   <% end %>
 
   <% if !@project.notes.empty? %>
@@ -28,7 +30,7 @@
     <% end %>
     <ul class="project-yarn-list">
       <% @project.yarns_by_brand.each do |yarn| %>
-        <li class="each-yarn"><%= brand_yarn_links yarn %> <%= yarn_amount yarn %></li>
+        <li class="each-project-yarn"><%= brand_yarn_links yarn %> <%= yarn_amount yarn %></li>
       <% end %>
     </ul>
   </div>
@@ -43,7 +45,7 @@
     <% end %>
     <ul class="project-tool-list">
       <% @project.tools.each do |tool| %>
-        <li class="each-tool"><%= link_to tool.name, edit_tool_path(tool) %></li>
+        <li class="each-project-tool"><%= link_to tool.name, edit_tool_path(tool) %></li>
       <% end %>
     </ul>
     <%= link_to "Add a tool to this project", new_project_tool_path(@project) %>
