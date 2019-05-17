@@ -22,18 +22,19 @@ const displayYarns = (data) => {
 };
 
 function buildYarnIndex(data) {
-  const brandWeightOptions = [
-    {'weight-0-lace': '0 - Lace'},
-    {'weight-1-superfine': '1 - Super Fine'},
-    {'weight-2-fine': '2 - Fine'},
-    {'weight-3-light': '3 - Light'},
-    {'weight-4-medium': '4 - Medium'},
-    {'weight-5-bulky': '5 - Bulky'},
-    {'weight-6-superbulky': '6 - Super Bulky'},
-    {'weight-7-jumbo': '7 - Jumbo'},
-    {'weight-novelty': 'Novelty'}
-  ];
+  const brandWeightOptions = {
+    'weight-0-lace': '0 - Lace',
+    'weight-1-superfine': '1 - Super Fine',
+    'weight-2-fine': '2 - Fine',
+    'weight-3-light': '3 - Light',
+    'weight-4-medium': '4 - Medium',
+    'weight-5-bulky': '5 - Bulky',
+    'weight-6-superbulky': '6 - Super Bulky',
+    'weight-7-jumbo': '7 - Jumbo',
+    'weight-novelty': 'Novelty'
+  };
   const weightArray = [];
+  let listWeight;
   let indexHtml = `
     <div class="inside">
     <h1>Yarn</h1>
@@ -42,24 +43,18 @@ function buildYarnIndex(data) {
     weightArray.push(yarn.brand.weightDiv);
   });
   let unique = [...new Set(weightArray)];
-  console.log(unique)
-  console.log(data)
 
-  // if (unique.includes("CONSTANT")) {
-  //   indexHtml = indexHtml + '<div class="list-yarn constant"></div>'
-  // };
-  // if (unique.includes("In Progress")) {
-  //   indexHtml = indexHtml + '<div class="list-yarn inProgress"><h2>In Progress:</h2></div>'
-  // };
-  // if (unique.includes("Upcoming")) {
-  //   indexHtml = indexHtml + '<div class="list-yarn upcoming"><h2>Upcoming:</h2></div>'
-  // };
-  // if (unique.includes("Finished")) {
-  //   indexHtml = indexHtml + '<div class="list-yarn finished"><h2>Finished:</h2></div>'
-  // };
-  indexHtml = indexHtml + '</div>'
+  unique.forEach(weightDiv => {
+    listWeight = `
+    <div class="weight ${weightDiv}">
+      <h2>${brandWeightOptions[weightDiv]}</h2>
+    </div>
+    `
+    indexHtml = indexHtml + listWeight;
+  });
+  indexHtml = indexHtml + '</div>';
 
-  return indexHtml
+  return indexHtml;
 };
 
 function Yarn(yarn) {
