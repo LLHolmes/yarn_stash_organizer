@@ -11,6 +11,7 @@ const showYarn = (data) => {
 };
 
 const displayYarns = (data) => {
+  sortYarnData(data)
   let weightHtml = buildYarnWeightIndex(data)
   $('#main-body').html(weightHtml)
   formatYarnBrands(data)
@@ -59,34 +60,29 @@ function buildYarnWeightIndex(data) {
 function formatYarnBrands(data) {
   const brandArray = [];
   let listBrand;
-  // let indexHtml = `
-  //   <div class="inside">
-  //   <h1>Yarn</h1>
-  // `
+  // Find unique, alphabetized list of brand attributes
   data.forEach(yarn => {
-    brandArray.push({nameDiv: yarn.brand.nameDiv, name: yarn.brand.name, weightDiv: yarn.brand.weightDiv});
+    brandArray.push({id: yarn.brand.id, nameDiv: yarn.brand.nameDiv, name: yarn.brand.name, weightDiv: yarn.brand.weightDiv});
   });
-  let unique = Array.from(new Set(brandArray.map(item => item.nameDiv)))
-    .map(nameDiv => {
+  let unique = Array.from(new Set(brandArray.map(item => item.id)))
+    .map(id => {
       return {
-        nameDiv: nameDiv,
-        name: brandArray.find(item => item.nameDiv === nameDiv).name,
-        weightDiv: brandArray.find(item => item.nameDiv === nameDiv).weightDiv
+        id: id,
+        nameDiv: brandArray.find(item => item.id === id).nameDiv,
+        name: brandArray.find(item => item.id === id).name,
+        weightDiv: brandArray.find(item => item.id === id).weightDiv
       }
     });
   unique.sort((a, b) => (a.nameDiv > b.nameDiv) ? 1 : -1)
 
+  // Add each unique brand div to appropriate weightDiv
   unique.forEach(brand => {
     listBrand = `
-    <div class="brand-by-name ${brand.nameDiv}">
-      <h4>${brand.name}</h4>
-    </div>
+    <a href="/brand/${brand.id}" data-id="${brand.id}" class="show-brand"><h4>${brand.name}</h4></a>
+    <ul class="brand-by-name ${brand.nameDiv}"></ul>
     `
     $(`.${brand.weightDiv}`).append(listBrand);
   });
-  // indexHtml = indexHtml + '</div>';
-
-  // return indexHtml;
 };
 
 function Yarn(yarn) {
@@ -96,51 +92,17 @@ function Yarn(yarn) {
   this.scrap = yarn.scrap;
   this.brand = yarn.brand;
   this.project = yarn.project;
-  // this.divStatus = this.findDivStatus();
 };
-
-// Yarn.prototype.findDivStatus = function() {
-//   switch (this.status) {
-//     case "CONSTANT":
-//       return "constant";
-//     case "In Progress":
-//       return "inProgress";
-//     case "Upcoming":
-//       return "upcoming";
-//     case "Finished":
-//       return "finished";
-//   };
-// };
 
 Yarn.prototype.formatIndex = function() {
   let yarnHtml;
   yarnHtml = `
-    <div class="each-yarn">
-      <a href="/yarns/${this.id}/edit">${this.brand.name} - ${this.color}</a> ${listProject(this)}
+    <div class="each-yarn-index">
+      <a href="/yarns/${this.id}/edit">${this.color}</a> ${formatYarnAmount(this)} ${listProject(this)}
     </div>
   `
   return yarnHtml;
 };
-
-// <% weight_choices.each do |gauge| %>
-//   <% if !current_user.brand_by_weight(gauge).empty? %>
-//     <div class="">
-//       <h2><%= gauge %></h2>
-//       <div>
-//       <% current_user.brand_by_weight(gauge).each do |brand| %>
-//         <h4><%= link_to brand.name, brand_path(brand) %> (<%= brand.material %>):</h4>
-//           <ul>
-//             <% brand.yarns_by_color.each do |yarn| %>
-//               <div>
-//                 <%= link_to yarn.color, edit_yarn_path(yarn) %> <%= yarn_amount yarn %> <%= list_project yarn %>
-//               </div>
-//             <% end %>
-//           </ul>
-//       <% end %>
-//       </div>
-//     </div>
-//   <% end %>
-// <% end %>
 
 Yarn.prototype.formatShow = function() {
   let yarnHtml = `

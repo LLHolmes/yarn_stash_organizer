@@ -11,6 +11,10 @@ function sortBrandYarns(yarns) {
   return sortedYarn
 };
 
+function sortYarnData(data) {
+  data.sort((a, b) => (a.color > b.color) ? 1 : -1)
+};
+
 function formatYarnAmount(yarn) {
   if (!!yarn.count && yarn.count === 1) {
     if (!!yarn.scrap && yarn.scrap > 0) {
