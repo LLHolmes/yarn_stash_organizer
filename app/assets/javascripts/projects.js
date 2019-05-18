@@ -163,11 +163,7 @@ Project.prototype.formatShowYarns = function() {
 };
 
 Project.prototype.formatShowTools = function() {
-  let toolsHtml = `
-    <div class="project-tools">
-      <a href="/projects/${this.id}/tools/new">Add a tool to this project</a>
-    </div>
-  `
+  let toolsHtml = ""
   let singleTool;
   if (!!this.tools.length) {
     if (this.name === "Stash") {
