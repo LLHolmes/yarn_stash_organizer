@@ -200,6 +200,10 @@ form, .project-notes, .project-yarns, .project-tools, .brand-yarns {
   font-weight: 100;
 }
 
+b {
+  font-weight: bold;
+}
+
 .list-tools {
   padding-top: 25px;
 }
