@@ -194,7 +194,7 @@ form, .project-notes, .project-yarns, .project-tools, .brand-yarns {
   font-size: 18px;
 }
 
-span {
+.yarn-details {
   font-size: 13px;
   margin-left: 6px;
 }
