@@ -105,8 +105,8 @@ Project.prototype.formatShowStatus = function() {
   } else {
     return (`
       <div class="project-details">
-        <p>Status: ${this.status}</p>
-        <p>Pattern: ${this.pattern_info}</p>
+        <p><b>Status:</b>  ${this.status}</p>
+        <p><b>Pattern:</b>  ${this.pattern_info}</p>
       </div>
     `);
   };
