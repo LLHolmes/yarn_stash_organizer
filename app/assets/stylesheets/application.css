@@ -111,13 +111,27 @@ h1 {
   border: 1px;
 }
 
-form {
+form, .project-notes, .project-yarns, .project-tools {
   width: 100%;
   box-sizing: border-box;
   background: rgba(255,255,255, 0.6);
   padding: 15px;
   margin: 10px 15px 10px 0px;
   border: 1px;
+}
+
+.project-details {
+  width: 100%;
+  box-sizing: border-box;
+  background: rgba(255,255,255, 0.6);
+  padding: 15px 15px 15px 50px;
+  margin: 10px 15px 10px 0px;
+  border: 1px;
+}
+
+.button_to {
+  display: inline;
+  background: none;
 }
 
 .main-single {
