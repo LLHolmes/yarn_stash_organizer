@@ -1,6 +1,6 @@
 <div class="inside">
   <h1><%= @project.name %></h1>
-  
+
   <% if @project.name != "Stash" %>
     <div class="project-details">
       <p>Status: <%= @project.status %></p>
@@ -31,7 +31,7 @@
     <% end %>
     <ul class="project-yarn-list">
       <% @project.yarns_by_brand.each do |yarn| %>
-        <li class="each-project-yarn"><%= brand_yarn_links yarn %> <%= yarn_amount yarn %></li>
+        <li class="each-project-yarn"><%= brand_yarn_links yarn %> <span class="yarn-details"><%= yarn_amount yarn %></span></li>
       <% end %>
     </ul>
   </div>

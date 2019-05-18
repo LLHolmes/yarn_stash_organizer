@@ -111,7 +111,7 @@ h1 {
   border: 1px;
 }
 
-form, .project-notes, .project-yarns, .project-tools {
+form, .project-notes, .project-yarns, .project-tools, .brand-yarns {
   width: 100%;
   box-sizing: border-box;
   background: rgba(255,255,255, 0.6);
@@ -120,7 +120,7 @@ form, .project-notes, .project-yarns, .project-tools {
   border: 1px;
 }
 
-.project-details {
+.project-details, .brand-details {
   width: 100%;
   box-sizing: border-box;
   background: rgba(255,255,255, 0.6);
@@ -186,6 +186,11 @@ form, .project-notes, .project-yarns, .project-tools {
 
 .each-yarn {
   margin: 0px 0px 8px 34px;
+  font-size: 18px;
+}
+
+.each-brand-yarn {
+  margin: 0px 0px 8px 25px;
   font-size: 18px;
 }
 

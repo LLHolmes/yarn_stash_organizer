@@ -11,7 +11,7 @@
             <div class="each-brand">
               <% brand.yarns_by_color.each do |yarn| %>
                 <div class="each-yarn">
-                  <%= link_to yarn.color, edit_yarn_path(yarn) %> <span class="yarn-detials"><%= yarn_amount yarn %> <%= list_project yarn %></span>
+                  <%= link_to yarn.color, edit_yarn_path(yarn) %> <span class="yarn-details"><%= yarn_amount yarn %> <%= list_project yarn %></span>
                 </div>
               <% end %>
             </div>

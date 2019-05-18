@@ -1,16 +1,21 @@
 <div class="inside">
   <h1><%= @brand.name %></h1>
-  <p>Material: <%= @brand.material %></p>
-  <p>Gauge: <%= @brand.weight %></p>
-  <p>Skein size: <%= @brand.skein_weight %>oz., <%= @brand.skein_length %>yd.</p>
-  <p>Recommended Hook / Needle: <%= @brand.hook %>, <%= @brand.needle %></p>
 
-  <h2>Colors of this yarn in your stash:</h2>
-  <ul>
-    <% @brand.yarns_by_color.each do |yarn| %>
-      <li><%= link_to yarn.color, edit_yarn_path(yarn) %> <%= yarn_amount yarn %> <%= list_project yarn %></li>
-    <% end %>
-  </ul>
+  <div class="brand-details">
+    <p>Material: <%= @brand.material %></p>
+    <p>Gauge: <%= @brand.weight %></p>
+    <p>Skein size: <%= @brand.skein_weight %>oz., <%= @brand.skein_length %>yd.</p>
+    <p>Recommended Hook / Needle: <%= @brand.hook %>, <%= @brand.needle %></p>
+  </div>
+
+  <div class="brand-yarns">
+    <h2>Colors of this yarn in your stash:</h2>
+    <ul>
+      <% @brand.yarns_by_color.each do |yarn| %>
+        <li class="each-brand-yarn"><%= link_to yarn.color, edit_yarn_path(yarn) %> <span class="yarn-details"><%= yarn_amount yarn %> <%= list_project yarn %></span></li>
+      <% end %>
+    </ul>
+  </div>
 
   <%# if current_user.brands.include?(@brand) %>
     <%= button_to "Edit Brand", edit_brand_path(@brand), method: :get %>
