@@ -98,7 +98,7 @@ function formatYarnBrands() {
     listBrand = `
     <div class="each-brand>
     <h4><a href="/brands/${brand.id}" data-id="${brand.id}" class="show-brand">${brand.name}</a> (${brand.material}):</h4>
-    <ul class="${brand.nameDiv}"></ul>
+    <div class="${brand.nameDiv}"></div>
     </div>
     `
     $(`.${brand.weightDiv}`).append(listBrand);

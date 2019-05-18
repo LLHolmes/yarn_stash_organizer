@@ -149,6 +149,18 @@ h1 {
   margin-right: 13px;
 }
 
+.each-brand {
+  margin-bottom: 10px;
+}
+
+.each-project, .each-tool, .each-yarn {
+  margin: 0px 0px 8px 25px;
+}
+
+.list-tools {
+  padding-top: 25px;
+}
+
 /* Navigation bar - layouts/application.html.erb */
 ul.nav-bar {
   /* box-sizing: border-box; */
