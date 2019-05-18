@@ -154,7 +154,7 @@ Project.prototype.formatShowYarns = function() {
       `
     };
     sortedYarn.forEach(yarn => {
-      singleYarn = `<li class="each-project-yarn">${formatBrandYarnLinks(yarn)} ${formatYarnAmount(yarn)}</li>`
+      singleYarn = `<li class="each-project-yarn">${formatBrandYarnLinks(yarn)} <span class="yarn-details">${formatYarnAmount(yarn)}</span></li>`
       yarnsHtml = yarnsHtml + singleYarn;
     });
     yarnsHtml = yarnsHtml + "</ul></div>";

@@ -110,7 +110,7 @@ Yarn.prototype.formatIndex = function() {
   let yarnHtml;
   yarnHtml = `
     <div class="each-yarn">
-      <a href="/yarns/${this.id}/edit">${this.color}</a> <span class="yarn-detials">${formatYarnAmount(this)} ${listProject(this)}</span>
+      <a href="/yarns/${this.id}/edit">${this.color}</a> <span class="yarn-details">${formatYarnAmount(this)} ${listProject(this)}</span>
     </div>
   `
   return yarnHtml;
