@@ -47,10 +47,12 @@ a {
 }
 
 .container {
-  /* height: 100%; */
-  width: 90%;
+  height: 100%;
+  position: fixed;
+  overflow: scroll;
+  width: 100%;
   background: rgba(255,255,255, 0.4);
-  margin: 46px auto;
+  margin: 0 auto;
   padding-bottom: 20px;
   background: linear-gradient(to right, rgba(255,255,255,0) 0%, rgba(255,255,255,0.6) 5%, rgba(255,255,255,0.6) 95%, rgba(255,255,255,0) 100%);
 }
@@ -58,16 +60,19 @@ a {
 .content-container {
   box-sizing: border-box;
   width: 90%;
+  /* height: 90%; */
   margin: 0 auto;
+  margin-top: 46px;
   padding: 0;
+  /* overflow: scroll; */
 }
 
 .inside {
-  width: 100%;
+  width: 98%;
   box-sizing: border-box;
   background: rgba(255,255,255, 0.6);
   padding: 15px;
-  margin: 10px;
+  margin: 10px 15px 10px 10px;
   border: 1px;
 }
 
@@ -107,6 +112,7 @@ h1 {
 
 /* Navigation bar - layouts/application.html.erb */
 ul.nav-bar {
+  /* box-sizing: border-box; */
   color: #863A6D;
   list-style-type: none;
   margin: 0px 0px 0px 0px;
@@ -116,6 +122,7 @@ ul.nav-bar {
   position: fixed;
   top: 0;
   width: 100%;
+  z-index:1;
 }
 ul.nav-bar li.nav {
   float: left;
