@@ -67,6 +67,9 @@ h1 {
   text-align: center;
 }
 
+.weight h3 {
+  margin: 22px 0px 10px 15px;
+}
 
 .container {
   height: 100%;
@@ -149,12 +152,23 @@ h1 {
   margin-right: 13px;
 }
 
-.each-brand {
+/* .each-brand {
   margin-bottom: 10px;
+} */
+
+.each-project, .each-tool {
+  margin: 0px 0px 8px 25px;
+  font-size: 18px;
 }
 
-.each-project, .each-tool, .each-yarn {
-  margin: 0px 0px 8px 25px;
+.each-yarn {
+  margin: 0px 0px 8px 34px;
+  font-size: 18px;
+}
+
+span {
+  font-size: 13px;
+  margin-left: 6px;
 }
 
 .list-tools {

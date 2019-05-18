@@ -7,11 +7,11 @@
         <h2><%= gauge %></h2>
         <div>
         <% current_user.brand_by_weight(gauge).each do |brand| %>
-          <h4><%= link_to brand.name, brand_path(brand) %> (<%= brand.material %>):</h4>
+          <h3><%= link_to brand.name, brand_path(brand) %> (<%= brand.material %>):</h3>
             <div class="each-brand">
               <% brand.yarns_by_color.each do |yarn| %>
                 <div class="each-yarn">
-                  <%= link_to yarn.color, edit_yarn_path(yarn) %> <%= yarn_amount yarn %> <%= list_project yarn %>
+                  <%= link_to yarn.color, edit_yarn_path(yarn) %> <span class="yarn-detials"><%= yarn_amount yarn %> <%= list_project yarn %></span>
                 </div>
               <% end %>
             </div>
