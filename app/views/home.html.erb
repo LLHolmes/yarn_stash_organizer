@@ -6,14 +6,20 @@
   <% end %>
 </div>
 
-<div class="main-box-1">
-  <%= render "projects/all" %>
-</div>
+<div class="main-container-box">
+  <div class="main-left-column">
+    <div class="home-box main-box-1">
+      <%= render "projects/all" %>
+    </div>
 
-<div class="main-box-2">
-  <%= render partial: "tools/all", locals: {tools: current_user.tools} %>
-</div>
+    <div class="home-box main-box-2">
+      <%= render partial: "tools/all", locals: {tools: current_user.tools} %>
+    </div>
+  </div>
 
-<div class="main-box-3">
-  <%= render "yarns/all" %>
+  <div class="main-right-column">
+    <div class="home-box main-box-3">
+      <%= render "yarns/all" %>
+    </div>
+  </div>
 </div>
