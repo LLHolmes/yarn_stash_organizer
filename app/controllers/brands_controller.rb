@@ -21,7 +21,9 @@ class BrandsController < ApplicationController
       end
       render :new
     else
-      redirect_to yarns_path
+      @yarns = current_user.yarns
+      render json: @yarns
+      # redirect_to yarns_path
     end
   end
 

@@ -56,6 +56,16 @@ const bindClickHandlers = () => {
       });
   });
 
+  $("#new_brand").submit ((event) => {
+    event.preventDefault();
+    console.log("NEW BRAND PATH")
+    const values = $("form").serialize()
+    $.post("/brands", values)
+      .done(data => {
+        displayYarnsBrand(data)
+      });
+  });
+
   // Deleting project after JS call to show page
   $(document).on("click", ".delete_project", function(event) {
     event.preventDefault();
