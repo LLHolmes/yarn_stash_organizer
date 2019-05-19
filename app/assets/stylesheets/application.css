@@ -273,3 +273,14 @@ li.nav:hover, li.nav-right:hover {
    display: block;
    margin: 0 0 4px 25px;
   }
+
+/* Photo Credit */
+#photo-credit {
+  color: grey;
+  clear: both;
+  text-align: right;
+  padding: 0px 30px;
+}
+#photo-credit a {
+  color: grey;
+}
