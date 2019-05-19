@@ -7,36 +7,36 @@
     </div>
   </div>
 
-  <div class="list-project status-in-progress">
-    <% if !current_user.projects.wip.empty? %>
+  <% if !current_user.projects.wip.empty? %>
+    <div class="list-project status-in-progress">
       <h2>In Progress:</h2>
         <% current_user.projects.wip.each do |project| %>
         <div class="each-project">
           <%= link_to project.name, project_path(project) %>
         </div>
         <% end %>
-    <% end %>
-  </div>
+      </div>
+  <% end %>
 
+<% if !current_user.projects.upcoming.empty? %>
   <div class="list-project status-upcoming">
-    <% if !current_user.projects.upcoming.empty? %>
-      <h2>Upcoming:</h2>
-        <% current_user.projects.upcoming.each do |project| %>
-        <div class="each-project">
-          <%= link_to project.name, project_path(project) %>
-        </div>
-        <% end %>
-    <% end %>
-  </div>
+    <h2>Upcoming:</h2>
+      <% current_user.projects.upcoming.each do |project| %>
+      <div class="each-project">
+        <%= link_to project.name, project_path(project) %>
+      </div>
+      <% end %>
+    </div>
+  <% end %>
 
+<% if !current_user.projects.finished.empty? %>
   <div class="list-project status-finished">
-    <% if !current_user.projects.finished.empty? %>
-      <h2>Finished:</h2>
-        <% current_user.projects.finished.each do |project| %>
-        <div class="each-project">
-          <%= link_to project.name, project_path(project) %>
-        </div>
-        <% end %>
-    <% end %>
-  </div>
+    <h2>Finished:</h2>
+      <% current_user.projects.finished.each do |project| %>
+      <div class="each-project">
+        <%= link_to project.name, project_path(project) %>
+      </div>
+      <% end %>
+      </div>
+  <% end %>
 </div>

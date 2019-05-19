@@ -1,6 +1,7 @@
 <div class="inside">
   <h1>Tools</h1>
 
+<% if !tools.empty? %>
   <div class="list-tools">
     <% tools.each do |tool| %>
       <div class="each-tool">
@@ -8,4 +9,5 @@
       </div>
     <% end %>
   </div>
+<% end %>
 </div>
