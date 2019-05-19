@@ -7,7 +7,8 @@ const fetchTools = () => {
 
 // Display Functions
 const displayTools = (data) => {
-  $('#main-body').html('<div class="inside"><h1>Tools</h1><div class="list-tools"></div></div>');
+  let indexHtml = buildToolIndex(data);
+  $('#main-body').html(indexHtml);
   data.forEach(tool => {
     let newTool = new Tool(tool);
     let eachHtml = newTool.formatIndex();
@@ -26,6 +27,18 @@ function Tool(tool) {
   this.id = tool.id;
   this.name = tool.name;
   this.project = tool.project;
+};
+
+// Format Index Page - Skeleton
+function buildToolIndex(data) {
+  let indexHtml = `
+    <div class="inside">
+    <h1>Tools</h1>
+  `
+  if (!!data.length) {
+    indexHtml = indexHtml + '<div class="list-tools"></div>'
+  };
+  return (indexHtml + '</div>')
 };
 
 // Format Index Page
