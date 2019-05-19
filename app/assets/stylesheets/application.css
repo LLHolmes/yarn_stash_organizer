@@ -208,6 +208,15 @@ b {
   padding-top: 25px;
 }
 
+.cancel-account {
+  width: 100%;
+  box-sizing: border-box;
+  background: rgba(255,255,255, 0.6);
+  padding: 15px;
+  margin: 10px 15px 10px 0px;
+  border: 1px;
+}
+
 /* Navigation bar - layouts/application.html.erb */
 ul.nav-bar {
   /* box-sizing: border-box; */
