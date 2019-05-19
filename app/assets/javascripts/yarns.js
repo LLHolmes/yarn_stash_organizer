@@ -122,8 +122,10 @@ Yarn.prototype.formatShow = function() {
   let yarnHtml = `
     <div class="inside">
       <h1><a href="/brands/${this.brand.id}">${this.brand.name}</a> - <a href="/yarns/${this.id}/edit">${this.color}</a></h1>
-      <h2>Current Project: <a href="/projects/${this.project.id}">${this.project.name}</a></h2>
-      ${formatYarnAmountNew(this)}
+      <div class="new-show-details">
+        <h2>Current Project: <a href="/projects/${this.project.id}">${this.project.name}</a></h2>
+        ${formatYarnAmountNew(this)}
+      </div>
     </div>
   `
   return yarnHtml;

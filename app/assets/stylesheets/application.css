@@ -120,7 +120,7 @@ form, .project-notes, .project-yarns, .project-tools, .brand-yarns {
   border: 1px;
 }
 
-.project-details, .brand-details {
+.project-details, .brand-details, .new-show-details {
   width: 100%;
   box-sizing: border-box;
   background: rgba(255,255,255, 0.6);

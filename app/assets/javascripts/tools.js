@@ -56,7 +56,9 @@ Tool.prototype.formatShow = function() {
   let toolHtml = `
     <div class="inside">
       <a href="/tools/${this.id}/edit"><h1>${this.name}</h1></a>
-      <h2>Current Project: <a href="/projects/${this.project.id}">${this.project.name}</a></h2>
+      <div class="new-show-details">
+        <h2>Current Project: <a href="/projects/${this.project.id}">${this.project.name}</a></h2>
+      </div>
     </div>
   `
   return toolHtml;
