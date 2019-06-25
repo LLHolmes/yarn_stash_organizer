@@ -10,10 +10,19 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_05_02_143521) do
+ActiveRecord::Schema.define(version: 2019_06_25_001052) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "ads", force: :cascade do |t|
+    t.bigint "user_id"
+    t.text "description"
+    t.boolean "for_sale"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_ads_on_user_id"
+  end
 
   create_table "brands", force: :cascade do |t|
     t.string "name"
@@ -33,6 +42,15 @@ ActiveRecord::Schema.define(version: 2019_05_02_143521) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["project_id"], name: "index_notes_on_project_id"
+  end
+
+  create_table "posts", force: :cascade do |t|
+    t.bigint "yarn_id"
+    t.bigint "ad_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["ad_id"], name: "index_posts_on_ad_id"
+    t.index ["yarn_id"], name: "index_posts_on_yarn_id"
   end
 
   create_table "projects", force: :cascade do |t|
@@ -83,4 +101,7 @@ ActiveRecord::Schema.define(version: 2019_05_02_143521) do
     t.index ["project_id"], name: "index_yarns_on_project_id"
   end
 
+  add_foreign_key "ads", "users"
+  add_foreign_key "posts", "ads"
+  add_foreign_key "posts", "yarns"
 end
