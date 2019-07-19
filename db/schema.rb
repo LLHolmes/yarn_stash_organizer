@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_06_25_001052) do
+ActiveRecord::Schema.define(version: 2019_07_19_174153) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -30,10 +30,10 @@ ActiveRecord::Schema.define(version: 2019_06_25_001052) do
     t.string "weight"
     t.string "hook"
     t.string "needle"
-    t.integer "skein_weight"
-    t.integer "skein_length"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.decimal "skein_weight", precision: 10, scale: 2
+    t.decimal "skein_length", precision: 10, scale: 2
   end
 
   create_table "notes", force: :cascade do |t|
