@@ -7,19 +7,27 @@ Welcome to Yarn Stash Organizer, an application designed to help you wrangle you
 ## Usage
 This project is currently hosted at https://yarn-stash-organizer.herokuapp.com.
 
-To run on your local host, fork and clone this repo then:
+To run on your local host, fork and clone this repo, then:
 
 Run:
-    $ bundle install
+```
+$ bundle install
+```
 
-Then:
-    $ rake db:create && rake db:migrate
+Migrate database:
+```
+$ rake db:create && rake db:migrate
+```
 
 To run on your local machine:
-    $ rails s
+```
+$ rails s
+```
 
 If you would like to user OmniAuth to log-in through FaceBook:
-    $ thin start --ssl
+```
+$ thin start --ssl
+```
 
 Copy the given host (for example "http://localhost:3000/" or "https://0.0.0.0:3000/") into the URL of your favorite web browser.
 
