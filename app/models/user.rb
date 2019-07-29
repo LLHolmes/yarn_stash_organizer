@@ -24,12 +24,10 @@ class User < ApplicationRecord
       user.email = auth.info.email
       user.password = Devise.friendly_token[8,20]
       user.name = auth.info.name   # assuming the user model has a name
-      # user.image = auth.info.image # assuming the user model has an image
     end
   end
 
   def stash
-    # self.projects.detect { |project| project.name == "Stash" }
     self.projects.where(name: "Stash").first
   end
 
@@ -37,12 +35,7 @@ class User < ApplicationRecord
     self.brands.sort_by { |brand| brand.name }.sort_by { |brand| brand.material }
   end
 
-# For sorting examples:
-  # def super_sort
-  #   brands.order('name, material desc')
-  #   # brands.order(:name, material: DESC)
-  # end
-
+# For sorting:
   def brand_by_weight(gauge)
     self.brands_sorted.select { |brand| brand.weight == gauge }
   end
