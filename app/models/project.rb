@@ -52,8 +52,4 @@ class Project < ApplicationRecord
     end
   end
 
-  # def yarns_sorted
-  #   self.yarns_by_brand.sort_by { |yarn| yarn.brand.material }.sort_by { |yarn| yarn.brand.weight }
-  # end
-
 end
