@@ -3,12 +3,6 @@ class YarnsController < ApplicationController
   before_action :auth_user, only: [:edit, :update, :destroy]
 
   def index
-    # if params[:brand_id]
-    #   @yarns = Brand.find(params[:brand_id]).yarns
-    # else
-    #   @yarns = current_user.yarns
-    # end
-
     @yarns = current_user.yarns
     respond_to do |f|
       f.html
