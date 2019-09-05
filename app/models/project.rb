@@ -27,11 +27,11 @@ class Project < ApplicationRecord
   end
 
   def project_yarns_by_color
-    self.yarns.sort_by { |yarn| yarn.color }
+    yarns.order(:color)
   end
 
   def yarns_by_brand
-    self.project_yarns_by_color.sort_by { |yarn| yarn.brand.name }
+    self.project_yarns_by_color.includes(:brand).order('brands.name')
   end
 
   def clear_to_stash
