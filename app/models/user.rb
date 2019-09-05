@@ -31,13 +31,13 @@ class User < ApplicationRecord
     self.projects.where(name: "Stash").first
   end
 
+# For sorting:
   def brands_sorted
-    self.brands.sort_by { |brand| brand.name }.sort_by { |brand| brand.material }
+    brands.order(:weight).order(:name)
   end
 
-# For sorting:
   def brand_by_weight(gauge)
-    self.brands_sorted.select { |brand| brand.weight == gauge }
+    self.brands_sorted.where(weight: gauge)
   end
 
   def yarns_sorted_by_brand
