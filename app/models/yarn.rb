@@ -9,7 +9,7 @@ class Yarn < ApplicationRecord
   accepts_nested_attributes_for :project
   accepts_nested_attributes_for :brand
 
-  scope :ordered_by_color, -> { order(:color) } # belongs in yarn?
+  scope :ordered_by_color, -> { order(:color) }
 
   def project_attributes=(project_attributes)
     if !project_attributes[:name].empty?
