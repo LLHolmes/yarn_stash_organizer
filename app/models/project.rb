@@ -27,7 +27,7 @@ class Project < ApplicationRecord
   end
 
   def project_yarns_by_color
-    yarns.order(:color)
+    yarns.ordered_by_color
   end
 
   def yarns_by_brand

@@ -17,7 +17,7 @@ class Brand < ApplicationRecord
   end
 
   def yarns_by_color
-    yarns.order(:color)
+    yarns.ordered_by_color
   end
 
 end

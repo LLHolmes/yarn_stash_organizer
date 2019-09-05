@@ -9,6 +9,8 @@ class Yarn < ApplicationRecord
   accepts_nested_attributes_for :project
   accepts_nested_attributes_for :brand
 
+  scope :ordered_by_color, -> { order(:color) } # belongs in yarn?
+
   def project_attributes=(project_attributes)
     if !project_attributes[:name].empty?
       self.project = Project.find_or_create_by(name: project_attributes[:name], user_id: project_attributes[:user_id])
